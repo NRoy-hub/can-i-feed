@@ -1,0 +1,13 @@
+*result: string
+  - 'success': 성공
+  - 'no_authorized': 로그인 필요
+  - 'no_permission': 권한없음
+
+*message: string | null   
+(에러 알림)
+
+*comment: { 
+  id: string
+  type: number   (추천: 1, 비추천: 0, 취소: -1)
+  text: string
+}

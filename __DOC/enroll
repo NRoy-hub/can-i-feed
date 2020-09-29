@@ -1,0 +1,7 @@
+/enroll
+: 새로운 포스트 등록
+
+req: { photo }
+  - photo: image
+
+res: { *result, *message }

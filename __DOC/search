@@ -1,0 +1,13 @@
+/search/:keyword
+: 검색창 키워드 검색 API
+
+  res: { *result, *message, data: { posts } }
+    - posts: array[{
+        id: string
+        photo: string
+        title: string
+        recommend_count: number
+        nonrecommend_count: number
+        my_comment: *comment
+        comments: [*comment]
+    }]
