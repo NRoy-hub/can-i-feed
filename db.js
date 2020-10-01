@@ -1,11 +1,12 @@
 const { Pool } = require('pg');
 const async = require('async');
+require('dotenv').config();
 
 const dbConfig = {
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: 'postgres',
+  database: 'canifeed',
   max: 20,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
