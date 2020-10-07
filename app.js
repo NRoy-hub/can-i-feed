@@ -1,33 +1,16 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 const PORT = 80;
+const router = require('./routes/router');
 
-app.get('/', (req, res) => res.send('hello world'));
+app.use(cors());
+
+app.use('/', router);
+
+
 
 app.listen(PORT, () => {
   console.log(`listening on ${ PORT }`);
 });
-
-const db = require('./db');
-const waterfall = new db.waterfall();
-
-waterfall.run([
-  cb => {
-    waterfall.client.query('SELECT NOW();', [], (err, result) => {
-      if(err)cb(err);
-      cb(null, result.rows)
-    });
-  },
-  (_, cb) => {
-    waterfall.client.query('SELECT NOW();', [], (err, result) => {
-      if(err)cb(err);
-      cb(null, result.rows)
-    });
-  },
-  (firsts, cb) => {
-    console.log(firsts);
-    console.log('second');
-    cb();
-  }
-]);
