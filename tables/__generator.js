@@ -2,7 +2,7 @@ function ddl(name, props){
   const { columns, noPrimaryKey } = props;
   return `
     ${ noPrimaryKey ? '' : 'CREATE EXTENSION IF NOT EXISTS "pgcrypto";' }
-    CREATE TABLE IF NOT EXISTS ${ name }(
+    CREATE TABLE IF NOT EXISTS "${ name }"(
       ${ noPrimaryKey ? '' : 'id    TEXT    PRIMARY KEY    DEFAULT gen_random_uuid(),' }
       ${ columns }
     );
@@ -23,10 +23,7 @@ const fns = files.map(file => function(cb){
   const query = ddl(name, props);
   
   waterfall.client.query(query, [], (err) => {
-    if(err){ 
-      return console.log(`${ file }::`, err); 
-    }
-    cb();
+    cb(err);  // err = null | ERROR
   });
 });
 
