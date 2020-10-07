@@ -17,7 +17,7 @@ router.use((req, res, next) => {
 // 라우팅 처리
 router.post('/keywords', require('./keywords'));
 
-router.post('/search/:keyword', require('./search'));
+router.post('/search', require('./search'));
 
 
 // 404 처리

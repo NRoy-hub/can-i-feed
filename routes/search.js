@@ -1,15 +1,15 @@
 module.exports = (req, res, next) => {
   const moment = require('moment');
 
-  const { keyword } = req.params;
-  if(!(!!keyword)){ return res.bad(); }
+  const { keyword, species } = req.body;
+  if(!(!!keyword) || !species){ return res.bad(); }
   
   const db = require('../db');
   const waterfall = new db.waterfall(res);
   waterfall.run([
     cb => {
-      const query = 'SELECT * FROM keyword WHERE name = $1;';
-      const values = [keyword];
+      const query = 'SELECT * FROM keyword WHERE name=$1 AND species=$2;';
+      const values = [keyword, species];
       
       waterfall.client.query(query, values, (err, result) => {
         if(err)return cb(err);
@@ -18,15 +18,24 @@ module.exports = (req, res, next) => {
     },
     (row, cb) => {
       const query = row ? 
-        'UPDATE keyword SET count = count + 1, update_time = $2 WHERE name = $1;':
-          'INSERT INTO keyword(name, update_time, count) VALUES($1, $2, 1);';
-      const values = [keyword, req.now()];
+        'UPDATE keyword SET count = count + 1, update_time = $3 WHERE name = $1 AND species=$2;':
+          'INSERT INTO keyword(name, species, update_time, count) VALUES($1, $2, $3, 1);';
+      const values = [keyword, species, req.now()];
 
       waterfall.client.query(query, values, (err) => {
         if(err)return cb(err);
         cb();
       })
     },
-    // TODO: Post 불러오기
+    cb => {
+      const query = `SELECT id, photo, title, recommend_count, nonrecommend_count FROM post WHERE title LIKE $1;`;
+      const values = [`${ keyword }%`];
+
+      waterfall.client.query(query, values, (err, result) => {
+        if(err)return cb(err);
+        res.ok({ posts: result.rows });
+        cb();
+      });
+    }
   ]);
 }
