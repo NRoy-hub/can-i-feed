@@ -15,7 +15,7 @@ const dbConfig = {
 
 const pool = new Pool(dbConfig);
 
-function waterfall(){
+function waterfall(res){
   this.run = (cbs, errCb) => {
     async.waterfall([
       cb => {
@@ -30,9 +30,10 @@ function waterfall(){
     ],
     (err) => {
       if(err){
-        console.log(err);
+        console.error(err);
         errCb && errCb(err);
         this.client.query('ROLLBACK;');
+        res && res.error();
       }
       else this.client.query('COMMIT;');
 

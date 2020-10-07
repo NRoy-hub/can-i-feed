@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express();
-const cors = require('cors');
+
 
 const PORT = 80;
-const router = require('./routes/router');
+const router = require('./routes/__router');
 
-// app.use(cors());
+const cors = require('cors');
+app.use(cors());
 
 app.set('views', __dirname + '/client/build');
 app.set('view engine', 'ejs');
