@@ -1,7 +1,8 @@
 /enroll
 : 새로운 포스트 등록
 
-req: { photo }
+req: { species, photo }
+  - species*: number
   - photo: image
 
 res: { *result, *message }

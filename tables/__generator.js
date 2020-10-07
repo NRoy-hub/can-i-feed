@@ -1,11 +1,12 @@
 function ddl(name, props){
-  const { columns, noPrimaryKey } = props;
+  const { columns, noPrimaryKey, init } = props;
   return `
     ${ noPrimaryKey ? '' : 'CREATE EXTENSION IF NOT EXISTS "pgcrypto";' }
     CREATE TABLE IF NOT EXISTS "${ name }"(
       ${ noPrimaryKey ? '' : 'id    TEXT    PRIMARY KEY    DEFAULT gen_random_uuid(),' }
       ${ columns }
     );
+    ${ !init ? '' : `INSERT INTO ${ name }${ init };` }
   `;
 }
 
