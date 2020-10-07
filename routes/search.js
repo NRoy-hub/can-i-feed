@@ -2,7 +2,7 @@ module.exports = (req, res, next) => {
   const moment = require('moment');
 
   const { keyword, species } = req.body;
-  if(!(!!keyword) || !species){ return res.bad(); }
+  if(!(!!keyword) || !species){ return res.finish('invalid'); }
   
   const db = require('../db');
   const waterfall = new db.waterfall(res);
@@ -33,7 +33,7 @@ module.exports = (req, res, next) => {
 
       waterfall.client.query(query, values, (err, result) => {
         if(err)return cb(err);
-        res.ok({ posts: result.rows });
+        res.finish('ok', { posts: result.rows });
         cb();
       });
     }

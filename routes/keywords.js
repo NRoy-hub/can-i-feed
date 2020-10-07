@@ -4,7 +4,7 @@ module.exports = (req, res, next) => {
   const length = 5;
 
   const { species } = req.body;
-  if(!species){ return res.bad(); }
+  if(!species){ return res.finish('invalid'); }
 
   waterfall.run([
     cb => {
@@ -44,7 +44,7 @@ module.exports = (req, res, next) => {
       });
     },
     (keywords, cb) => {
-      res.ok(keywords);
+      res.finish('ok', keywords);
       cb();
     }
   ]);

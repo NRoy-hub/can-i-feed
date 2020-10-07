@@ -7,17 +7,16 @@ router.use((req, res, next) => {
   console.log('TIME: ', moment().format());
 
   req.now = () => (moment().format());
-
-  res.ok = (data) => res.send({ result: 'ok', data });
-  res.bad = () => res.send({ result: 'bad' });
+  res.finish = (result, data) => res.send({ result, data });
   res.error = () => res.status(505).send('Server Error!');
   next();
 });
 
 // 라우팅 처리
-router.post('/keywords', require('./keywords'));
 
+router.post('/keywords', require('./keywords'));
 router.post('/search', require('./search'));
+router.post('/enroll', require('./enroll'));
 
 
 // 404 처리
