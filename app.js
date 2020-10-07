@@ -12,6 +12,7 @@ app.set('views', __dirname + '/client/build');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 app.use(express.static(__dirname + '/client/build'));
+app.use(express.json());
 
 app.get('/*', (req, res, next) => {
   res.render('index.html');

@@ -1,6 +1,7 @@
 const columns = `
+  id                      UUID            DEFAULT gen_random_uuid(),
   user_id                 UUID            NOT NULL,
-  species_id              UUID            NOT NULL,
+  species_id              SMALLINT        NOT NULL,
   photo                   TEXT            NOT NULL,
   title                   TEXT            NOT NULL,
   recommend_count         INTEGER         DEFAULT 0,
@@ -8,4 +9,6 @@ const columns = `
   update_time             CHARACTER(25)   NOT NULL
 `;
 
-module.exports = { columns };
+const primaryKey = ['id'];
+
+module.exports = { columns, primaryKey };

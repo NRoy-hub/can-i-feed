@@ -1,7 +1,10 @@
 const columns = `
-  name          TEXT              PRIMARY KEY,
+  name          TEXT,
+  species       SMALLINT,     
   count         INT               DEFAULT 0,
   update_time   CHARACTER(25)     NOT NULL
 `;
 
-module.exports = { columns, noPrimaryKey: true };
+const primaryKey = ['name', 'species'];
+
+module.exports = { columns, primaryKey };

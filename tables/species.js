@@ -1,8 +1,9 @@
 const columns = `
-  id          SMALLSERIAL   PRIMARY KEY,
+  id          SMALLSERIAL,
   name        TEXT          NOT NULL
 `;
 
+const primaryKey = ['id'];
 const init = `(name) VALUES('dog'),('cat')`;
 
-module.exports = { columns, init, noPrimaryKey: true };
+module.exports = { columns, primaryKey, init };

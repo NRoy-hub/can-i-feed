@@ -1,5 +1,9 @@
 const columns = `
-  email       TEXT        UNIQUE      NOT NULL
+  id          UUID        DEFAULT gen_random_uuid(),
+  email       TEXT        NOT NULL
 `;
 
-module.exports = { columns };
+const primaryKey = ['id'];
+const unique = ['email'];
+
+module.exports = { columns, primaryKey, unique };
