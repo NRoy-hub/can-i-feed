@@ -9,15 +9,13 @@ router.use((req, res, next) => {
 });
 
 // 라우팅 처리
-router.get('/', (req, res, next) => {
+router.post('/', (req, res, next) => {
   res.send('hello');
 });
 
-router.get('/test', (req, res, next) => {
+router.post('/test', (req, res, next) => {
   throw new Error('테스트 에러');
 });
-
-
 
 
 // 404 처리
