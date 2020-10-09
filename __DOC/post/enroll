@@ -1,4 +1,4 @@
-/enroll
+/post/enroll
 : 새로운 포스트 등록
 
 req: { species, photo }

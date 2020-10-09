@@ -1,4 +1,4 @@
-/speak_out
+/post/speak_out
 : 포스트에 의견(좋아요/싫어요/취소)을 내는 API
 
   req: { post_id, type }

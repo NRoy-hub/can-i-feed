@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-
+const moment = require('moment');
 
 const PORT = 80;
 const router = require('./routes/__router');
@@ -17,8 +17,18 @@ app.use(express.json());
 app.get('/*', (req, res, next) => {
   res.render('index.html');
 });
-app.use('/', router);
 
+app.use((req, res, next) => {
+  console.log('PATH: ', req.path);
+  console.log('TIME: ', moment().format());
+
+  req.now = () => (moment().format());
+  res.finish = (result, data) => res.send({ result, data });
+  res.error = () => res.status(505).send('Server Error!');
+  next();
+});
+
+app.use('/', router);
 
 
 app.listen(PORT, () => {

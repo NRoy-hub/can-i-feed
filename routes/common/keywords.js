@@ -1,5 +1,5 @@
 module.exports = (req, res, next) => {
-  const db = require('../db');
+  const db = require('../../db');
   const waterfall = new db.waterfall(res);
   const length = 5;
 

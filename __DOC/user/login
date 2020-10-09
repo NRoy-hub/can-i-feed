@@ -1,0 +1,12 @@
+/user/login
+: 로그인 API
+
+  req: { email, keep, key }
+   - email: string
+   - keep: bool
+   - key: string
+  
+  res: { *result, *message, data: { email, token, [ticket] } }
+    - email: string
+    - token: string
+    - ticket: string  // if keep is true

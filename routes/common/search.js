@@ -4,7 +4,7 @@ module.exports = (req, res, next) => {
   const { keyword, species } = req.body;
   if(!(!!keyword) || !species){ return res.finish('invalid'); }
   
-  const db = require('../db');
+  const db = require('../../db');
   const waterfall = new db.waterfall(res);
   waterfall.run([
     cb => {
