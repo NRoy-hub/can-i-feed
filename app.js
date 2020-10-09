@@ -1,11 +1,14 @@
 const express = require('express');
 const app = express();
 const moment = require('moment');
+const dotenv = require('dotenv');
+const cors = require('cors');
+
 
 const PORT = 80;
 const router = require('./routes/__router');
 
-const cors = require('cors');
+dotenv.config();
 app.use(cors());
 
 app.set('views', __dirname + '/client/build');

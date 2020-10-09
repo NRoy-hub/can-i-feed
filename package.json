@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "npx babel app.js | node",
     "create_db": "node tables/__generator.js",
     "build": "cd client && npm run build"
   },
@@ -19,12 +19,19 @@
     "url": "https://github.com/NRoy-hub/can-i-feed__backend/issues"
   },
   "homepage": "https://github.com/NRoy-hub/can-i-feed__backend#readme",
+  "babel": {
+    "presets": ["@babel/env"]
+  },
   "dependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
     "async": "^3.2.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "moment": "^2.29.1",
+    "nodemailer": "^6.4.13",
     "pg": "^8.3.3"
   },
   "devDependencies": {

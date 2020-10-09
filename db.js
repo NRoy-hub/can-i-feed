@@ -1,6 +1,6 @@
 const { Pool } = require('pg');
 const async = require('async');
-require('dotenv').config();
+
 
 const dbConfig = {
   host: process.env.DB_HOST,
@@ -12,6 +12,8 @@ const dbConfig = {
   connectionTimeoutMillis: 2000,
   statement_timeout: 10000
 }
+
+console.log(process.nextTick.DB_HOST);
 
 const pool = new Pool(dbConfig);
 
