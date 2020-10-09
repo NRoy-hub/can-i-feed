@@ -11,13 +11,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendEmail = async(to, title, text, cb) => {
-  const option = {
-    from: `"CanIFeed Team" <${process.env.NODEMAILER_USER}>`,
-    to,
-    subject: title,
-    text
-  }
+const sendMail = async(option, cb) => {
   try{
     await transporter.sendMail(option);
     cb();
@@ -26,5 +20,5 @@ const sendEmail = async(to, title, text, cb) => {
   }
 };
 
-module.exports = { sendEmail };
+module.exports = { sendMail };
 

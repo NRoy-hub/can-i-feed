@@ -4,11 +4,12 @@ const moment = require('moment');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
-
 const PORT = 80;
-const router = require('./routes/__router');
 
 dotenv.config();
+
+const router = require('./routes/router');
+
 app.use(cors());
 
 app.set('views', __dirname + '/client/build');
@@ -27,7 +28,7 @@ app.use((req, res, next) => {
 
   req.now = () => (moment().format());
   res.finish = (result, data) => res.send({ result, data });
-  res.error = () => res.status(505).send('Server Error!');
+  res.fail = (message) => res.send({ result: 'fail', message: message || 'Server Error!' });
   next();
 });
 
@@ -37,3 +38,7 @@ app.use('/', router);
 app.listen(PORT, () => {
   console.log(`listening on ${ PORT }`);
 });
+
+const before = moment('2020-10-10T00:24:06+09:00');
+const sub = moment() - before;
+console.log(moment(sub).minutes());

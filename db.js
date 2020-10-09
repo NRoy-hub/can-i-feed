@@ -18,7 +18,7 @@ console.log(process.nextTick.DB_HOST);
 const pool = new Pool(dbConfig);
 
 function waterfall(res){
-  this.run = (cbs, errCb) => {
+  this.run = (cbs, callback) => {
     async.waterfall([
       cb => {
         pool.connect()
@@ -33,13 +33,14 @@ function waterfall(res){
     (err) => {
       if(err){
         console.error(err);
-        errCb && errCb(err);
         this.client.query('ROLLBACK;');
-        res && res.error();
+        const message = typeof err === 'string' && err;
+        res && res.fail(message);
       }
       else this.client.query('COMMIT;');
 
       this.client.release();
+      callback && callback(err);
     }
     );
   }
