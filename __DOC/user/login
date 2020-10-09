@@ -2,9 +2,9 @@
 : 로그인 API
 
   req: { email, keep, key }
-   - email: string
-   - keep: bool
-   - key: string
+    - email: string
+    - keep: bool
+    - key: string
   
   res: { *result, *message, data: { email, token, [ticket] } }
     - email: string
