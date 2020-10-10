@@ -29,6 +29,8 @@ app.use((req, res, next) => {
   res.now = () => (moment().format());
   res.finish = (result, data) => res.send({ result, data });
   res.fail = (message) => res.send({ result: 'fail', message: message || 'Server Error!' });
+  res.db = require('./db');
+  res.db.prototype.fail = res.fail;
   next();
 });
 
@@ -39,6 +41,7 @@ app.listen(PORT, () => {
   console.log(`listening on ${ PORT }`);
 });
 
-const before = moment('2020-10-10T00:24:06+09:00');
-const sub = moment() - before;
-console.log(moment(sub).minutes());
+// TODO: 분 차이 
+// const before = moment('2020-10-10T00:24:06+09:00');
+// const sub = moment() - before;
+// console.log(moment(sub).minutes());

@@ -1,8 +1,8 @@
 /keywords
 : 홈에서 추천 검색 키워드를 불러오는 API
 
-  req: { speices }
-    - speices*: number
+  req: { species }
+    - species*: number
 
   res: { *result, *message, data: { latest, most, recommend, nonrecommend } }
     - latest, most, recommend, nonrecommend: [string]

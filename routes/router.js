@@ -24,6 +24,7 @@ commonRouter.post('/keywords', require('./common/keywords'));
 commonRouter.post('/search', require('./common/search'));
 
 userRouter.post('/check_email', require('./user/check_email'));
+userRouter.post('/login', require('./user/login'));
 
 
 

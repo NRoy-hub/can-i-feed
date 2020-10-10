@@ -17,7 +17,7 @@ console.log(process.nextTick.DB_HOST);
 
 const pool = new Pool(dbConfig);
 
-function waterfall(res){
+function Postgres(){
   this.run = (cbs, callback) => {
     async.waterfall([
       cb => {
@@ -35,7 +35,7 @@ function waterfall(res){
         console.error(err);
         this.client.query('ROLLBACK;');
         const message = typeof err === 'string' && err;
-        res && res.fail(message);
+        this.fail && this.fail(message);
       }
       else this.client.query('COMMIT;');
 
@@ -49,4 +49,4 @@ function waterfall(res){
 
 
 
-module.exports = { pool, waterfall };
+module.exports = Postgres;

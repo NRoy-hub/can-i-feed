@@ -3,15 +3,13 @@ const rand = require('random-key');
 
 module.exports = (req, res) => {
   const { email } = req.body;
-
   if(!email){ return res.finish('invalid'); }
 
-  const db = require('../../db');
-  const waterfall = new db.waterfall(res);
+  const db = new res.db();
   
   const code = rand.generateBase30(5);
 
-  waterfall.run([
+  db.run([
     cb => {
       smtp.sendMail({
         from: `"CanIFeed Team" <${process.env.NODEMAILER_USER}>`,
@@ -26,7 +24,7 @@ module.exports = (req, res) => {
       const query = 'SELECT id FROM "user" WHERE email = $1;';
       const values = [email];
 
-      waterfall.client.query(query, values, (err, result) => {
+      db.client.query(query, values, (err, result) => {
         if(err)return cb(err);
         const user = result.rows[0];
         cb(null, (user && user.id) || null);
@@ -37,7 +35,7 @@ module.exports = (req, res) => {
 
       const query = 'INSERT INTO "user"(email) VALUES ($1) RETURNING id;';
       const values = [email];
-      waterfall.client.query(query, values, (err, result) => {
+      db.client.query(query, values, (err, result) => {
         if(err)return cb(err);
         cb(null, result.rows[0].id);
       });
@@ -51,7 +49,7 @@ module.exports = (req, res) => {
               update_time = $3;
       `;
       const values = [userId, code, res.now()];
-      waterfall.client.query(query, values, err => {
+      db.client.query(query, values, err => {
         if(err)return cb(err);
         res.finish('ok', { user_id: userId });
         cb();
