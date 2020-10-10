@@ -26,7 +26,7 @@ app.use((req, res, next) => {
   console.log('PATH: ', req.path);
   console.log('TIME: ', moment().format());
 
-  req.now = () => (moment().format());
+  res.now = () => (moment().format());
   res.finish = (result, data) => res.send({ result, data });
   res.fail = (message) => res.send({ result: 'fail', message: message || 'Server Error!' });
   next();

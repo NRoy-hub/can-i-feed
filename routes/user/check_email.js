@@ -50,7 +50,7 @@ module.exports = (req, res) => {
           SET key = $2,
               update_time = $3;
       `;
-      const values = [userId, code, req.now()];
+      const values = [userId, code, res.now()];
       waterfall.client.query(query, values, err => {
         if(err)return cb(err);
         res.finish('ok', { user_id: userId });

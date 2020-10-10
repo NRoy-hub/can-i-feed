@@ -20,7 +20,7 @@ module.exports = (req, res, next) => {
       const query = row ? 
         'UPDATE keyword SET count = count + 1, update_time = $3 WHERE name = $1 AND species=$2;':
           'INSERT INTO keyword(name, species, update_time, count) VALUES($1, $2, $3, 1);';
-      const values = [keyword, species, req.now()];
+      const values = [keyword, species, res.now()];
 
       waterfall.client.query(query, values, (err) => {
         if(err)return cb(err);
