@@ -1,3 +1,6 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 function ddl(name, props){
   const { columns, primaryKey, unique, init } = props;
   return `
