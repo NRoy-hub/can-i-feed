@@ -1,9 +1,9 @@
 const columns = `
-  email         TEXT,
-  ticket        UUID        UNIQUE        DEFAULT gen_random_uuid()
+  user_id       UUID,
+  ticket        UUID            DEFAULT gen_random_uuid(),
+  update_time   CHARACTER(25)   NOT NULL 
 `;
 
-const primaryKey = ['email'];
-const unique = ['ticket'];
+const primaryKey = ['user_id'];
 
-module.exports = { columns, primaryKey, unique };
+module.exports = { columns, primaryKey };

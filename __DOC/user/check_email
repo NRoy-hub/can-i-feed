@@ -3,4 +3,4 @@
 
 req: { email }
 
-res: { *result, *message, data: { user_id } }
+res: { *result, *message }

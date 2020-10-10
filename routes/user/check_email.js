@@ -21,37 +21,17 @@ module.exports = (req, res) => {
       })
     },
     cb => {
-      const query = 'SELECT id FROM "user" WHERE email = $1;';
-      const values = [email];
-
-      db.query(query, values, (err, result) => {
-        if(err)return cb(err);
-        const user = result.rows[0];
-        cb(null, (user && user.id) || null);
-      });
-    },
-    (userId, cb) => {
-      if(userId){ return cb(null, userId); }
-
-      const query = 'INSERT INTO "user"(email) VALUES ($1) RETURNING id;';
-      const values = [email];
-      db.query(query, values, (err, result) => {
-        if(err)return cb(err);
-        cb(null, result.rows[0].id);
-      });
-    },
-    (userId, cb) => {
       const query = `
-        INSERT INTO user_auth(user_id, key, update_time)
+        INSERT INTO user_auth(email, key, update_time)
         VALUES ($1, $2, $3)
-        ON CONFLICT (user_id) DO UPDATE
+        ON CONFLICT (email) DO UPDATE
           SET key = $2,
               update_time = $3;
       `;
-      const values = [userId, code, res.now()];
+      const values = [email, code, res.now()];
       db.query(query, values, err => {
         if(err)return cb(err);
-        res.finish('ok', { user_id: userId });
+        res.finish('ok');
         cb();
       });
     }
