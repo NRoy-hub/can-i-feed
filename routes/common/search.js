@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
       const query = 'SELECT * FROM keyword WHERE name=$1 AND species=$2;';
       const values = [keyword, species];
       
-      db.client.query(query, values, (err, result) => {
+      db.query(query, values, (err, result) => {
         if(err)return cb(err);
         cb(null, result.rows[0]);
       });
@@ -20,7 +20,7 @@ module.exports = (req, res, next) => {
           'INSERT INTO keyword(name, species, update_time, count) VALUES($1, $2, $3, 1);';
       const values = [keyword, species, res.now()];
 
-      db.client.query(query, values, (err) => {
+      db.query(query, values, (err) => {
         if(err)return cb(err);
         cb();
       })
@@ -29,7 +29,7 @@ module.exports = (req, res, next) => {
       const query = `SELECT id, photo, title, recommend_count, nonrecommend_count FROM post WHERE title LIKE $1;`;
       const values = [`${ keyword }%`];
 
-      db.client.query(query, values, (err, result) => {
+      db.query(query, values, (err, result) => {
         if(err)return cb(err);
         res.finish('ok', { posts: result.rows });
         cb();

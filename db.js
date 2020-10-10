@@ -13,8 +13,6 @@ const dbConfig = {
   statement_timeout: 10000
 }
 
-console.log(process.nextTick.DB_HOST);
-
 const pool = new Pool(dbConfig);
 
 function Postgres(){
@@ -23,7 +21,8 @@ function Postgres(){
       cb => {
         pool.connect()
         .then(client => { 
-          this.client = client;
+          this.query = client.query.bind(client);
+          this.release = client.release.bind(client);
           client.query('BEGIN;');
           cb(); 
         });
@@ -33,13 +32,13 @@ function Postgres(){
     (err) => {
       if(err){
         console.error(err);
-        this.client.query('ROLLBACK;');
+        this.query('ROLLBACK;');
         const message = typeof err === 'string' && err;
         this.fail && this.fail(message);
       }
-      else this.client.query('COMMIT;');
+      else this.query('COMMIT;');
 
-      this.client.release();
+      this.release();
       callback && callback(err);
     }
     );

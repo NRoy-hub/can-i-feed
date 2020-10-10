@@ -13,7 +13,7 @@ function ddl(name, props){
 
 const fs = require('fs');
 const db = require('../db');
-const waterfall = new db.waterfall();
+const waterfall = new db();
 
 
 const files = fs.readdirSync(__dirname);
@@ -24,7 +24,7 @@ const fns = files.map(file => function(cb){
   const props = require(`./${ name }`);
   const query = ddl(name, props);
   
-  waterfall.client.query(query, [], (err) => {
+  waterfall.query(query, err => {
     cb(err);  // err = null | ERROR
   });
 });

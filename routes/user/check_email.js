@@ -24,7 +24,7 @@ module.exports = (req, res) => {
       const query = 'SELECT id FROM "user" WHERE email = $1;';
       const values = [email];
 
-      db.client.query(query, values, (err, result) => {
+      db.query(query, values, (err, result) => {
         if(err)return cb(err);
         const user = result.rows[0];
         cb(null, (user && user.id) || null);
@@ -35,7 +35,7 @@ module.exports = (req, res) => {
 
       const query = 'INSERT INTO "user"(email) VALUES ($1) RETURNING id;';
       const values = [email];
-      db.client.query(query, values, (err, result) => {
+      db.query(query, values, (err, result) => {
         if(err)return cb(err);
         cb(null, result.rows[0].id);
       });
@@ -49,7 +49,7 @@ module.exports = (req, res) => {
               update_time = $3;
       `;
       const values = [userId, code, res.now()];
-      db.client.query(query, values, err => {
+      db.query(query, values, err => {
         if(err)return cb(err);
         res.finish('ok', { user_id: userId });
         cb();
