@@ -26,7 +26,7 @@ module.exports = (req, res) => {
       })
     },
     cb => {
-      const query = `SELECT id, photo, title, recommend_count, nonrecommend_count FROM post WHERE title LIKE $1;`;
+      const query = `SELECT id, photo, name, recommend_count, nonrecommend_count FROM post WHERE name LIKE $1;`;
       const values = [`${ keyword }%`];
 
       db.query(query, values, (err, result) => {

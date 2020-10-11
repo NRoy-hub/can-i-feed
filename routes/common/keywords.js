@@ -25,7 +25,7 @@ module.exports = (req, res) => {
       });
     },
     (keywords, cb) => {
-      const query = 'SELECT title FROM post WHERE species_id=$1 ORDER BY recommend_count DESC;';
+      const query = 'SELECT name FROM post WHERE species_id=$1 ORDER BY recommend_count DESC;';
       const values = [species];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
@@ -34,7 +34,7 @@ module.exports = (req, res) => {
       });
     },
     (keywords, cb) => {
-      const query = 'SELECT title FROM post WHERE species_id=$1 ORDER BY nonrecommend_count DESC;';
+      const query = 'SELECT name FROM post WHERE species_id=$1 ORDER BY nonrecommend_count DESC;';
       const values = [species];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);

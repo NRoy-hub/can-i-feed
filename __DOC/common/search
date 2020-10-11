@@ -9,7 +9,7 @@
     - posts: array[{
         id: string
         photo: string
-        title: string
+        name: string
         recommend_count: number
         nonrecommend_count: number
     }]
