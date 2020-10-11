@@ -6,7 +6,9 @@
     - keep: bool
     - key: string
   
-  res: { *result, *message, data: { email, token, [ticket] } }
+  res: { *result, *message, data: { email, session_id, [ticket] } }
     - email: string
-    - token: string
+    - session_id: string
     - ticket: string  // if keep is true
+    - *result
+      "void": check_email 필요
