@@ -18,8 +18,17 @@ module.exports = (req, res) => {
       const values = [post_id, req.user.id];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
-        if(!result.rows[0])return cb('void');
-        res.finish('ok')
+        if(!result.rows[0])return cb('conflict');
+        cb();
+      });
+    },
+    cb => {
+      const query = 'SELECT id, type, text FROM comment WHERE post_id = $1;';
+      const values = [post_id];
+      db.query(query, values, (err, result) => {
+        if(err)return cb(err);
+        const data = { comments: result.rows };
+        res.finish('ok', data);
         cb();
       });
     }

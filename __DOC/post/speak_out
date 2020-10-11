@@ -6,8 +6,9 @@
     - type: number   
     - text: string
   
-  res: { *result, data: { my_comment } }
+  res: { *result, data: { my_comment, comments } }
     - my_comment: *comment
+    - comments: [*comment]
     - result
       "void": Post가 존재하지 않음
       "conflict": 이미 의견이 존재함
