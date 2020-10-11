@@ -1,6 +1,7 @@
 module.exports = (req, res) => {
   const { canifeed_uid: userId } = req.cookies;
   const { post_id } = req.body;
+  if(!post_id){ return res.finish('invalid'); }
 
   const db = new res.db();
   db.run([
@@ -17,11 +18,10 @@ module.exports = (req, res) => {
       let myComment;
       if(userId && comments[0] && comments[0].user_id === userId){
         myComment = { ...comments[0], user_id: undefined };
-        copied = comments.slice(1).map(comment => ({ ...comment, user_id: undefined }));
+        copied = copied.slice(1).map(comment => ({ ...comment, user_id: undefined }));
       }
       res.finish('ok', { my_comment: myComment, comments: copied });
       cb();
-      // TODO: TEST 해봐야함
     }
   ]);
 }
