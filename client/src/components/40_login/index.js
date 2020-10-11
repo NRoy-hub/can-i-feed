@@ -7,7 +7,6 @@ export default function Login(){
   const { state: { user }, dispatch } = useContext(DataContext);
   const history = useHistory();
   const loginInput = useRef();
-  const keepCheckbox = useRef();
   const [checkedEmail, setCheckedEmail] = useState(null);
   
   function onSubmit(e){
@@ -17,26 +16,21 @@ export default function Login(){
     if(!checkedEmail){
       const email = loginInput.current.value;
       requestApi({
-        method: 'POST',
-        path: api.CHECK_EMAIL,
+        path: api.USER_CHECK_EMAIL,
         data: { email },
         success: () => {
           setCheckedEmail(email);
           loginInput.current.value = '';
           loginInput.current.focus();
         },
-        fail: () => alert('이메일이 확인되지 않습니다.'),
         common: dispatch.loadOff
       });
     }else{
       const key = loginInput.current.value;
-      const keep = keepCheckbox.current.checked;
       requestApi({
-        method: 'POST',
-        path: api.LOGIN,
-        data: { email: checkedEmail, keep, key },
-        success: () => { dispatch({ type: actionNames.login, user: { email: checkedEmail } }) },
-        fail: () => alert('로그인에 실패하였습니다'),
+        path: api.USER_LOGIN,
+        data: { email: checkedEmail, key },
+        success: (user) => { dispatch({ type: actionNames.login, user }) },
         common: dispatch.loadOff
       });
     }
@@ -66,13 +60,7 @@ export default function Login(){
           checkedEmail ? 
             <p className="desc">이메일에 전송된 인증코드를 입력해주세요</p>
             : <p className="desc">이메일 인증코드만 확인하기 때문에 <br />별도의 가입절차가 필요없습니다</p>
-        }
-        { 
-          checkedEmail && <label htmlFor="login_checkbox" className="keep_login">
-            <input ref={ keepCheckbox } type="checkbox" id="login_checkbox" />
-            <span>로그인 유지</span>
-          </label>
-        }     
+        } 
         <input type="submit" value="Login"/>
       </form>
     </StyledMain>
@@ -153,33 +141,6 @@ const StyledMain = styled.main`
     text-align: center;
     color: #777777;
     font-size: 14px;
-  }
-
-  .keep_login{
-    margin-top: 20px;
-    font-size: 16px;
-    color: ${ color.blue1 };
-
-    &:hover{
-      cursor: pointer;
-    }
-
-    input[type=checkbox]{
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      width: 14px;
-      height: 14px;
-      appearance: none;
-      margin-right: 7px;
-      margin-bottom: 3px;
-      border: 1px solid ${ color.blue1 };
-      outline: none;
-      transform: translateY(4px);
-      
-      &:checked{
-        background: ${ color.blue1 };
-      }
-    }
   }
 
   input[type=submit]{

@@ -9,13 +9,14 @@ import EnrollForm from './EnrollForm';
 
 export default function Search(){
   const { keyword } = useParams()
-  const { state: { posts }, dispatch } = useContext(DataContext);
+  const { state: { posts, species }, dispatch } = useContext(DataContext);
   
   useEffect(() => {
     dispatch({ type: actionNames.setSearchInput, value: keyword });
     dispatch.loadOn();
     requestApi({
-      path: `${ api.SEARCH }/${ keyword }`,
+      path: `${ api.SEARCH }`,
+      data: { keyword, species },
       success: data => dispatch({ type: actionNames.addPost, posts: data.posts }), 
       common: dispatch.loadOff
     });

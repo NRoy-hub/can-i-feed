@@ -2,18 +2,24 @@ import axios from 'axios';
 
 export const api = {
   KEYWORDS: '/keywords',
-  SPEAK_OUT: '/speak_out',
   SEARCH: '/search',
-  CHECK_EMAIL: '/check_email',
-  LOGIN: '/login',
-  ENROLL: '/enroll',
-  LOGOUT: '/logout'
+  USER_INFO: '/user/info',
+  USER_CHECK_EMAIL: '/user/check_email',
+  USER_LOGIN: '/user/login',
+  USER_LOGOUT: '/user/logout',
+  POST_ENROLL: '/post/enroll',
+  POST_SPEAK_OUT: '/speak_out'
 };
 
 
-export const requestApi = async({ method = 'GET', path, data = {}, success, fail, common }) => {
+export const requestApi = async({ path, data = {}, success, fail, common }) => {
   const { data: res } = await axios.post(path, data);
-  console.log(res);
+  console.log(`
+    PATH: ${ path },
+    res: ${ res.result }
+  `);
+  console.log(res.data);
+  console.log('--------------------');
   if(res.result === 'ok'){
     success && success(res.data);
   }else{

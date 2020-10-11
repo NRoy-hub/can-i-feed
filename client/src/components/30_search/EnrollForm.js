@@ -8,7 +8,7 @@ export default function EnrollForm(){
   const { keyword } = useParams();
   const photoInput = useRef();
   const label = useRef();
-  const { dispatch } = useContext(DataContext);
+  const { dispatch, state: { species } } = useContext(DataContext);
   const [showForm, setShowForm] = useState(false);
 
   function onSubmit(e){
@@ -18,14 +18,12 @@ export default function EnrollForm(){
     if(!file){ return alert('이미지를 업로드해주세요'); }
     dispatch.loadOn();
     requestApi({
-      method: 'POST',
-      path: api.ENROLL,
-      data: { photo: file },
+      path: api.POST_ENROLL,
+      data: { name: keyword, photo: file, species },
       success: () => { 
         alert(`'${ keyword }' 먹이를 등록하였습니다.`);
         window.location.reload();
       },
-      fail: () => alert('오류가 발생했습니다.'),
       common: dispatch.loadOff
     }) 
   }

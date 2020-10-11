@@ -30,13 +30,12 @@ export default function Header(){
 
     dispatch.loadOn();
     willLogout && requestApi({
-      method: 'POST',
-      path: api.LOGOUT,
+      path: api.USER_LOGOUT,
       success: () => {
         dispatch({ type: actionNames.logout });
+        alert('로그아웃 되었습니다');
         history.push(url.HOME);
       },
-      fail: () => alert('오류가 발생했습니다.'),
       common: dispatch.loadOff
     })
   }
