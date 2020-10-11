@@ -30,6 +30,7 @@ userRouter.post('/login', require('./user/login'));
 userRouter.post('/logout', middleware.auth, require('./user/logout'));
 userRouter.post('/info', middleware.auth, require('./user/info'));
 
+postRouter.post('/enroll', middleware.auth, require('./post/enroll'));
 
 
 
