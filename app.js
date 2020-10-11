@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const moment = require('moment');
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 const PORT = 80;
@@ -12,6 +13,7 @@ const router = require('./routes/router');
 
 app.use(cors());
 
+app.use(cookieParser());
 app.set('views', __dirname + '/client/build');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
@@ -27,10 +29,13 @@ app.use((req, res, next) => {
   console.log('TIME: ', moment().format());
 
   res.now = () => (moment().format());
+  res.fromNow = (time) => {
+    const sub = moment() - moment(time);
+    return moment(sub).minutes();
+  }
   res.finish = (result, data) => res.send({ result, data });
-  res.fail = (message) => res.send({ result: 'fail', message: message || 'Server Error!' });
   res.db = require('./db');
-  res.db.prototype.fail = res.fail;
+  res.db.prototype.finish = res.finish;
   next();
 });
 

@@ -29,12 +29,15 @@ function Postgres(){
       },
       ...cbs
     ],
-    (err) => {
-      if(err){
-        console.error(err);
+    (result) => {
+      if(result){
         this.query('ROLLBACK;');
-        const message = typeof err === 'string' && err;
-        this.fail && this.fail(message);
+        if(typeof result === 'string'){
+          this.finish && this.finish(result)
+        }else{
+          console.error(result);
+          this.finish && this.finish('error');
+        }
       }
       else this.query('COMMIT;');
 

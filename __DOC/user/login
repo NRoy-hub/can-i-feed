@@ -1,14 +1,13 @@
 /user/login
 : 로그인 API
 
-  req: { email, keep, key }
+  req: { email, key }
     - email: string
-    - keep: bool
     - key: string
   
-  res: { *result, *message, data: { email, session_id, [ticket] } }
+  res: { *result, *message, data: { user_id, email } }
+    - user_id: string
     - email: string
-    - session_id: string
-    - ticket: string  // if keep is true
     - *result
       "void": check_email 필요
+    + cookie: { session_id }

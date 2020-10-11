@@ -1,9 +1,0 @@
-/user/freepass
-: 로그인 유지 인증
-
-  req: { email, ticket }
-    - email: string
-    - ticket: string 
-  
-  res: { *result, *message, data: { token } }
-    - token: string

@@ -4,3 +4,5 @@
 req: { email }
 
 res: { *result, *message }
+  - result
+    "invalid": 유효하지 않은 이메일
