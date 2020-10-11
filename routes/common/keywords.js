@@ -11,7 +11,7 @@ module.exports = (req, res) => {
       const values = [species];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
-        const latest = result.rows.slice(0, length);
+        const latest = result.rows.slice(0, length).map(({ name }) => name);
         cb(null, { latest });
       });
     },
@@ -20,7 +20,7 @@ module.exports = (req, res) => {
       const values = [species];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
-        const most = result.rows.slice(0, length);
+        const most = result.rows.slice(0, length).map(({ name }) => name);
         cb(null, { ...keywords, most });
       });
     },
@@ -29,7 +29,7 @@ module.exports = (req, res) => {
       const values = [species];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
-        const recommend = result.rows.slice(0, length);
+        const recommend = result.rows.slice(0, length).map(({ name }) => name);
         cb(null, { ...keywords, recommend });
       });
     },
@@ -38,7 +38,7 @@ module.exports = (req, res) => {
       const values = [species];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
-        const nonrecommend = result.rows.slice(0, length);
+        const nonrecommend = result.rows.slice(0, length).map(({ name }) => name);
         cb(null, { ...keywords, nonrecommend });
       });
     },
