@@ -5,16 +5,17 @@ import { url, api, requestApi, color, DataContext, actionNames } from '../../com
 
 
 export default function Home(){
-  const { dispatch } = useContext(DataContext);
+  const { dispatch, state: { species } } = useContext(DataContext);
   const [keywords, setKeywords] = useState({});
 
   useEffect(() => {
     dispatch.loadOn();
     requestApi({
       path: api.KEYWORDS,
-      success: ({ keywords }) => {
+      data: { species },
+      success: data => {
         dispatch({ type: actionNames.setSearchInput, value: '' })
-        setKeywords(keywords);
+        setKeywords(data);
       },
       common: dispatch.loadOff
     });

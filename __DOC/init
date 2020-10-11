@@ -2,7 +2,7 @@
   - 'ok': 성공
   - 'invalid': 잘못된 요청
   - 'unauthorized': 권한없음
-  - 'fail': 실패(message 응답)
+  - 'error': 서버에러
 
 *comment: { 
   id: string

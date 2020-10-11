@@ -2,7 +2,8 @@ export const INITIAL_STATE = {
   user: null,
   searchInput: '',
   posts: [],
-  loading: false
+  loading: false,
+  species: 1
 };
 
 export const actionNames = {
