@@ -1,4 +1,4 @@
-module.exports = (req, res, next) => {
+module.exports = (req, res) => {
 
   const { keyword, species } = req.body;
   if(!(!!keyword) || !species){ return res.finish('invalid'); }

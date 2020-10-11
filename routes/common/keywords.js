@@ -1,4 +1,4 @@
-module.exports = (req, res, next) => {
+module.exports = (req, res) => {
   const db = new res.db();
   const length = 5;
 

@@ -27,6 +27,7 @@ commonRouter.post('/search', require('./common/search'));
 
 userRouter.post('/check_email', require('./user/check_email'));
 userRouter.post('/login', require('./user/login'));
+userRouter.post('/logout', middleware.auth, require('./user/logout'));
 userRouter.post('/info', middleware.auth, require('./user/info'));
 
 
