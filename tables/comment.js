@@ -8,5 +8,6 @@ const columns = `
 `;
 
 const primaryKey = ['id'];
+const unique = ['post_id', 'user_id'];
 
-module.exports = { columns, primaryKey };
+module.exports = { columns, primaryKey, unique };

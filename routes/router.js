@@ -31,6 +31,7 @@ userRouter.post('/logout', middleware.auth, require('./user/logout'));
 userRouter.post('/info', middleware.auth, require('./user/info'));
 
 postRouter.post('/enroll', middleware.auth, require('./post/enroll'));
+postRouter.post('/speak_out', middleware.auth, require('./post/speak_out'));
 
 
 

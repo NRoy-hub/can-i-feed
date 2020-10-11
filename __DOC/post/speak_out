@@ -1,9 +1,12 @@
 /post/speak_out
-: 포스트에 의견(좋아요/싫어요/취소)을 내는 API
+: 포스트에 의견(좋아요/싫어요)을 내는 API
 
-  req: { post_id, type }
+  req: { post_id, type, text }
     - post_id: string
     - type: number   
+    - text: string
   
   res: { *result, data: { my_comment } }
     - my_comment: *comment
+    - result
+      "conflict": 이미 의견이 존재함
