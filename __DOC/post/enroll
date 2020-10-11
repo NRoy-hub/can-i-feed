@@ -1,10 +1,10 @@
 /post/enroll
 : 새로운 포스트 등록
 
-req: { species, photo, name }
-  - species*: number
-  - photo: image
+  req: { species, photo, name }
+    - species*: number
+    - photo: image
 
-res: { *result } 
-  - result
-    "conflict": 동일 포스트 존재
+  res: { *result } 
+    - result
+      "conflict": 동일 포스트 존재

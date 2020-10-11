@@ -8,7 +8,7 @@ module.exports = (req, res) => {
   const db = new res.db();
   db.run([
     cb => {
-      const query = 'SELECT * FROM post WHERE post_id = $1;';
+      const query = 'SELECT * FROM post WHERE id = $1;';
       const values = [post_id];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);

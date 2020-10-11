@@ -1,0 +1,10 @@
+/post/recant
+: 포스트에 의견을 철회하는 API
+
+  req: { post_id }
+    - post_id: string
+
+  res: { *result }
+    - result
+      "void": Post가 존재하지 않음
+      "conflict": 이미 의견이 존재하지 않음
