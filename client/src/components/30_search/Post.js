@@ -41,7 +41,7 @@ export default function Post({ data, index }){
         success: (resData) => dispatch({ 
           type: actionNames.modifyPost, 
           index, 
-          post: { ...posts[index], my_comment: null, comments: resData.comments } }),
+          post: { ...posts[index], my_comment: null, ...resData } }),
         common: dispatch.loadOff
       });
     }else{
@@ -49,7 +49,7 @@ export default function Post({ data, index }){
         path: api.POST_SPEAK_OUT,
         data: { post_id: id, type: newType, text: '테스트 중' },
         success: resData => {
-          const newPost = { ...posts[index], my_comment: resData.my_comment, comments: resData.comments }
+          const newPost = { ...posts[index], ...resData }
           dispatch({ type: actionNames.modifyPost, index, post: newPost })
         },
         common: dispatch.loadOff

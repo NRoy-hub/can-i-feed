@@ -4,8 +4,10 @@
   req: { post_id }
     - post_id: string
 
-  res: { *result, data: { comments } }
+  res: { *result, data: { comments, recommend_count, nonrecommend_count } }
     - comments: [*comment]
+    - recommend_count: number,
+    - nonrecommend_count: number,
     - result
       "void": Post가 존재하지 않음
       "conflict": 이미 의견이 존재하지 않음

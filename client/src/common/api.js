@@ -16,12 +16,12 @@ export const api = {
 
 export const requestApi = async({ path, data = {}, success, fail, common }) => {
   const { data: res } = await axios.post(path, data);
-  // console.log(`
-  //   PATH: ${ path },
-  //   res: ${ res.result }
-  // `);
-  // console.log(res.data);
-  // console.log('--------------------');
+  console.log(`
+    PATH: ${ path },
+    res: ${ res.result }
+  `);
+  console.log(res.data);
+  console.log('--------------------');
   if(res.result === 'ok'){
     success && success(res.data);
   }else{
