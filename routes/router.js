@@ -20,11 +20,14 @@ router.use((err, req, res, next) => {
   res.status(505).send('Server Error!');
 });
 
+const middleware = require('./middleware');
+
 commonRouter.post('/keywords', require('./common/keywords'));
 commonRouter.post('/search', require('./common/search'));
 
 userRouter.post('/check_email', require('./user/check_email'));
 userRouter.post('/login', require('./user/login'));
+userRouter.post('/info', middleware.auth, require('./user/info'));
 
 
 

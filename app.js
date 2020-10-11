@@ -13,12 +13,12 @@ const router = require('./routes/router');
 
 app.use(cors());
 
-app.use(cookieParser());
 app.set('views', __dirname + '/client/build');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 app.use(express.static(__dirname + '/client/build'));
 app.use(express.json());
+app.use(cookieParser('cif_salt'));
 
 app.get('/*', (req, res, next) => {
   res.render('index.html');

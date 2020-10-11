@@ -52,13 +52,11 @@ module.exports = (req, res) => {
         cb(null, { userId, sessionId });
       });
     },
-    (cb) => {
-      const cookieOption = {
-        maxAge: 60*60*1000,
-        httpOnly: true
-      };
-      res.cookie('canifeed_uid', userId, cookieOption);
-      res.cookie('canifeed_sid', sessionId, cookieOption);
+    (user, cb) => {
+      const { userId, sessionId } = user;
+      const maxAge = 60 * 60 * 1000;
+      res.cookie('canifeed_uid', userId, { maxAge });
+      res.cookie('canifeed_sid', sessionId, { maxAge, httpOnly: true, signed: true });
       res.finish('ok', { user_id: userId, email });
       cb();
     }
