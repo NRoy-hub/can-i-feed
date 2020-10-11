@@ -8,6 +8,15 @@ module.exports = (req, res) => {
   const db = new res.db();
   db.run([
     cb => {
+      const query = 'SELECT * FROM post WHERE post_id = $1;';
+      const values = [post_id];
+      db.query(query, values, (err, result) => {
+        if(err)return cb(err);
+        if(!result.rows[0])return cb('void');
+        cb();
+      })
+    },
+    cb => {
       const query = `
         INSERT INTO comment(post_id, user_id, type, text, update_time)
         VALUES($1, $2, $3, $4, $5)

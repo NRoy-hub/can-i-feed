@@ -9,4 +9,5 @@
   res: { *result, data: { my_comment } }
     - my_comment: *comment
     - result
+      "void": Post가 존재하지 않음
       "conflict": 이미 의견이 존재함
