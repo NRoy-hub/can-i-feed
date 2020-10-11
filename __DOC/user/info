@@ -1,0 +1,8 @@
+/user/info
+: Cookie를 통한 유저 정보 조회
+
+req: { cookie: { canifeed_uid, canifeed_sid } }
+
+res: { *result, data: { user_id, email } }
+  - email: string
+  - user_id: string

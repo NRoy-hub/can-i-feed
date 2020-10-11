@@ -45,8 +45,3 @@ app.use('/', router);
 app.listen(PORT, () => {
   console.log(`listening on ${ PORT }`);
 });
-
-// TODO: 분 차이 
-// const before = moment('2020-10-10T00:24:06+09:00');
-// const sub = moment() - before;
-// console.log(moment(sub).minutes());

@@ -5,5 +5,5 @@
     - post_id: string
     - type: number   
   
-  res: { *result, *message, data: { my_comment } }
+  res: { *result, data: { my_comment } }
     - my_comment: *comment

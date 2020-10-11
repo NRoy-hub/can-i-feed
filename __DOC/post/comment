@@ -4,6 +4,6 @@
   req: { post_id }
     - post_id: string
 
-  res: { my_comment, comments }
+  res: { *result, data: { my_comment, comments } }
     - my_comment: comment*
     - comments: [comment*]

@@ -57,6 +57,7 @@ module.exports = (req, res) => {
         maxAge: 60*60*1000,
         httpOnly: true
       };
+      res.cookie('canifeed_uid', userId, cookieOption);
       res.cookie('canifeed_sid', sessionId, cookieOption);
       res.finish('ok', { user_id: userId, email });
       cb();

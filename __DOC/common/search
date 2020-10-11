@@ -5,7 +5,7 @@
     - species*: number
     - keyword: string
 
-  res: { *result, *message, data: { posts } }
+  res: { *result, data: { posts } }
     - posts: array[{
         id: string
         photo: string

@@ -5,4 +5,4 @@ req: { species, photo }
   - species*: number
   - photo: image
 
-res: { *result, *message }
+res: { *result }

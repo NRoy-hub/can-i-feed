@@ -4,9 +4,6 @@
   - 'unauthorized': 권한없음
   - 'fail': 실패(message 응답)
 
-*message: string | null   
-(에러 알림)
-
 *comment: { 
   id: string
   type: number   (추천: 1, 비추천: 0, 취소: -1)

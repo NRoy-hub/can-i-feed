@@ -3,6 +3,6 @@
 
 req: { email }
 
-res: { *result, *message }
+res: { *result }
   - result
     "invalid": 유효하지 않은 이메일
