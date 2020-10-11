@@ -2,7 +2,9 @@ const auth = (req, res, next) => {
   const { canifeed_uid } = req.cookies;
   const { canifeed_sid } = req.signedCookies;
 
-  if(!canifeed_uid && !canifeed_sid){
+  if(!canifeed_uid || canifeed_uid.length !== 36 || !canifeed_sid){
+    res.clearCookie('canifeed_uid');
+    res.clearCookie('canifeed_sid');
     return res.finish('unauthorized');
   };
 
@@ -18,13 +20,15 @@ const auth = (req, res, next) => {
       const values = [canifeed_uid];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
-        if(result.rows.length === 0)return cb('unauthorized');
         cb(null, result.rows[0]);
       });
     },
     (user, cb) => {
-      const { session_id, update_time } = user;
-      if(canifeed_sid !== session_id || res.fromNow(update_time) > 60){
+      const session_id = user && user.session_id;
+      const update_time = user && user.update_time;
+      if(!session_id || !update_time || canifeed_sid !== session_id || res.fromNow(update_time) > 60){
+        res.clearCookie('canifeed_uid');
+        res.clearCookie('canifeed_sid');
         return cb('unauthorized');
       }
       req.user = { id: canifeed_uid };
