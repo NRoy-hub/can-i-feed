@@ -9,6 +9,7 @@ export const INITIAL_STATE = {
 export const actionNames = {
   login: 'USER/LOGIN',
   logout: 'USER/LOGOUT',
+  initPost: 'POST/INIT',
   addPost: 'POST/ADD',
   modifyPost: 'POST/MODIFY',
   loadOn: 'LOADING/ON',
@@ -30,7 +31,11 @@ export function reducer(state, action){
       return{
         ...state, searchInput: action.value
       };
-    case actionNames.addPost:
+    case actionNames.initPost:
+      return{
+        ...state, posts: action.posts
+      };
+      case actionNames.addPost:
       return{
         ...state, posts: [ ...state.posts, ...action.posts ]
       };

@@ -8,18 +8,20 @@ export const api = {
   USER_LOGIN: '/user/login',
   USER_LOGOUT: '/user/logout',
   POST_ENROLL: '/post/enroll',
-  POST_SPEAK_OUT: '/speak_out'
+  POST_COMMENT: '/post/comment',
+  POST_SPEAK_OUT: '/post/speak_out',
+  POST_RECANT: '/post/recant'
 };
 
 
 export const requestApi = async({ path, data = {}, success, fail, common }) => {
   const { data: res } = await axios.post(path, data);
-  console.log(`
-    PATH: ${ path },
-    res: ${ res.result }
-  `);
-  console.log(res.data);
-  console.log('--------------------');
+  // console.log(`
+  //   PATH: ${ path },
+  //   res: ${ res.result }
+  // `);
+  // console.log(res.data);
+  // console.log('--------------------');
   if(res.result === 'ok'){
     success && success(res.data);
   }else{

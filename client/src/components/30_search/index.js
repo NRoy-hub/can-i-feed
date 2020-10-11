@@ -17,7 +17,7 @@ export default function Search(){
     requestApi({
       path: `${ api.SEARCH }`,
       data: { keyword, species },
-      success: data => dispatch({ type: actionNames.addPost, posts: data.posts }), 
+      success: data => dispatch({ type: actionNames.initPost, posts: data.posts }), 
       common: dispatch.loadOff
     });
   }, [keyword, dispatch])

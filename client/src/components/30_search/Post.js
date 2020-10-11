@@ -1,16 +1,31 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { color, url, requestApi, DataContext, actionNames } from '../../common';
+import { color, url, api, requestApi, DataContext, actionNames } from '../../common';
 
 const RECOMMEND = 1;
-const NONRECOMMEND = 0;
-const CANCEL = -1;
+const NONRECOMMEND = 2;
+const CANCEL = 0;
 
 export default function Post({ data, index }){
   const history = useHistory();
   const { state: { user, posts }, dispatch } = useContext(DataContext);
-  const { photo, title, my_comment, recommend_count, nonrecommend_count, comments } = data;
+  const { id, photo, name, my_comment, recommend_count, nonrecommend_count, comments } = data;
+
+  useEffect(() => {
+    requestApi({
+      path: api.POST_COMMENT,
+      data: { post_id: id },
+      success: resData => dispatch({ 
+        type: actionNames.modifyPost,
+        index,
+        post: { ...posts[index], ...resData }
+      })
+    });
+    return () => {
+      dispatch({ type: actionNames.initPost, posts: [] });
+    }
+  }, []);
   
   const onClick = type => {
     if(!user){ return history.push(url.LOGIN); }
@@ -18,16 +33,28 @@ export default function Post({ data, index }){
 
     let newType = my_comment ? CANCEL : type;
     dispatch.loadOn();
-    requestApi({
-      method: 'POST',
-      path: '/speak_out',
-      data: { type: newType },
-      success: resData => {
-        const newPost = { ...posts[index], my_comment: resData.my_comment }
-        dispatch({ type: actionNames.modifyPost, post: newPost })
-      },
-      common: dispatch.loadOff
-    });
+
+    if(newType === CANCEL){
+      requestApi({
+        path: api.POST_RECANT,
+        data: { post_id: id },
+        success: (resData) => dispatch({ 
+          type: actionNames.modifyPost, 
+          index, 
+          post: { ...posts[index], my_comment: null, comments: resData.comments } }),
+        common: dispatch.loadOff
+      });
+    }else{
+      requestApi({
+        path: api.POST_SPEAK_OUT,
+        data: { post_id: id, type: newType, text: '테스트 중' },
+        success: resData => {
+          const newPost = { ...posts[index], my_comment: resData.my_comment, comments: resData.comments }
+          dispatch({ type: actionNames.modifyPost, index, post: newPost })
+        },
+        common: dispatch.loadOff
+      });
+    }
   };
     
   const commentList = my_comment ? [my_comment].concat(comments) : comments;
@@ -38,7 +65,7 @@ export default function Post({ data, index }){
         <img src={ photo } alt="post_photo"/>
       </div>
       <div className="info">
-        <div className="title">{ title }</div>
+        <div className="title">{ name }</div>
         <div className="status">
           <div 
             className={ `recommend ${ my_comment && my_comment.type === RECOMMEND ? 'active' : '' }` }
