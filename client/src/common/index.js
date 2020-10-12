@@ -5,6 +5,7 @@ import { INITIAL_STATE, actionNames, reducer } from './reducer';
 const DataContext = createContext();
 
 const color = {
+  black: '#2a2a2a',
   grey: '#B7C2D8',
   blue1: '#3458A1',
   blue2: '#5E88DE',

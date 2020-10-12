@@ -16,7 +16,6 @@ module.exports = (req, res) => {
     (comments, cb) => {
       let copied = [...comments];
       let myComment;
-      console.log(comments);
       if(userId && comments[0] && comments[0].user_id === userId){
         myComment = { ...comments[0], user_id: undefined };
         copied = copied.slice(1).map(comment => ({ ...comment, user_id: undefined }));
