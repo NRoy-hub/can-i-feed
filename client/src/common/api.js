@@ -25,6 +25,9 @@ export const requestApi = async({ path, data = {}, success, fail, common }) => {
   switch(res.result){
     case 'ok':
       success && success(res.data); break;
+    case 'unauthorized':
+      window.location.href = '/login';
+      break;
     case 'invalid':
       alert('잘못된 요청입니다'); break;
     case 'error':
