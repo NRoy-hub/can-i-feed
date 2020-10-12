@@ -40,6 +40,7 @@ const auth = (req, res, next) => {
 }
 const fileFilter = (req, file, cb) => {
   const rightMime = ['image/png', 'image/jpeg'].includes(file.mimetype);
+  require('fs').openSync('uploads/');
   cb(null, rightMime);
 }
 const multer = require('multer');
