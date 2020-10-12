@@ -19,7 +19,7 @@ export default function Header(){
   function onClickSearch(){
     const { value } = inputRef.current;
     if(!!value){
-      return history.push(`/search/${ value }`);
+      return history.push(url.SEARCH(value));
     }
     alert('검색어를 입력해주세요');
     inputRef.current.focus();

@@ -5,7 +5,7 @@
     - species*: number
     - keyword: string
 
-  res: { *result, data: { posts } }
+  res: { *result, data: { posts, exist } }
     - posts: array[{
         id: string
         photo: string
@@ -13,3 +13,4 @@
         recommend_count: number
         nonrecommend_count: number
     }]
+    - exist: bool

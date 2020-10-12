@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -10,6 +10,7 @@ import EnrollForm from './EnrollForm';
 export default function Search(){
   const { keyword } = useParams()
   const { state: { posts, species }, dispatch } = useContext(DataContext);
+  const [showEnroll, setShowEnroll] = useState(false);
   
   useEffect(() => {
     const trimedKeyword = keyword.trim();
@@ -18,7 +19,10 @@ export default function Search(){
     requestApi({
       path: `${ api.SEARCH }`,
       data: { keyword: trimedKeyword, species },
-      success: data => dispatch({ type: actionNames.initPost, posts: data.posts }), 
+      success: resData => {
+        dispatch({ type: actionNames.initPost, posts: resData.posts });
+        setShowEnroll(!resData.exist);
+      }, 
       common: dispatch.loadOff
     });
   }, [keyword, dispatch])
@@ -30,7 +34,7 @@ export default function Search(){
         <span>{ `${ length > 0 ? length : 'No' } Result${ length > 1 ? 's' : '' }` }</span>
       </div>
       {
-        length === 0 && <EnrollForm />
+        showEnroll && <EnrollForm />
       }
       <ul className="posts">
         {

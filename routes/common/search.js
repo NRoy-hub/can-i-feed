@@ -32,7 +32,8 @@ module.exports = (req, res) => {
 
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
-        res.finish('ok', { posts: result.rows });
+        const exist = result.rows[0].name === keyword;
+        res.finish('ok', { posts: result.rows, exist });
         cb();
       });
     }

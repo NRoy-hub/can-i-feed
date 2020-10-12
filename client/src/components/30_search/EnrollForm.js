@@ -1,15 +1,17 @@
 import React, { useState, useRef, useContext, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { api, color, requestApi, DataContext } from '../../common';
+import { api, url, color, requestApi, DataContext } from '../../common';
 
 export default function EnrollForm(){
+  const history = useHistory();
   const { keyword } = useParams();
   const photoInput = useRef();
   const label = useRef();
-  const { dispatch, state: { species } } = useContext(DataContext);
+  const { dispatch, state: { species, user } } = useContext(DataContext);
   const [showForm, setShowForm] = useState(false);
+  const reader = useRef(new FileReader());
 
   function onSubmit(e){
     e.preventDefault();
@@ -34,7 +36,19 @@ export default function EnrollForm(){
     }) 
   }
 
-  const reader = useRef(new FileReader());
+  function onClick(){
+    if(!user)return history.push(url.LOGIN);
+    setShowForm(!showForm);
+  }
+  
+  function onChange(){
+    const file = photoInput.current.files[0];
+    if(file){ reader.current.readAsDataURL(file); }
+    else{
+      label.current.style.background = '';
+    }
+  }
+  
   useEffect(() => {
     const onLoad = () => {
       label.current.style.background = `url(${ reader.current.result })`;
@@ -44,18 +58,10 @@ export default function EnrollForm(){
     return () => reader.current.removeEventListener('change', onLoad);
   }, [reader]);
 
-  function onChange(){
-    const file = photoInput.current.files[0];
-    if(file){ reader.current.readAsDataURL(file); }
-    else{
-      label.current.style.background = '';
-    }
-  }
-
   return(
     <StyledAside>
       <div className="enroll_button">
-        <span onClick={ () => setShowForm(!showForm) }>{ showForm ? '등록 취소하기' : `'${ keyword }' 등록하기` }</span>
+        <span onClick={ onClick }>{ showForm ? '등록 취소하기' : `'${ keyword }' 등록하기` }</span>
       </div>
       {
         showForm &&
