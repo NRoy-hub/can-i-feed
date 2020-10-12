@@ -6,7 +6,7 @@ module.exports = (req, res) => {
   const db = new res.db();
   db.run([
     cb => {
-      const query = 'SELECT id, type, text, user_id FROM comment WHERE post_id = $1 ORDER BY user_id = $2;';
+      const query = 'SELECT id, type, text, user_id FROM comment WHERE post_id = $1 ORDER BY user_id = $2 DESC;';
       const values = [post_id, userId];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
@@ -16,6 +16,7 @@ module.exports = (req, res) => {
     (comments, cb) => {
       let copied = [...comments];
       let myComment;
+      console.log(comments);
       if(userId && comments[0] && comments[0].user_id === userId){
         myComment = { ...comments[0], user_id: undefined };
         copied = copied.slice(1).map(comment => ({ ...comment, user_id: undefined }));
