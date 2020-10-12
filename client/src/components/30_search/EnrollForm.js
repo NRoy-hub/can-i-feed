@@ -1,8 +1,8 @@
 import React, { useState, useRef, useContext, useEffect } from 'react';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { api, color, requestApi, url, DataContext } from '../../common';
+import { api, color, requestApi, DataContext } from '../../common';
 
 export default function EnrollForm(){
   const { keyword } = useParams();

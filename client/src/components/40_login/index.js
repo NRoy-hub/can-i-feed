@@ -14,7 +14,7 @@ export default function Login(){
 
     dispatch.loadOn();
     if(!checkedEmail){
-      const email = loginInput.current.value;
+      const email = loginInput.current.value.trim();
       requestApi({
         path: api.USER_CHECK_EMAIL,
         data: { email },
@@ -31,7 +31,7 @@ export default function Login(){
         common: dispatch.loadOff
       });
     }else{
-      const key = loginInput.current.value;
+      const key = loginInput.current.value.trim();
       requestApi({
         path: api.USER_LOGIN,
         data: { email: checkedEmail, key },

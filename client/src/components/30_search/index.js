@@ -12,11 +12,12 @@ export default function Search(){
   const { state: { posts, species }, dispatch } = useContext(DataContext);
   
   useEffect(() => {
-    dispatch({ type: actionNames.setSearchInput, value: keyword });
+    const trimedKeyword = keyword.trim();
+    dispatch({ type: actionNames.setSearchInput, value: trimedKeyword });
     dispatch.loadOn();
     requestApi({
       path: `${ api.SEARCH }`,
-      data: { keyword, species },
+      data: { keyword: trimedKeyword, species },
       success: data => dispatch({ type: actionNames.initPost, posts: data.posts }), 
       common: dispatch.loadOff
     });
