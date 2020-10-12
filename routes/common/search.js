@@ -1,6 +1,7 @@
 module.exports = (req, res) => {
 
-  const { keyword, species } = req.body;
+  const { species } = req.body;
+  const keyword = req.body.keyword.trim();
   if(!(!!keyword) || !species){ return res.finish('invalid'); }
   
   const db = new res.db();

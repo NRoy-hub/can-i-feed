@@ -1,9 +1,10 @@
 module.exports = (req, res) => {
-  const { post_id, type, text } = req.body;
+  const { post_id, type } = req.body;
   const correctTypes = [1, 2];
-  if(!post_id || type === undefined || !correctTypes.includes(type) || text === undefined){ 
+  if(!post_id || type === undefined || !correctTypes.includes(type) || req.body.text === undefined){ 
     return res.finish('invalid'); 
   }
+  const text = req.body.text.trim();
 
   const db = new res.db();
   db.run([

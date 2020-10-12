@@ -1,7 +1,8 @@
 module.exports = (req, res) => {
   const db = new res.db();
 
-  const { email, key } = req.body;
+  const email = req.body.email.trim();
+  const key = req.body.key.trim();
   if(!email || !key){ return res.finish('invalid') }
 
   db.run([

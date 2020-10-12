@@ -2,7 +2,7 @@ const smtp = require('../../smtp');
 const rand = require('random-key');
 
 module.exports = (req, res) => {
-  const { email } = req.body;
+  const email = req.body.email.trim();
   if(!email){ return res.finish('invalid'); }
 
   const db = new res.db();
