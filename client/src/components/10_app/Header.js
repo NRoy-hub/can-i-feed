@@ -27,9 +27,10 @@ export default function Header(){
 
   function onClickLogout(){
     const willLogout = window.confirm('로그아웃 하시겠습니까?');
+    if(!willLogout)return;
 
-    willLogout && dispatch.loadOn();
-    willLogout && requestApi({
+    dispatch.loadOn();
+    requestApi({
       path: api.USER_LOGOUT,
       success: () => {
         dispatch({ type: actionNames.logout });

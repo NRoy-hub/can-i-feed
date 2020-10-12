@@ -15,7 +15,7 @@ module.exports = (req, res) => {
     },
     (auth, cb) => {
       if(!auth || res.fromNow(auth.update_time) > 60){ return cb('void'); }
-      if(auth.key !== key){ return cb('unauthorized'); }
+      if(auth.key !== key){ return cb('wrong'); }
       cb();
     },
     cb => {

@@ -42,6 +42,12 @@ export default function Post({ data, index }){
           type: actionNames.modifyPost, 
           index, 
           post: { ...posts[index], my_comment: null, ...resData } }),
+        fail: msg => {
+          if(msg === 'void')
+            alert('포스트가 존재하지 않습니다');
+          else if(msg === 'conflict')
+            alert('이미 나의 의견이 존재하지 않습니다');
+        },
         common: dispatch.loadOff
       });
     }else{
@@ -51,6 +57,12 @@ export default function Post({ data, index }){
         success: resData => {
           const newPost = { ...posts[index], ...resData }
           dispatch({ type: actionNames.modifyPost, index, post: newPost })
+        },
+        fail: msg => {
+          if(msg === 'void')
+            alert('포스트가 존재하지 않습니다');
+          else if(msg === 'conflict')
+            alert('이미 의견을 내었습니다');
         },
         common: dispatch.loadOff
       });

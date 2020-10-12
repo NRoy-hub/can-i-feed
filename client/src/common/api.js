@@ -22,17 +22,15 @@ export const requestApi = async({ path, data = {}, success, fail, common }) => {
   `);
   console.log(res.data);
   console.log('--------------------');
-  if(res.result === 'ok'){
-    success && success(res.data);
-  }else{
-    let msg;
-    switch(res.result){
-      case 'invalid': msg = '잘못된 요청입니다'; break;
-      case 'error': msg = '오류가 발생했습니다'; break;
-      case 'unauthorized': msg = '권한이 없습니다'; break; 
-    }
-    alert(msg);
-    fail && fail();
+  switch(res.result){
+    case 'ok':
+      success && success(res.data); break;
+    case 'invalid':
+      alert('잘못된 요청입니다'); break;
+    case 'error':
+      alert('오류가 발생했습니다'); break;
+    default:
+      fail && fail(res.result);
   }
   common && common();
 

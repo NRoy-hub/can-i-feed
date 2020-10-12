@@ -10,4 +10,5 @@
     - email: string
     - *result
       "void": check_email 필요
+      "wrong": 잘못된 인증번호
     + cookie: { session_id }

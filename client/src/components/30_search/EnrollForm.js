@@ -24,6 +24,12 @@ export default function EnrollForm(){
         alert(`'${ keyword }' 먹이를 등록하였습니다.`);
         window.location.reload();
       },
+      fail: msg => {
+        if(msg === 'conflict'){
+          alert('동일한 이름의 포스트가 존재합니다');
+          window.location.reload();
+        }
+      },
       common: dispatch.loadOff
     }) 
   }

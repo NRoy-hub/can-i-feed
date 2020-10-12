@@ -17,7 +17,7 @@ module.exports = (req, res) => {
         subject: '[Can I Feed] 로그인 인증코드',
         html: `인증번호는 <b>${ code }</b> 입니다. <br />1시간 이내에 인증하지 않을 경우 재요청해야 합니다.`
       }, (err) => {
-        if(err)return cb('invalid');
+        if(err)return cb('void');
         cb();
       })
     },

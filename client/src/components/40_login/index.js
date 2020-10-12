@@ -23,6 +23,11 @@ export default function Login(){
           loginInput.current.value = '';
           loginInput.current.focus();
         },
+        fail: msg => {
+          if(msg === 'void')alert('유효하지 않은 이메일 입니다');
+          loginInput.current.value = '';
+          loginInput.current.focus();
+        },
         common: dispatch.loadOff
       });
     }else{
@@ -31,6 +36,14 @@ export default function Login(){
         path: api.USER_LOGIN,
         data: { email: checkedEmail, key },
         success: (user) => { dispatch({ type: actionNames.login, user }) },
+        fail: msg => {
+          if(msg === 'void'){
+            alert('먼저 이메일 인증이 필요합니다');
+            window.location.reload();
+          }else if(msg === 'wrong'){
+            alert('잘못된 인증번호 입니다');
+          }
+        },
         common: dispatch.loadOff
       });
     }

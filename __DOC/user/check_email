@@ -5,4 +5,4 @@
 
   res: { *result }
     - result
-      "invalid": 유효하지 않은 이메일
+      "void": 유효하지 않은 이메일
