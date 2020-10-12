@@ -16,8 +16,10 @@ app.use(cors());
 app.set('views', __dirname + '/client/build');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
+app.use('uploads', express.static(__dirname + '/uploads'));
 app.use(express.static(__dirname + '/client/build'));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser('cif_salt'));
 
 app.get('/*', (req, res, next) => {

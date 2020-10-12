@@ -1,9 +1,10 @@
 module.exports = (req, res) => {
-  const { species, photo, name } = req.body;
-  if(!species || !photo || !name){ return res.finish('invalid'); }
+  const { species, name } = req.body;
+  const file = req.file;
+  if(!species || !file || !name){ return res.finish('invalid'); }
 
   //TODO: photo 가 이미지인지 검사
-  
+
   const db = new res.db();
   db.run([
     cb => {
@@ -17,7 +18,7 @@ module.exports = (req, res) => {
     },
     cb => {
       // TODO: photo url 생성
-      const photoUrl = 'test_photo_url';
+      const photoUrl = '/' + file.destination + file.filename;
       const query = `
         INSERT INTO post(user_id, species_id, photo, name, update_time)
         VALUES($1, $2, $3, $4, $5); 

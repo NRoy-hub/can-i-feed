@@ -1,4 +1,6 @@
 const express = require('express');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/post/' });
 
 const router = express.Router();
 const commonRouter = express.Router();
@@ -30,7 +32,7 @@ userRouter.post('/login', require('./user/login'));
 userRouter.post('/logout', middleware.auth, require('./user/logout'));
 userRouter.post('/info', middleware.auth, require('./user/info'));
 
-postRouter.post('/enroll', middleware.auth, require('./post/enroll'));
+postRouter.post('/enroll', middleware.auth, middleware.photoChecker, require('./post/enroll'));
 postRouter.post('/speak_out', middleware.auth, require('./post/speak_out'));
 postRouter.post('/recant', middleware.auth, require('./post/recant'));
 postRouter.post('/comment', require('./post/comment'));

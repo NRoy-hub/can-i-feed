@@ -14,8 +14,8 @@ export const api = {
 };
 
 
-export const requestApi = async({ path, data = {}, success, fail, common }) => {
-  const { data: res } = await axios.post(path, data);
+export const requestApi = async({ path, data = {}, form, success, fail, common }) => {
+  const { data: res } = await axios.post(path, form ? form : data);
   console.log(`
     PATH: ${ path },
     res: ${ res.result }
@@ -36,5 +36,4 @@ export const requestApi = async({ path, data = {}, success, fail, common }) => {
       fail && fail(res.result);
   }
   common && common();
-
 }

@@ -1,6 +1,8 @@
 import React, { useState, useRef, useContext, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import FormData from 'form-data';
+import fs from 'fs';
 
 import { api, url, color, requestApi, DataContext } from '../../common';
 
@@ -15,13 +17,18 @@ export default function EnrollForm(){
 
   function onSubmit(e){
     e.preventDefault();
-    
     const file = photoInput.current.files[0];
     if(!file){ return alert('이미지를 업로드해주세요'); }
+
     dispatch.loadOn();
+    const form = new FormData();
+    form.append('photo', file);
+    form.append('name', keyword);
+    form.append('species', species);
+    
     requestApi({
       path: api.POST_ENROLL,
-      data: { name: keyword, photo: file, species },
+      form,
       success: () => { 
         alert(`'${ keyword }' 먹이를 등록하였습니다.`);
         window.location.reload();

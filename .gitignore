@@ -2,6 +2,7 @@ node_modules
 
 /client/build
 .env
+uploads/
 
 npm-debug.log*
 yarn-debug.log*
