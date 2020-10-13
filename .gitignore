@@ -1,6 +1,5 @@
 node_modules
 
-/client/build
 .env
 uploads/
 
