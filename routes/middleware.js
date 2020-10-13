@@ -49,9 +49,10 @@ const fs = require('fs');
 const resizing = (req, res, next) => {
   const { filename, path: originPath } = req.file;
   const resizedPath = path.resolve('uploads', filename);
-  sharp(originPath, { background: { r: 255, g: 255, b: 255 } })
+  sharp(originPath)
+    .flatten({ background: { r: 255, g: 255, b: 255 } })
     .resize(295, 295)
-    .jpeg({ quality: 50 })
+    .jpeg({ quality: 50, force: true })
     .toFile(resizedPath)
     .then(() => {
       fs.unlinkSync(originPath);
