@@ -6,22 +6,21 @@ module.exports = (req, res) => {
   const db = new res.db();
   db.run([
     cb => {
-      const query = 'SELECT id, type, text, user_id FROM comment WHERE post_id = $1 ORDER BY user_id = $2 DESC;';
+      const query = 'SELECT id, type, text FROM comment WHERE post_id = $1 AND user_id = $2;';
       const values = [post_id, userId];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
-        cb(null, result.rows);
+        cb(null, result.rows[0] || null);
       });
     },
-    (comments, cb) => {
-      let copied = [...comments];
-      let myComment;
-      if(userId && comments[0] && comments[0].user_id === userId){
-        myComment = { ...comments[0], user_id: undefined };
-        copied = copied.slice(1).map(comment => ({ ...comment, user_id: undefined }));
-      }
-      res.finish('ok', { my_comment: myComment, comments: copied });
-      cb();
+    (myComment, cb) => {
+      const query = 'SELECT id, type, text FROM comment WHERE post_id = $1 AND user_id != $2 AND text != $3;';
+      const values = [post_id, userId, ''];
+      db.query(query, values, (err, result) => {
+        if(err)return cb(err);
+        res.finish('ok', { my_comment: myComment, comments: result.rows });
+        cb(null, result.rows);
+      });
     }
   ]);
 }

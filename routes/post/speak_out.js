@@ -37,8 +37,8 @@ module.exports = (req, res) => {
       });
     },
     (pre, cb) => {
-      const query = 'SELECT id, type, text FROM comment WHERE post_id = $1 AND user_id != $2;';
-      const values = [post_id, req.user.id];
+      const query = 'SELECT id, type, text FROM comment WHERE post_id = $1 AND user_id != $2 AND text != $3;';
+      const values = [post_id, req.user.id, ''];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
         const data = { ...pre, comments: result.rows };
