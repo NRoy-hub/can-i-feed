@@ -14,7 +14,7 @@ app.use(cors());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser('cif_salt'));
+app.use(cookieParser(process.env.COOKIE_SALT));
 
 
 app.use((req, res, next) => {
