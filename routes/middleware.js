@@ -40,10 +40,26 @@ const auth = (req, res, next) => {
 }
 const fileFilter = (req, file, cb) => {
   const rightMime = ['image/png', 'image/jpeg'].includes(file.mimetype);
-  require('fs').openSync('uploads/');
   cb(null, rightMime);
 }
-const multer = require('multer');
-const photoChecker = multer({ dest: 'uploads/', fileFilter }).single('photo');
 
-module.exports = { auth, photoChecker };
+const sharp = require('sharp');
+const path = require('path');
+const fs = require('fs');
+const resizing = (req, res, next) => {
+  const { filename, path: originPath } = req.file;
+  const resizedPath = path.resolve('uploads', filename);
+  sharp(originPath, { background: { r: 255, g: 255, b: 255 } })
+    .resize(295, 295)
+    .jpeg({ quality: 50 })
+    .toFile(resizedPath)
+    .then(() => {
+      fs.unlinkSync(originPath);
+      next();
+    })
+    .catch(err => {
+      if(err)res.finish('invalid');
+    });
+}
+
+module.exports = { auth, fileFilter, resizing };

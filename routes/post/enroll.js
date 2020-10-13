@@ -3,8 +3,6 @@ module.exports = (req, res) => {
   const file = req.file;
   if(!species || !file || !name){ return res.finish('invalid'); }
 
-  //TODO: photo 가 이미지인지 검사
-
   const db = new res.db();
   db.run([
     cb => {
@@ -17,8 +15,7 @@ module.exports = (req, res) => {
       });
     },
     cb => {
-      // TODO: photo url 생성
-      const photoUrl = '/' + file.destination + file.filename;
+      const photoUrl = `/uploads/${ file.filename }`;
       const query = `
         INSERT INTO post(user_id, species_id, photo, name, update_time)
         VALUES($1, $2, $3, $4, $5); 
