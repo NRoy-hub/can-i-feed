@@ -11,7 +11,11 @@ const PORT = 80;
 
 app.use(cors());
 
+app.set('views', __dirname + '/../frontend/build');
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
 app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use(express.static(__dirname + '/../frontend/build'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SALT));
@@ -32,6 +36,9 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/*', (req, res, next) => {
+  res.render('index.html');
+});
 app.use('/', require('./routes/router'));
 
 
