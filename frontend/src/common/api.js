@@ -16,12 +16,7 @@ export const api = {
 
 export const requestApi = async({ path, data = {}, form, success, fail, common }) => {
   const { data: res } = await axios.post(path, form ? form : data);
-  console.log(`
-    PATH: ${ path },
-    res: ${ res.result }
-  `);
-  console.log(res.data);
-  console.log('--------------------');
+
   switch(res.result){
     case 'ok':
       success && success(res.data); break;
