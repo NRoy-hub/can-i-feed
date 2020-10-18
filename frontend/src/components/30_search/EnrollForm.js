@@ -12,6 +12,7 @@ export default function EnrollForm(){
   const label = useRef();
   const { dispatch, state: { species, user } } = useContext(DataContext);
   const [showForm, setShowForm] = useState(false);
+  const [showLabelMsg, setShowLabelMsg] = useState(true);
   const reader = useRef(new FileReader());
 
   function onSubmit(e){
@@ -51,17 +52,18 @@ export default function EnrollForm(){
     const file = photoInput.current.files[0];
     if(file){ reader.current.readAsDataURL(file); }
     else{
-      label.current.style.background = '';
+      label.current.style.backgroundImage = '';
+      setShowLabelMsg(true);
     }
   }
   
   useEffect(() => {
     const onLoad = () => {
-      label.current.style.background = `url(${ reader.current.result })`;
-      label.current.style.backgroundSize = 'cover';
+      label.current.style.backgroundImage = `url(${ reader.current.result })`;
+      setShowLabelMsg(false);
     };
     reader.current.addEventListener('loadend', onLoad, true);
-    return () => reader.current.removeEventListener('change', onLoad);
+    return () => reader.current.removeEventListener('loadend', onLoad);
   }, [reader]);
 
   return(
@@ -75,7 +77,7 @@ export default function EnrollForm(){
             <div className="photo_box">
               <input ref={ photoInput } id="photo" type="file" accept="image/*" onChange={ onChange } />
               <label ref={ label } htmlFor="photo">
-                <span>IMAGE</span>
+                { showLabelMsg && <span>IMAGE</span> }
               </label>
             </div>
             <div className="info">
@@ -129,6 +131,7 @@ const StyledAside = styled.aside`
       align-items: center;
       background-color: #EFEFEF;
       background-size: cover;
+      background-position: center;
       color: #AAAAAA;
       font-size: 25px;
 
