@@ -4,14 +4,14 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { DataContext, url, requestApi, api, actionNames } from '../../common';
 import Header from './Header';
-import Home from '../20_home';
-import Search from '../30_search';
-import Login from '../40_login';
+import Home from '../20_home/Home';
+import Search from '../30_search/Search';
+import Login from '../40_login/Login';
 import LoadSpinner from './LoadSpinner';
 
 
 export default function Container(){
-  const { state: { loading, user }, dispatch } = useContext(DataContext);
+  const { state: { loading }, dispatch } = useContext(DataContext);
 
   useEffect(() => {
     const cookies = !!document.cookie && 
