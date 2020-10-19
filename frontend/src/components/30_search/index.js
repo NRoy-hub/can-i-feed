@@ -46,14 +46,14 @@ export default function Search(){
 }
 
 const StyledMain = styled.main`
-  padding-top: 30px;
+  padding-top: 20px;
 
   .result{
-    padding: 11px 40px;
+    box-sizing: border-box;
+    padding: 12px 40px;
     background: ${ color.grey };
     color: white;
-    font-size: 25px;
-    font-weight: bold;
+    font-size: 23px;
   }
 `;
 
