@@ -75,4 +75,21 @@ const StyledDiv = styled.div`
       width: 270px;
     }
   }
+  @media screen and (max-width: 720px){
+    height: 62px;
+    margin-top: 10px;
+    font-size: 24px;
+
+    .inner_box{
+      padding-bottom: 5px;
+    }
+    input[type=text]{
+      width: 190px;
+      font-size: 20px;
+    }
+    .option{
+      font-size: 16px;
+      margin-left: 20px;
+    }
+  }
 `;

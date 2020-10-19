@@ -55,10 +55,22 @@ const StyledMain = styled.main`
     color: white;
     font-size: 23px;
   }
+  .posts{
+    padding-bottom: 20px;
+  }
 
   @media screen and (max-width: 1090px){
     .result{
       padding-left: 30px;
+    }
+  }
+
+  @media screen and (max-width: 720px){
+    padding-top: 15px;
+    .result{
+      height: 41px;
+      padding-left: 20px;
+      font-size: 16px;
     }
   }
 `;

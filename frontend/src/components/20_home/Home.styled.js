@@ -75,4 +75,33 @@ export default styled.main`
     }
   }
 
+  @media screen and (max-width: 720px){
+    margin-top: 15px;
+    .category{
+      height: 41px;
+      padding-left: 20px;
+      font-size: 16px;
+    }
+    .table{
+      position: relative;
+      flex-direction: column;
+      padding-left: 23px;
+      padding-right: 10px;
+
+      & > section{
+        width: 100%;
+        overflow: hidden;
+      }
+    }
+    .keywords{
+      display: flex;
+      justify-content: flex-start;
+
+      & > li:not(:first-child){
+        margin-top: 0;
+        margin-left: 50px;
+      }
+    }
+  }
+
 `;

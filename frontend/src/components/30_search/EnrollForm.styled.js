@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { color } from '../../common';
 
 export default styled.aside`
-    .enroll_button{
-    padding-top: 30px;
+  .enroll_button{
+    margin-top: 30px;
     text-align: center;
 
     & span{
@@ -98,6 +98,43 @@ export default styled.aside`
     .info{
       margin-left: 20px;
       justify-content: space-between;
+    }
+  }
+
+  @media screen and (max-width: 720px){
+    .enroll_button{
+      margin-top: 20px;
+      font-size: 15px;
+    }
+    .photo_box label{
+      width: 160px;
+      height: 160px;
+    }
+    .enroll_form{
+      margin-top: 15px;
+      padding: 12px;
+    }
+    .info{
+      margin-left: 15px;
+
+    }
+    .info .title{
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .info .desc{
+      margin-top: 5px;
+      line-height: 19px;
+      font-size: 14px;
+    }
+    .info .desc:first-of-type{
+      margin-top: 10px;
+    }
+    .info input[type=submit]{
+      width: 92px;
+      margin-top: 16px;
+      padding: 7px 14px;
+      font-size: 16px;
     }
   }
 `;

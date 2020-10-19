@@ -3,11 +3,11 @@ import { color } from '../../common';
 
 export default styled.header`
   padding-top: 10px;
+  font-size: 20px;
 
   nav{
     display: flex;
     justify-content: space-between;
-    font-size: 20px;
     color: white;
   }
 
@@ -36,5 +36,12 @@ export default styled.header`
     background: white;
     border: 1px solid ${ color.blue1 };
     color: ${ color.blue1 };
+  }
+
+  @media screen and (max-width: 720px){
+    font-size: 16px;
+    .pane > *{
+      padding: 10px;
+    }
   }
 `;

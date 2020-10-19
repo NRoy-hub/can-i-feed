@@ -92,5 +92,13 @@ export default styled.main`
       cursor: pointer;
     }
   }
+
+  @media screen and (max-width: 720px){
+    .line{ display: none; }
+    .login_form{
+      margin-top: 30px;
+      box-shadow: none;
+    }
+  }
 `;
 
