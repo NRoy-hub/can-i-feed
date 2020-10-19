@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import spinnerImage from '../../images/spinner.png';
 
+
 export default function LoadSpinner(){
   return(
     <StyledDiv>
