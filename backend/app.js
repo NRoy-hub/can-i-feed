@@ -4,13 +4,12 @@ const moment = require('moment');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 
-const cors = require('cors');
+const helmet = require('helmet');
 dotenv.config();
 
 const PORT = 80;
 
-app.use(cors());
-
+app.use(helmet());
 app.set('views', __dirname + '/../frontend/build');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
