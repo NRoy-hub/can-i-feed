@@ -45,5 +45,10 @@ export default function Container(){
 }
 
 const StyledDiv = styled.div`
+  box-sizing: border-box;
   width: 1190px;
+
+  @media screen and (max-width: 1090px){
+    padding: 0 10px;
+  }
 `;

@@ -55,5 +55,11 @@ const StyledMain = styled.main`
     color: white;
     font-size: 23px;
   }
+
+  @media screen and (max-width: 1090px){
+    .result{
+      padding-left: 30px;
+    }
+  }
 `;
 

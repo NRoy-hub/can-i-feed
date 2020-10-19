@@ -72,7 +72,10 @@ export default styled.aside`
         margin-left: 20px;
       }
     }
-    .desc{ margin-top: 15px; }
+    .desc{ 
+      margin-top: 15px;
+      line-height: 25px;
+    }
     .desc:first-of-type{ margin-top: 37px; }
     input[type=submit]{
       width: 148px;
@@ -88,6 +91,13 @@ export default styled.aside`
       &:hover{
         cursor: pointer;
       }
+    }
+  }
+
+  @media screen and (max-width: 1090px){
+    .info{
+      margin-left: 20px;
+      justify-content: space-between;
     }
   }
 `;

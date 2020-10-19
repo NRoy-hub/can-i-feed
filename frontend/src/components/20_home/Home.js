@@ -44,7 +44,7 @@ export default function Home(){
             ))
           }</ol>
         </section>
-        <section>
+        <section className="precautions">
           <div className="head">이용시 주의사항</div>
           <div className="desc">애완동물에게 '이것'을 (먹여)주어도 되는지에 대한 정보를 교류하는 사이트입니다. 동물을 사랑하는 마음을 가지고 이용하시길 바랍니다</div>
           <p className="notice">!! 현재 강아지에 대한 정보만 이용 가능합니다.</p>

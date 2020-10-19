@@ -15,6 +15,7 @@ export default styled.li`
 
   .photo{
     position: relative;
+    box-sizing: border-box;
     width: 295px;
     height: 295px;
     background: ${ color.grey } ;
@@ -44,6 +45,51 @@ export default styled.li`
 
       &:hover{
         cursor: pointer;
+      }
+    }
+
+    .state_icon{
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      transform: translateY(-8px);
+
+      &.recommend_icon{
+        margin-right: 20px;
+        &.active .icon_box{
+          background: ${ color.blue2 }
+        }
+        &.active .icon_box img{
+          filter: brightness(0) invert(1);
+        }
+      }
+
+      &.nonrecommend_icon.active{
+        .icon_box{
+          background: ${ color.red };
+        }
+        .icon_box img{
+          filter: brightness(0) invert(1);
+        }
+      }
+
+      .icon_number{
+        font-size: 14px;
+        color: #636363;
+        font-weight: bold;
+      }
+      .icon_box{
+        width: 42px;
+        height: 42px;
+        margin-top: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+
+        &:hover{
+          cursor: pointer;
+        }
       }
     }
 
@@ -142,6 +188,32 @@ export default styled.li`
       }
       &.nonrecommend_comment{
         border: 1px solid ${ color.red };
+      }
+    }
+  }
+
+  @media screen and (max-width: 1090px){
+    .photo{
+      flex-shrink: 0;
+    }
+    .info{ 
+      width: 100%;
+      margin-left: 25px;
+    }
+    .info_top{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      .status{
+        margin: 0;
+        .state{
+          display: none;
+        }
+        .state_icon{
+          display: flex;
+        }
       }
     }
   }

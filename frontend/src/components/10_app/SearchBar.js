@@ -69,4 +69,10 @@ const StyledDiv = styled.div`
     opacity: 0.85;
     font-size: 20px;
   }
+
+  @media screen and (max-width: 1090px){
+    input[type=text]{
+      width: 270px;
+    }
+  }
 `;

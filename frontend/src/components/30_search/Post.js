@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { url, api, requestApi, DataContext, actionNames } from '../../common';
 import StyledLi from './Post.styled';
+import recommendIcon from '../../images/recommend.png';
+import nonrecommendIcon from '../../images/nonrecommend.png';
 
 const RECOMMEND = 1;
 const NONRECOMMEND = 2;
@@ -94,28 +96,46 @@ export default function Post({ data, index }){
         <img src={ photo } alt="post_photo"/>
       </div>
       <div className="info">
-        <div className="title">{ name }</div>
-        <div className="status">
-          <div 
-            className={ `state recommend ${ my_comment && my_comment.type === RECOMMEND ? 'active' : '' }` }
-            onClick={ () => onClick(RECOMMEND) }>
-              좋아요 { recommend_count }
-          </div>
-          <div 
-            className={ `state nonrecommend ${ my_comment && my_comment.type === NONRECOMMEND ? 'active' : '' }` }
-            onClick={ () => onClick(NONRECOMMEND)}>
-              나빠요 { nonrecommend_count }
-          </div>
-          { speakType && 
-            <div className={ `comment_input ${ speakType === RECOMMEND ? 'good' : 'bad' }` }>
-              <div className="comment_title">comment ({ speakType === RECOMMEND ? 'Good' : 'Bad' })</div>
-              <input type="text" ref={ commentInput } onKeyDown={ handleCommentKeyDown } placeholder="10자 이내 작성가능" maxLength={ 10 } />
-              <div className="comment_buttons">
-                <span className="comment_ok" onClick={ handleSpeakOut }>ok</span>
-                <span className="comment_skip" onClick={ () => setSpeakType(null) }>skip</span>
-              </div>
+        <div className="info_top">
+          <div className="title">{ name }</div>
+          <div className="status">
+            <div 
+              className={ `state recommend ${ my_comment && my_comment.type === RECOMMEND ? 'active' : '' }` }
+              onClick={ () => onClick(RECOMMEND) }>
+                좋아요 { recommend_count }
             </div>
-          }
+            <div 
+              className={ `state nonrecommend ${ my_comment && my_comment.type === NONRECOMMEND ? 'active' : '' }` }
+              onClick={ () => onClick(NONRECOMMEND)}>
+                나빠요 { nonrecommend_count }
+            </div>
+            <div 
+              className={ `state_icon recommend_icon ${ my_comment && my_comment.type === RECOMMEND ? 'active' : '' }`}
+              onClick={ () => onClick(RECOMMEND) }>
+                <span className="icon_number">{ recommend_count }</span>
+                <div className="icon_box">
+                  <img src={ recommendIcon } alt="추천"/>
+                </div>
+            </div>
+            <div 
+              className={ `state_icon nonrecommend_icon ${ my_comment && my_comment.type === NONRECOMMEND ? 'active' : '' }` }
+              onClick={ () => onClick(NONRECOMMEND)}>
+                <span className="icon_number">{ nonrecommend_count }</span>
+                <div className="icon_box">
+                  <img src={ nonrecommendIcon } alt="비추천"/>
+                </div>
+            </div>
+            { speakType && 
+              <div className={ `comment_input ${ speakType === RECOMMEND ? 'good' : 'bad' }` }>
+                <div className="comment_title">comment ({ speakType === RECOMMEND ? 'Good' : 'Bad' })</div>
+                <input type="text" ref={ commentInput } onKeyDown={ handleCommentKeyDown } placeholder="10자 이내 작성가능" maxLength={ 10 } />
+                <div className="comment_buttons">
+                  <span className="comment_ok" onClick={ handleSpeakOut }>ok</span>
+                  <span className="comment_skip" onClick={ () => setSpeakType(null) }>skip</span>
+                </div>
+              </div>
+            }
+          </div>
         </div>
         <ul className="comments">
           {

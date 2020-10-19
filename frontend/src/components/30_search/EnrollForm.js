@@ -82,10 +82,6 @@ export default function EnrollForm(){
             </div>
             <div className="info">
               <div className="title">{ keyword }</div>
-              <div className="status">
-                <div>좋아요 0</div>
-                <div>싫어요 0</div>
-              </div>
               <p className="desc">!! 적합한 이미지를 업로드 해주세요. (업로드 필수)</p>
               <p className="desc">!! 부적합한 이미지라고 판단될 시 운영측에서 이미지를 변경할 수 있습니다.</p>
               <input type="submit" value="등록하기"/>
