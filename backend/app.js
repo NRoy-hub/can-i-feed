@@ -10,7 +10,7 @@ dotenv.config();
 
 const PORT = 8080;
 
-app.use(helmet());
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use('/static', express.static(path.resolve(__dirname, '..', 'frontend', 'build', 'static')));
 app.use('/uploads', express.static(path.resolve(__dirname, 'uploads')));
 app.use('/public', express.static(path.resolve(__dirname, '..', 'frontend', 'public')));
