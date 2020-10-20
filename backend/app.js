@@ -8,7 +8,7 @@ const path = require('path');
 const helmet = require('helmet');
 dotenv.config();
 
-const PORT = 80;
+const PORT = 8080;
 
 app.use(helmet());
 app.use('/static', express.static(path.resolve(__dirname, '..', 'frontend', 'build', 'static')));
