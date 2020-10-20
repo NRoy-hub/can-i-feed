@@ -4,7 +4,6 @@ dotenv.config();
 function ddl(name, props){
   const { columns, primaryKey, unique, init } = props;
   return `
-    CREATE EXTENSION IF NOT EXISTS "pgcrypto";
     CREATE TABLE IF NOT EXISTS "${ name }"(
       ${ columns },
       PRIMARY KEY(${ primaryKey.toString() })
