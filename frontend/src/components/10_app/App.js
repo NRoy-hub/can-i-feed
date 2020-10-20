@@ -22,7 +22,7 @@ export default function App() {
 
 const StyledDiv = styled.div`
   width: 100vw;
-  min-width: 320px;
+  min-width: 720px;
   display: flex;
   justify-content: center;
   color: #2a2a2a;
