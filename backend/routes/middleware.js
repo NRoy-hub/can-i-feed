@@ -51,7 +51,7 @@ const resizing = (req, res, next) => {
   const resizedPath = path.resolve('uploads', filename);
   sharp(originPath)
     .flatten({ background: { r: 255, g: 255, b: 255 } })
-    .resize(295, 295)
+    .resize(420, 420)
     .jpeg({ quality: 50, force: true })
     .toFile(resizedPath)
     .then(() => {
