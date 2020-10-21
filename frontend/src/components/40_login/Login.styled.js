@@ -94,9 +94,9 @@ export default styled.main`
   }
 
   @media screen and (max-width: 720px){
-    .line{ display: none; }
+    .line{ margin-top: 20px; }
     .login_form{
-      margin-top: 30px;
+      margin-top: 20px;
       box-shadow: none;
     }
   }

@@ -63,18 +63,27 @@ export default styled.main`
     }
     .table{
       display: flex;
+      flex-wrap: wrap;
       padding-left: 60px;
       padding-right: 40px;
-      & > section{
+      section{
         width: 50%;
       }
-      & > .precautions{
+      .precautions{
         width: 100%;
         order: 1;
       }
+      .keywords li > a{
+        display: block;
+      }
+      .keywords li > a > span{
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+      }
     }
   }
-
   @media screen and (max-width: 720px){
     margin-top: 15px;
     .category{
@@ -83,25 +92,8 @@ export default styled.main`
       font-size: 16px;
     }
     .table{
-      position: relative;
-      flex-direction: column;
-      padding-left: 23px;
+      padding-left: 20px;
       padding-right: 10px;
-
-      & > section{
-        width: 100%;
-        overflow: hidden;
-      }
-    }
-    .keywords{
-      display: flex;
-      justify-content: flex-start;
-
-      & > li:not(:first-child){
-        margin-top: 0;
-        margin-left: 50px;
-      }
     }
   }
-
 `;
