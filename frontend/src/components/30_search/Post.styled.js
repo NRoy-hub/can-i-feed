@@ -278,5 +278,10 @@ export default styled.li`
         transform: translateY(-7px);
       } 
     }
+    .comment_input{
+      left: 0px;
+      top: -70px;
+      /* height: 75px; */
+    }
   }
 `;
