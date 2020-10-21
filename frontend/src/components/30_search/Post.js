@@ -16,21 +16,6 @@ export default function Post({ data, index }){
   const [speakType, setSpeakType] = useState(null);
   const commentInput = useRef();
 
-  useEffect(() => {
-    requestApi({
-      path: api.POST_COMMENT,
-      data: { post_id: id },
-      success: resData => dispatch({ 
-        type: actionNames.modifyPost,
-        index,
-        post: { ...posts[index], ...resData }
-      })
-    });
-    return () => {
-      dispatch({ type: actionNames.initPost, posts: [] });
-    }
-  }, []);
-
   const handleSpeakOut = () => {
     if(!speakType)return;
     dispatch.loadOn();
@@ -87,6 +72,27 @@ export default function Post({ data, index }){
       setSpeakType(type);
     }
   };
+
+  useEffect(() => {
+    requestApi({
+      path: api.POST_COMMENT,
+      data: { post_id: id },
+      success: resData => dispatch({ 
+        type: actionNames.modifyPost,
+        index,
+        post: { ...posts[index], ...resData }
+      })
+    });
+    return () => {
+      dispatch({ type: actionNames.initPost, posts: [] });
+    }
+  }, []);
+
+  useEffect(() => {
+    if(speakType){
+      commentInput.current.focus();
+    }
+  }, [speakType])
     
   const commentList = my_comment && !!my_comment.text ? [my_comment].concat(comments) : comments;
 
