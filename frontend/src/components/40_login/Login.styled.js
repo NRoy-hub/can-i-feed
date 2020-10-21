@@ -100,5 +100,11 @@ export default styled.main`
       box-shadow: none;
     }
   }
+
+  @media screen and (max-width: 720px){
+    .input_box{
+      width: 270px;
+    }
+  }
 `;
 

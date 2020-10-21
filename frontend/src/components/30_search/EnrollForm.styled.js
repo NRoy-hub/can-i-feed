@@ -137,4 +137,42 @@ export default styled.aside`
       font-size: 16px;
     }
   }
+  @media screen and (max-width: 480px){
+    .enroll_button{
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .enroll_form{
+      flex-direction: column;
+      padding: 20px;
+    }
+    .photo_box label{
+      width: calc(100vw - (30px * 2));
+      height: calc(100vw - (30px * 2));
+    }
+    .info{
+      margin: 0;
+      margin-top: 12px;
+
+      .title{
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 20px;
+        text-align: center;
+      }
+      .desc{
+        text-align: center;
+      }
+      .desc:first-of-type{
+        margin-top: 15px;
+      }
+      .enroll_button{
+        width: 100%;
+      }
+      input[type=submit]{
+        width: 100%;
+      }
+    }
+  }
 `;

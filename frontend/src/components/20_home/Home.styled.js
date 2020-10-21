@@ -96,4 +96,18 @@ export default styled.main`
       padding-right: 10px;
     }
   }
+  @media screen and (max-width: 480px){
+    .table{
+      padding: 0 20px;
+      flex-direction: column;
+      align-items: center;
+
+      section{
+        width: 100%;
+      }
+      .keywords{
+        padding-left: 15px;
+      }
+    }
+  }
 `;

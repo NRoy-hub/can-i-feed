@@ -264,7 +264,7 @@ export default styled.li`
       }
     }
   }
-  /* @media screen and (max-width: 480px){
+  @media screen and (max-width: 480px){
     flex-direction: column;
     padding: 20px;
     .photo{
@@ -278,5 +278,5 @@ export default styled.li`
         transform: translateY(-7px);
       } 
     }
-  } */
+  }
 `;
