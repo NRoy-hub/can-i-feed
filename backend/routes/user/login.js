@@ -55,9 +55,8 @@ module.exports = (req, res) => {
     },
     (user, cb) => {
       const { userId, sessionId } = user;
-      const maxAge = 60 * 60 * 1000;
-      res.cookie('canifeed_uid', userId, { maxAge });
-      res.cookie('canifeed_sid', sessionId, { maxAge, httpOnly: true, signed: true });
+      res.cookie('canifeed_uid', userId);
+      res.cookie('canifeed_sid', sessionId, { httpOnly: true, signed: true });
       res.finish('ok', { user_id: userId, email });
       cb();
     }
