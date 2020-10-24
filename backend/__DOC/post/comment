@@ -1,9 +1,0 @@
-/post/comment
-: 포스트 댓글 조회
-
-  req: { post_id }
-    - post_id: string
-
-  res: { *result, data: { my_comment, comments } }
-    - my_comment: comment*
-    - comments: [comment*]

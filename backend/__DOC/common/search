@@ -1,9 +1,10 @@
 /search
 : 검색창 키워드 검색 API
 
-  req: { species, keyword }
+  req: { species, keyword, page }
     - species*: number
     - keyword: string
+    - page: number
 
   res: { *result, data: { posts, exist } }
     - posts: array[{
@@ -11,6 +12,8 @@
         photo: string
         name: string
         recommend_count: number
-        nonrecommend_count: number
+        nonrecommend_count: number,
+        my_comment: *comment
+        comments: [*comment]
     }]
     - exist: bool

@@ -74,21 +74,6 @@ export default function Post({ data, index }){
   };
 
   useEffect(() => {
-    requestApi({
-      path: api.POST_COMMENT,
-      data: { post_id: id },
-      success: resData => dispatch({ 
-        type: actionNames.modifyPost,
-        index,
-        post: { ...posts[index], ...resData }
-      })
-    });
-    return () => {
-      dispatch({ type: actionNames.initPost, posts: [] });
-    }
-  }, []);
-
-  useEffect(() => {
     if(speakType){
       commentInput.current.focus();
     }

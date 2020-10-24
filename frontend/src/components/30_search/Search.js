@@ -18,9 +18,10 @@ export default function Search(){
     dispatch.loadOn();
     requestApi({
       path: `${ api.SEARCH }`,
-      data: { keyword: trimedKeyword, species },
+      data: { keyword: trimedKeyword, species, page: 1 },
       success: resData => {
         dispatch({ type: actionNames.initPost, posts: resData.posts });
+        console.log(resData);
         setShowEnroll(!resData.exist);
       }, 
       common: dispatch.loadOff

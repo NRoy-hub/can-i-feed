@@ -35,7 +35,6 @@ userRouter.post('/info', middleware.auth, require('./user/info'));
 postRouter.post('/enroll', middleware.auth, upload.single('photo'), middleware.resizing, require('./post/enroll'));
 postRouter.post('/speak_out', middleware.auth, require('./post/speak_out'));
 postRouter.post('/recant', middleware.auth, require('./post/recant'));
-postRouter.post('/comment', require('./post/comment'));
 
 
 

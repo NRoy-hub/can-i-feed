@@ -8,7 +8,6 @@ export const api = {
   USER_LOGIN: '/user/login',
   USER_LOGOUT: '/user/logout',
   POST_ENROLL: '/post/enroll',
-  POST_COMMENT: '/post/comment',
   POST_SPEAK_OUT: '/post/speak_out',
   POST_RECANT: '/post/recant'
 };
