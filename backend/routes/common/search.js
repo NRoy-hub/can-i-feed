@@ -8,21 +8,13 @@ module.exports = (req, res) => {
   
   const db = new res.db();
   db.run([
-    cb => {
-      const query = 'SELECT * FROM keyword WHERE name=$1 AND species=$2;';
-      const values = [keyword, species];
-      
-      db.query(query, values, (err, result) => {
-        if(err)return cb(err);
-        cb(null, result.rows[0]);
-      });
-    },
-    (row, cb) => {
+    (cb) => {
       const query = `
-        INSERT INTO keyword("name", species, update_time)
-        VALUES($1, $2, $3);
+        INSERT INTO keyword(name, species, update_time)
+        VALUES($1, $2, $3)
+        ON CONFLICT(name, species) 
+        DO UPDATE SET count = keyword.count + 1, update_time= $3;
       `;
-
       const values = [keyword, species, res.now()];
       db.query(query, values, (err) => {
         if(err)return cb(err);
@@ -70,6 +62,7 @@ module.exports = (req, res) => {
       (err, result) => {
         if(err)return cb(err);
         res.finish('ok', { ...pre, posts: result });
+        cb();
       });
     }
   ]);
