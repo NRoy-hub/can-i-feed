@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -11,25 +11,47 @@ export default function Search(){
   const { keyword } = useParams()
   const { state: { posts, species }, dispatch } = useContext(DataContext);
   const [showEnroll, setShowEnroll] = useState(false);
-  
-  useEffect(() => {
+  const wrapper = useRef();
+  const page = useRef(1);
+  const end = useRef(false);
+
+  const requestPosts = () => {
     const trimedKeyword = keyword.trim();
     dispatch({ type: actionNames.setSearchInput, value: trimedKeyword });
     dispatch.loadOn();
     requestApi({
       path: `${ api.SEARCH }`,
-      data: { keyword: trimedKeyword, species, page: 1 },
+      data: { keyword: trimedKeyword, species, page: page.current },
       success: resData => {
-        dispatch({ type: actionNames.initPost, posts: resData.posts });
+        dispatch({ type: actionNames.addPost, posts: resData.posts });
+        end.current = resData.posts.length < 10;
+        page.current += 1;
         setShowEnroll(!resData.exist);
       }, 
       common: dispatch.loadOff
     });
-  }, [keyword, dispatch])
+  }
+
+  useEffect(() => {
+    requestPosts();
+    const handleScroll = (e) => {
+      if(end.current)return;
+      const { scrollY, innerHeight } = window;
+      const floor = document.documentElement.offsetHeight - scrollY - innerHeight;
+      if(floor === 0){
+        requestPosts();
+      }
+    }
+    document.addEventListener('scroll', handleScroll);
+    return () => {
+      dispatch({ type: actionNames.initPost, posts: [] })
+      document.removeEventListener('scroll', handleScroll);
+    }
+  }, [])
 
   const { length } = posts;
   return(
-    <StyledMain>
+    <StyledMain ref={ wrapper }>
       <div className="result">
         <span>{ `${ length > 0 ? length : 'No' } Result${ length > 1 ? 's' : '' }` }</span>
       </div>
