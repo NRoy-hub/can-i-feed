@@ -15,7 +15,7 @@ export default function Search(){
   const page = useRef(1);
   const end = useRef(false);
 
-  const requestPosts = () => {
+  const requestPosts = (type) => {
     const trimedKeyword = keyword.trim();
     dispatch({ type: actionNames.setSearchInput, value: trimedKeyword });
     dispatch.loadOn();
@@ -23,7 +23,7 @@ export default function Search(){
       path: `${ api.SEARCH }`,
       data: { keyword: trimedKeyword, species, page: page.current },
       success: resData => {
-        dispatch({ type: actionNames.addPost, posts: resData.posts });
+        dispatch({ type, posts: resData.posts });
         end.current = resData.posts.length < 10;
         page.current += 1;
         setShowEnroll(!resData.exist);
@@ -33,13 +33,18 @@ export default function Search(){
   }
 
   useEffect(() => {
-    requestPosts();
+    page.current = 1;
+    end.current = false;
+    requestPosts(actionNames.initPost);
+  }, [keyword]);
+
+  useEffect(() => {
     const handleScroll = (e) => {
       if(end.current)return;
       const { scrollY, innerHeight } = window;
       const floor = document.documentElement.offsetHeight - scrollY - innerHeight;
       if(floor === 0){
-        requestPosts();
+        requestPosts(actionNames.addPost);
       }
     }
     document.addEventListener('scroll', handleScroll);
@@ -47,7 +52,8 @@ export default function Search(){
       dispatch({ type: actionNames.initPost, posts: [] })
       document.removeEventListener('scroll', handleScroll);
     }
-  }, [])
+  }, []);
+
 
   const { length } = posts;
   return(
