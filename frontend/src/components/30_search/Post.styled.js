@@ -172,16 +172,14 @@ export default styled.li`
     font-size: 16px;
 
     & li{
+      margin-right: 10px;
+      margin-bottom: 8px;
       padding: 8px 13px;
       background: white;
       border-radius: 10px;
       border: 1px solid white;
-
       &.mine{
         font-weight: bold;
-      }
-      &:not(:first-child){
-        margin-left: 11px;
       }
       &.recommend_comment{
         border: 1px solid ${ color.blue4 };
