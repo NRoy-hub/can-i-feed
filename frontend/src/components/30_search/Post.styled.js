@@ -18,6 +18,7 @@ export default styled.li`
     box-sizing: border-box;
     width: 295px;
     height: 295px;
+    flex-shrink: 0;
     background: ${ color.grey } ;
     & img{
       width: 100%;
@@ -191,9 +192,6 @@ export default styled.li`
   }
 
   @media screen and (max-width: 1090px){
-    .photo{
-      flex-shrink: 0;
-    }
     .info{ 
       width: 100%;
       margin-left: 25px;
