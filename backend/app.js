@@ -20,8 +20,10 @@ app.use(cookieParser(process.env.COOKIE_SALT));
 
 
 app.use((req, res, next) => {
-  console.log('PATH: ', req.path);
-  console.log('TIME: ', moment().format());
+  if(process.env.MODE === 'development'){
+    console.log('PATH: ', req.path);
+    console.log('TIME: ', moment().format());
+  }
 
   res.now = () => (moment().format());
   res.fromNow = (time) => {
