@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color } from '../../common';
+import { color, keyframs } from '../../common';
 
 export default styled.header`
   width: 100%;

@@ -34,7 +34,7 @@ export default function SearchBar(){
   // )
 
   return(
-    <StyledDiv>
+    <StyledDiv className="search_bar">
       <span>Can I feed my puppy</span>
       <input type="text" ref={ inputRef } onKeyDown={ onKeyDown } />
       <span>?</span>

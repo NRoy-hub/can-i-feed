@@ -39,7 +39,7 @@ export default function Header(){
   }
 
   return(
-    <StyledDiv>
+    <StyledDiv className="fold">
       <Link to={ url.HOME } className="icon icon--home">
         <img src={ homeIcon } alt="Home"/>
       </Link>
