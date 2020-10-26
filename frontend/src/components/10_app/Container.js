@@ -13,39 +13,39 @@ import LoadSpinner from './LoadSpinner';
 export default function Container(){
   const { state: { loading }, dispatch } = useContext(DataContext);
 
-  useEffect(() => {
-    const cookies = !!document.cookie && 
-      document.cookie.split('; ').reduce((prev, current) => {
-        const [name, value] = current.split('=');
-        prev[name] = value;
-        return prev
-      }, {});
+  // useEffect(() => {
+  //   const cookies = !!document.cookie && 
+  //     document.cookie.split('; ').reduce((prev, current) => {
+  //       const [name, value] = current.split('=');
+  //       prev[name] = value;
+  //       return prev
+  //     }, {});
       
-    if(!cookies.canifeed_uid)return;
-    dispatch.loadOn();
-    requestApi({
-      path: api.USER_INFO,
-      success: user => dispatch({ type: actionNames.login, user }),
-      common: dispatch.loadOff
-    })
-  }, []);
+  //   if(!cookies.canifeed_uid)return;
+  //   dispatch.loadOn();
+  //   requestApi({
+  //     path: api.USER_INFO,
+  //     success: user => dispatch({ type: actionNames.login, user }),
+  //     common: dispatch.loadOff
+  //   })
+  // }, []);
 
   return(
-    <StyledDiv>
+    <>
       <Header />
       { loading && <LoadSpinner /> }
-      <Switch>
+      {/* <Switch>
         <Route exact path={ url.HOME } component={ Home } />
         <Route path={ url.SEARCH() } component={ Search } />
         <Route path={ url.LOGIN } component={ Login } />
         <Route path="*"><Redirect to="/" /></Route>
-      </Switch>
-    </StyledDiv>
+      </Switch> */}
+    </>
   )
 }
 
 const StyledDiv = styled.div`
-  box-sizing: border-box;
+  /* box-sizing: border-box;
   min-width: 320px;
   width: 1190px;
 
@@ -55,5 +55,5 @@ const StyledDiv = styled.div`
   }
   @media screen and (max-width: 720px){
     padding: 0 10px;
-  }
+  } */
 `;

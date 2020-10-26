@@ -5,13 +5,10 @@ import { INITIAL_STATE, actionNames, reducer } from './reducer';
 const DataContext = createContext();
 
 const color = {
-  black: '#2a2a2a',
-  grey: '#B7C2D8',
-  blue1: '#3458A1',
-  blue2: '#5E88DE',
-  blue3: '#D9E6FF',
-  blue4: '#77A4FF',
-  red: '#FF7793'
+  blue1: '#4285F5',
+  black1: '#505050',
+  grey1: '#CECECE',
+  light_grey: '#ECECEC'
 };
 
 const url = {

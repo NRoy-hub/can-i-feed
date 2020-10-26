@@ -2,46 +2,79 @@ import styled from 'styled-components';
 import { color } from '../../common';
 
 export default styled.header`
-  padding-top: 10px;
-  font-size: 20px;
+  width: 100%;
+  padding: 11px 40px;
+  display: flex; justify-content: space-between; align-items: flex-start;
 
-  nav{
-    display: flex;
-    justify-content: space-between;
-    color: white;
+  .icon{
+    width: 36px; height: 36px;
+    display: flex; justify-content: center; align-items: center;
+    border-radius: 18px;
+
+    &:hover{ cursor: pointer; }
+    &--home{
+      width: 40px;
+      visibility: hidden;
+    }
+    &--me img{
+      width: 100%; height: 100%;
+    }
   }
-
-  .pane{
-    display: flex;
+  .me_container{
     position: relative;
-  }
+    display: none;
 
-  .pane > *{
-    padding: 14px 20px;
-    background: ${ color.grey };
-    
-    &:hover{
-      cursor: pointer;
+    .icon--me{
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
+      overflow: hidden;
     }
-    &:not(:first-child){
-      margin-left: 3px;
-    }
-    &.active{
-      background: ${ color.blue1 };
-    }
-  }
 
-  .email{
-    width: 100%;
-    background: white;
-    border: 1px solid ${ color.blue1 };
-    color: ${ color.blue1 };
-  }
-
-  @media screen and (max-width: 720px){
-    font-size: 16px;
-    .pane > *{
+    .links{
+      box-sizing: border-box;
+      position: absolute;
+      top: 46px; right: 0px;
+      width: 192px;
       padding: 10px;
+      border-radius: 5px;
+      border: 1px solid ${ color.grey1 };
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+      display: flex; flex-wrap: wrap;
+      gap: 6px;
+      font-size: 14px;
+      display: none;
+
+      li{
+        width: 80px; height: 74px;
+        border-radius: 6px;
+        display: flex; flex-direction: column;
+        justify-content: center; align-items: center;
+        &:hover{ 
+          background: ${ color.light_grey };
+          cursor: pointer;
+        }
+      }
+  }
+
+  }
+  .login_button{
+    padding: 9px 13px;
+    background: ${ color.blue1 };
+    border-radius: 3px;
+    color: white;
+    font-size: 14px;
+
+    &:hover{ cursor: pointer; }
+  }
+  .middle_container{
+    display: flex; flex-direction: column; align-items: center;
+    padding-top: 90px;
+
+    .cover_image{
+      width: 400px; height: 266px;
+      overflow: hidden;
+    }
+    .cover_image img{ 
+      width: 430px; height: 286px;
     }
   }
 `;

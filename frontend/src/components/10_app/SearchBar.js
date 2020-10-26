@@ -1,12 +1,13 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { DataContext, url } from '../../common';
 import StyledDiv from './SearchBar.styled';
 
 
-export default function SearchBar({ inputRef }){
+export default function SearchBar(){
   const history = useHistory();
   const { state: { searchInput } } = useContext(DataContext);
+  const inputRef = useRef();
 
   const onKeyDown = (e) => {
     const { value } = inputRef.current;
@@ -21,14 +22,22 @@ export default function SearchBar({ inputRef }){
   }, [searchInput, inputRef]);
   
   
+  // const pre = (
+  //   <StyledDiv>
+  //     <div className="inner_box">
+  //       <span>Can I Feed</span>
+  //       <input type="text" ref={ inputRef } onKeyDown={ onKeyDown }/>
+  //       <span>?</span>
+  //       <span className="option">to puppy</span>
+  //     </div>
+  //   </StyledDiv>
+  // )
+
   return(
     <StyledDiv>
-      <div className="inner_box">
-        <span>Can I Feed</span>
-        <input type="text" ref={ inputRef } onKeyDown={ onKeyDown }/>
-        <span>?</span>
-        <span className="option">to puppy</span>
-      </div>
+      <span>Can I feed my puppy</span>
+      <input type="text" ref={ inputRef } onKeyDown={ onKeyDown } />
+      <span>?</span>
     </StyledDiv>
   )
 }

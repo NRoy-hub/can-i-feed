@@ -1,28 +1,25 @@
 import React, { useContext, useRef } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 
-import { DataContext, actionNames, url, requestApi, api } from '../../common'
+import { DataContext, actionNames, url, requestApi, api, color } from '../../common'
 import SearchBar from './SearchBar';
-import StyledHeader from './Header.styled';
+import StyledDiv from './Header.styled';
+
+import homeIcon from '../../images/home.svg';
+import userDefault from '../../images/user_default.jpg';
+import coverImage from '../../images/cover.jpg';
+import profileEditIcon from '../../images/profile_edit.png';
+import commentsIcon from '../../images/comments.png';
+import logoutIcon from '../../images/logout.png';
 
 
 export default function Header(){
   const history = useHistory();
   const { pathname } = useLocation();
   const { state: { user }, dispatch } = useContext(DataContext);
-  const inputRef = useRef();
   
   function getMiddlePath(path){
     return path.split('/')[1];
-  }
-  
-  function onClickSearch(){
-    const { value } = inputRef.current;
-    if(!!value){
-      return history.push(url.SEARCH(value));
-    }
-    alert('검색어를 입력해주세요');
-    inputRef.current.focus();
   }
 
   function onClickLogout(){
@@ -42,29 +39,38 @@ export default function Header(){
   }
 
   return(
-    <StyledHeader>
-      <nav>
-        <div className="pane left_pane">
-          <Link to={ url.HOME } className={ (pathname === url.HOME) ? 'active' : '' }>HOME</Link>
-          <div 
-            className={ (getMiddlePath(pathname) === getMiddlePath(url.SEARCH())) ? 'active' : '' } 
-            onClick={ onClickSearch }                
-          >
-            SEARCH
-          </div>
+    <StyledDiv>
+      <Link to={ url.HOME } className="icon icon--home">
+        <img src={ homeIcon } alt="Home"/>
+      </Link>
+      <div className="middle_container">
+        <div className="cover_image">
+          <img src={ coverImage } alt="cover image"/>
         </div>
-        <div className="pane right_pane">
-          { !!user ?
-            <div className="email" onClick={ onClickLogout }>
-              { user.email }
-            </div>
-            :
-            <Link to={ url.LOGIN } className={ pathname.startsWith(url.LOGIN) ? 'active' : '' }>LOGIN</Link>
-          }
+        <SearchBar />
+      </div>
+      <div className="me_container">
+        <div className="icon icon--me">
+          <img src={ userDefault } alt="me"/>
         </div>
-      </nav>
-      <SearchBar inputRef={ inputRef } />
-    </StyledHeader>
-  )
+        <ul className="links">
+          <li>
+            <img src={ profileEditIcon } alt="edit icon"/>
+            <span>Edit</span>
+          </li>
+          <li>
+            <img src={ commentsIcon } alt="comments icon"/>
+            <span>Comments</span>
+          </li>
+          <li>
+            <img src={ logoutIcon } alt="logout icon"/>
+            <span>Logout</span>
+          </li>
+        </ul>
+      </div>
+      <Link to={ url.LOGIN } className="login_button">
+        <span>로그인</span>
+      </Link>
+    </StyledDiv>
+  );
 }
-
