@@ -1,16 +1,16 @@
 import React, { useContext, useRef } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 
-import { DataContext, actionNames, url, requestApi, api, color } from '../../common'
+import { DataContext, actionNames, url, requestApi, api, color } from 'common'
 import SearchBar from './SearchBar';
-import StyledDiv from './Header.styled';
+import StyledDiv from 'style/10_app/Header.js';
 
-import homeIcon from '../../resources/home.svg';
-import userDefault from '../../resources/user_default.jpg';
-import coverImage from '../../resources/cover.jpg';
-import profileEditIcon from '../../resources/profile_edit.png';
-import commentsIcon from '../../resources/comments.png';
-import logoutIcon from '../../resources/logout.png';
+import homeIcon from 'resources/home.svg';
+import userDefault from 'resources/user_default.jpg';
+import coverImage from 'resources/cover.jpg';
+import profileEditIcon from 'resources/profile_edit.png';
+import commentsIcon from 'resources/comments.png';
+import logoutIcon from 'resources/logout.png';
 
 
 export default function Header(){

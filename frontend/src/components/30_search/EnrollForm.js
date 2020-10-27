@@ -2,8 +2,8 @@ import React, { useState, useRef, useContext, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import FormData from 'form-data';
 
-import { api, url, requestApi, DataContext } from '../../common';
-import StyledAside from './EnrollForm.styled';
+import { api, url, requestApi, DataContext } from 'common';
+import StyledAside from 'style/30_search/EnrollForm';
 
 export default function EnrollForm(){
   const history = useHistory();

@@ -2,11 +2,11 @@ import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { DataContext, url, requestApi, api, actionNames } from '../../common';
+import { DataContext, url, requestApi, api, actionNames } from 'common';
 import Header from './Header';
-import Home from '../20_home/Home';
-import Search from '../30_search/Search';
-import Login from '../40_login/Login';
+import Home from 'components/20_home/Home';
+import Search from 'components/30_search/Search';
+import Login from 'components/40_login/Login';
 import LoadSpinner from './LoadSpinner';
 
 
@@ -43,17 +43,3 @@ export default function Container(){
     </>
   )
 }
-
-const StyledDiv = styled.div`
-  /* box-sizing: border-box;
-  min-width: 320px;
-  width: 1190px;
-
-  @media screen and (max-width: 1090px){
-    width: 100vw;
-    padding: 0 10px;
-  }
-  @media screen and (max-width: 720px){
-    padding: 0 10px;
-  } */
-`;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { url, api, requestApi, DataContext, actionNames } from '../../common';
-import StyledMain from './Home.styled';
+import { url, api, requestApi, DataContext, actionNames } from 'common';
+import StyledMain from 'style/20_home/Home';
 
 
 export default function Home(){

@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { DataContext, actionNames, color, api, requestApi } from '../../common';
+import { DataContext, actionNames, color, api, requestApi } from 'common';
 import Post from './Post';
 import EnrollForm from './EnrollForm';
 

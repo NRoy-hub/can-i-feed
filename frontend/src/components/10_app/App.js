@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Container from './Container';
-import { actionNames, DataContext, INITIAL_STATE, reducer } from '../../common';
+import { actionNames, DataContext, INITIAL_STATE, reducer } from 'common';
 import styled from 'styled-components';
 
 export default function App() {

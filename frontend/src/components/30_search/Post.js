@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import { url, api, requestApi, DataContext, actionNames } from '../../common';
-import StyledLi from './Post.styled';
-import recommendIcon from '../../resources/recommend.png';
-import nonrecommendIcon from '../../resources/nonrecommend.png';
+import { url, api, requestApi, DataContext, actionNames } from 'common';
+import StyledLi from 'style/30_search/Post';
+import recommendIcon from 'resources/recommend.png';
+import nonrecommendIcon from 'resources/nonrecommend.png';
 
 const RECOMMEND = 1;
 const NONRECOMMEND = 2;

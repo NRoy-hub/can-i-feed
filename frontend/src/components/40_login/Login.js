@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { requestApi, api, url, DataContext, actionNames } from '../../common';
-import StyledMain from './Login.styled'
+import { requestApi, api, url, DataContext, actionNames } from 'common';
+import StyledMain from 'style/40_login/Login'
 
 export default function Login(){
   const { state: { user }, dispatch } = useContext(DataContext);

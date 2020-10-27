@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import spinnerImage from '../../resources/spinner.png';
+import spinnerImage from 'resources/spinner.png';
 
 
 export default function LoadSpinner(){
