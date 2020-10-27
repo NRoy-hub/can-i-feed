@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import Container from './Container';
+import { BrowserRouter } from 'react-router-dom';
+import Router from './Router';
 import { actionNames, DataContext, INITIAL_STATE, reducer } from 'common';
 import styled from 'styled-components';
 
@@ -11,11 +11,11 @@ export default function App() {
 
   return (
     <StyledDiv>
-      <Router>
+      <BrowserRouter>
         <DataContext.Provider value={{ state, dispatch }}>
-          <Container />
+          <Router />
         </DataContext.Provider>
-      </Router>
+      </BrowserRouter>
     </StyledDiv>
   );
 }
