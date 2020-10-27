@@ -16,7 +16,7 @@ export default styled.aside`
 
   .enroll_form{
     margin-top: 30px;
-    border: 2px solid ${ color.blue1 };
+    border: 2px solid ${ color.blue };
     padding: 24px;
     display: flex;
   }
@@ -81,7 +81,7 @@ export default styled.aside`
       width: 148px;
       margin-top: 43px;
       padding: 10px 30px;
-      background: ${ color.blue1 };
+      background: ${ color.blue };
       border: none;
       outline: none;
       font-size: 22px;

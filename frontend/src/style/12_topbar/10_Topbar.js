@@ -5,11 +5,16 @@ export default styled.div`
     box-sizing: border-box;
     width: 100%;
     padding: 11px 40px;
-    display: flex; justify-content: space-between; align-items: flex-start;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start;
 
     .icon{
-      width: 36px; height: 36px;
-      display: flex; justify-content: center; align-items: center;
+      width: 36px; 
+      height: 36px;
+      display: flex; 
+      justify-content: center; 
+      align-items: center;
       border-radius: 18px;
 
       &:hover{ cursor: pointer; }
@@ -18,7 +23,8 @@ export default styled.div`
         visibility: hidden;
       }
       &--me img{
-        width: 100%; height: 100%;
+        width: 100%; 
+        height: 100%;
       }
     }
     .me_container{
@@ -34,7 +40,7 @@ export default styled.div`
     }
     .login_button{
       padding: 9px 13px;
-      background: ${ color.blue1 };
+      background: ${ color.blue };
       border-radius: 3px;
       color: white;
       font-size: 14px;
@@ -42,15 +48,19 @@ export default styled.div`
       &:hover{ cursor: pointer; }
     }
     .middle_container{
-      display: flex; flex-direction: column; align-items: center;
+      display: flex; 
+      flex-direction: column; 
+      align-items: center;
       padding-top: 90px;
 
       .cover_image{
-        width: 400px; height: 266px;
+        width: 400px; 
+        height: 266px;
         overflow: hidden;
       }
       .cover_image img{ 
-        width: 430px; height: 286px;
+        width: 430px; 
+        height: 286px;
       }
     }
   `}

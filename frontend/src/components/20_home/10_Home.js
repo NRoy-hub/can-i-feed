@@ -1,31 +1,32 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { url, api, requestApi, DataContext, actionNames } from 'common';
-import StyledMain from 'style/20_home/Home';
+import { url, api, requestApi, DataContext, actionNames, color } from 'common';
+import StyledSection from 'style/20_home/10_Home';
+import timesIcon from 'resources/times.svg';
 
 
 export default function Home(){
   const { dispatch, state: { species } } = useContext(DataContext);
   const [keywords, setKeywords] = useState({});
 
-  useEffect(() => {
-    dispatch.loadOn();
-    requestApi({
-      path: api.KEYWORDS,
-      data: { species },
-      success: data => {
-        dispatch({ type: actionNames.setSearchInput, value: '' })
-        setKeywords(data);
-      },
-      common: dispatch.loadOff
-    });
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch.loadOn();
+  //   requestApi({
+  //     path: api.KEYWORDS,
+  //     data: { species },
+  //     success: data => {
+  //       dispatch({ type: actionNames.setSearchInput, value: '' })
+  //       setKeywords(data);
+  //     },
+  //     common: dispatch.loadOff
+  //   });
+  // }, [dispatch]);
 
   const { latest, most, recommend, nonrecommend } = keywords;
 
-  return(
-    <StyledMain>
+  const pre = (
+    <StyledSection>
       <div className="category">Search History</div>
       <div className="table">
         <section>
@@ -66,6 +67,47 @@ export default function Home(){
           }</ol>
         </section>
       </div>
-    </StyledMain>
+    </StyledSection>
+  )
+
+  return(
+    <StyledSection color={ color }>
+      <div className="active_button">
+        <span>인기 먹이 보기</span>
+      </div>
+      <article className="keyword_board">
+        <div className="close_button">
+          <img src={ timesIcon } alt="close button"/>
+        </div>
+        <nav className="tabs">
+          <div className="tab selected">
+            <span>오늘의 검색어</span>
+          </div>
+          <div className="tab">
+            <span>추천 먹이</span>
+          </div>
+          <div className="tab">
+            <span>비추천 먹이</span>
+          </div>
+        </nav>
+        <nav className="rankings">
+          <div className="ranking selected">
+            <span>1 ~ 10위</span>
+          </div>
+          <div className="ranking">
+            <span>11 ~ 20위</span>
+          </div>
+        </nav>
+        <ul className="keywords">
+          {
+            [...Array(10).keys()].map((_, i) => (
+              <li>
+                { i + 1 } <a href="">블루베리</a>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+    </StyledSection>
   );
 }

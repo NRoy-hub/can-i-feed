@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { DataContext, url, requestApi, api, actionNames } from 'common';
 import Header from 'components/12_topbar/10_Topbar';
-import Home from 'components/20_home/Home';
+import Home from 'components/20_home/10_Home';
 import Search from 'components/30_search/Search';
 import Login from 'components/40_login/Login';
 import LoadSpinner from './20_LoadSpinner';
@@ -34,12 +34,12 @@ export default function Container(){
     <>
       <Header />
       { loading && <LoadSpinner /> }
-      {/* <Switch>
+      <Switch>
         <Route exact path={ url.HOME } component={ Home } />
         <Route path={ url.SEARCH() } component={ Search } />
         <Route path={ url.LOGIN } component={ Login } />
         <Route path="*"><Redirect to="/" /></Route>
-      </Switch> */}
+      </Switch>
     </>
   )
 }

@@ -3,8 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { DataContext, url } from 'common';
 import StyledDiv from 'style/12_topbar/20_SearchBar';
 
-import { color } from 'common';
-
 
 export default function SearchBar(){
   const history = useHistory();
@@ -24,7 +22,7 @@ export default function SearchBar(){
   }, [searchInput, inputRef]);
 
   return(
-    <StyledDiv color={ color }>
+    <StyledDiv>
       <span>Can I feed my puppy</span>
       <input type="text" ref={ inputRef } onKeyDown={ onKeyDown } />
       <span>?</span>

@@ -158,7 +158,7 @@ export default styled.li`
         }
 
         .comment_ok{
-          color: ${ color.blue1 };
+          color: ${ color.blue };
         }
         .comment_skip{
           color: ${ color.grey };

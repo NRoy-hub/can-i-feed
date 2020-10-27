@@ -33,7 +33,7 @@ export default styled.main`
   .title{
     font-size: 26px;
     font-weight: bold;
-    color: ${ color.blue1 };
+    color: ${ color.blue };
   }
   .subtitle{
     margin-top: 9px;
@@ -83,7 +83,7 @@ export default styled.main`
     height: 45px;
     border: none;
     outline: none;
-    background: ${ color.blue1 };
+    background: ${ color.blue };
     letter-spacing: 2px;
     color: white;
     font-size: 16px;
