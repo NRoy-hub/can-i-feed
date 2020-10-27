@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { color } from '../../common';
 
-export default styled.header`
+const Topbar = styled.header`
   width: 100%;
   padding: 11px 40px;
   display: flex; justify-content: space-between; align-items: flex-start;
@@ -78,3 +78,7 @@ export default styled.header`
     }
   }
 `;
+
+export default {
+  Topbar
+};

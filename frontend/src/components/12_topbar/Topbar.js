@@ -3,7 +3,7 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 
 import { DataContext, actionNames, url, requestApi, api, color } from 'common'
 import SearchBar from './SearchBar';
-import StyledDiv from 'style/12_header/Header.js';
+import StyledComp from 'style/12_topbar/Topbar.js';
 
 import homeIcon from 'resources/home.svg';
 import userDefault from 'resources/user_default.jpg';
@@ -39,7 +39,7 @@ export default function Header(){
   }
 
   return(
-    <StyledDiv className="fold">
+    <StyledComp.Topbar className="fold">
       <Link to={ url.HOME } className="icon icon--home">
         <img src={ homeIcon } alt="Home"/>
       </Link>
@@ -71,6 +71,6 @@ export default function Header(){
       <Link to={ url.LOGIN } className="login_button">
         <span>로그인</span>
       </Link>
-    </StyledDiv>
+    </StyledComp.Topbar>
   );
 }

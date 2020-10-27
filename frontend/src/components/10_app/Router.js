@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { DataContext, url, requestApi, api, actionNames } from 'common';
-import Header from 'components/12_header/Header';
+import Header from 'components/12_topbar/Topbar';
 import Home from 'components/20_home/Home';
 import Search from 'components/30_search/Search';
 import Login from 'components/40_login/Login';

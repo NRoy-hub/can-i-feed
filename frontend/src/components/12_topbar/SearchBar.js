@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { DataContext, url } from 'common';
-import StyledDiv from 'style/12_header/SearchBar';
+import StyledDiv from 'style/12_topbar/SearchBar';
 
 
 export default function SearchBar(){
