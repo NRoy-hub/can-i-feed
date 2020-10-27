@@ -5,12 +5,12 @@ import { DataContext, actionNames, url, requestApi, api, color } from '../../com
 import SearchBar from './SearchBar';
 import StyledDiv from './Header.styled';
 
-import homeIcon from '../../images/home.svg';
-import userDefault from '../../images/user_default.jpg';
-import coverImage from '../../images/cover.jpg';
-import profileEditIcon from '../../images/profile_edit.png';
-import commentsIcon from '../../images/comments.png';
-import logoutIcon from '../../images/logout.png';
+import homeIcon from '../../resources/home.svg';
+import userDefault from '../../resources/user_default.jpg';
+import coverImage from '../../resources/cover.jpg';
+import profileEditIcon from '../../resources/profile_edit.png';
+import commentsIcon from '../../resources/comments.png';
+import logoutIcon from '../../resources/logout.png';
 
 
 export default function Header(){
