@@ -3,7 +3,7 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 
 import { DataContext, actionNames, url, requestApi, api, color } from 'common'
 import SearchBar from './SearchBar';
-import StyledDiv from 'style/10_app/Header.js';
+import StyledDiv from 'style/12_header/Header.js';
 
 import homeIcon from 'resources/home.svg';
 import userDefault from 'resources/user_default.jpg';
