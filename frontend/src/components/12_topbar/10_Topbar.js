@@ -2,16 +2,13 @@ import React, { useContext, useRef } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 
 import { DataContext, actionNames, url, requestApi, api, color } from 'common'
-import SearchBar from './SearchBar';
-import StyledComp from 'style/12_topbar/Topbar.js';
-
 import homeIcon from 'resources/home.svg';
 import userDefault from 'resources/user_default.jpg';
 import coverImage from 'resources/cover.jpg';
-import profileEditIcon from 'resources/profile_edit.png';
-import commentsIcon from 'resources/comments.png';
-import logoutIcon from 'resources/logout.png';
 
+import SearchBar from './20_SearchBar';
+import StyledCDiv from 'style/12_topbar/10_Topbar.js';
+import Menus from './30_Menus';
 
 export default function Header(){
   const history = useHistory();
@@ -39,7 +36,7 @@ export default function Header(){
   }
 
   return(
-    <StyledComp.Topbar className="fold">
+    <StyledCDiv color={ color }>
       <Link to={ url.HOME } className="icon icon--home">
         <img src={ homeIcon } alt="Home"/>
       </Link>
@@ -53,24 +50,11 @@ export default function Header(){
         <div className="icon icon--me">
           <img src={ userDefault } alt="me"/>
         </div>
-        <ul className="links">
-          <li>
-            <img src={ profileEditIcon } alt="edit icon"/>
-            <span>Edit</span>
-          </li>
-          <li>
-            <img src={ commentsIcon } alt="comments icon"/>
-            <span>Comments</span>
-          </li>
-          <li>
-            <img src={ logoutIcon } alt="logout icon"/>
-            <span>Logout</span>
-          </li>
-        </ul>
+        <Menus />
       </div>
       <Link to={ url.LOGIN } className="login_button">
         <span>로그인</span>
       </Link>
-    </StyledComp.Topbar>
+    </StyledCDiv>
   );
 }

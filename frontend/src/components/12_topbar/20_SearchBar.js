@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { DataContext, url } from 'common';
-import StyledDiv from 'style/12_topbar/SearchBar';
+import StyledDiv from 'style/12_topbar/20_SearchBar';
+
+import { color } from 'common';
 
 
 export default function SearchBar(){
@@ -20,21 +22,9 @@ export default function SearchBar(){
       inputRef.current.value = searchInput;
     }
   }, [searchInput, inputRef]);
-  
-  
-  // const pre = (
-  //   <StyledDiv>
-  //     <div className="inner_box">
-  //       <span>Can I Feed</span>
-  //       <input type="text" ref={ inputRef } onKeyDown={ onKeyDown }/>
-  //       <span>?</span>
-  //       <span className="option">to puppy</span>
-  //     </div>
-  //   </StyledDiv>
-  // )
 
   return(
-    <StyledDiv className="search_bar">
+    <StyledDiv color={ color }>
       <span>Can I feed my puppy</span>
       <input type="text" ref={ inputRef } onKeyDown={ onKeyDown } />
       <span>?</span>
