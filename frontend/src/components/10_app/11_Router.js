@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { DataContext, url, requestApi, api, actionNames } from 'common';
-import Header from 'components/12_topbar/10_Topbar';
+import Topbar from 'components/12_topbar/10_Topbar';
 import Home from 'components/20_home/10_Home';
 import Search from 'components/30_search/Search';
 import Login from 'components/40_login/Login';
@@ -32,7 +32,7 @@ export default function Container(){
 
   return(
     <>
-      <Header />
+      {/* <Topbar /> */}
       { loading && <LoadSpinner /> }
       <Switch>
         <Route exact path={ url.HOME } component={ Home } />

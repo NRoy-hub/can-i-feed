@@ -47,21 +47,5 @@ export default styled.div`
 
       &:hover{ cursor: pointer; }
     }
-    .middle_container{
-      display: flex; 
-      flex-direction: column; 
-      align-items: center;
-      padding-top: 90px;
-
-      .cover_image{
-        width: 400px; 
-        height: 266px;
-        overflow: hidden;
-      }
-      .cover_image img{ 
-        width: 430px; 
-        height: 286px;
-      }
-    }
   `}
 `;

@@ -1,14 +1,18 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import { url, api, requestApi, DataContext, actionNames, color } from 'common';
 import StyledSection from 'style/20_home/10_Home';
 import timesIcon from 'resources/times.svg';
+import coverImage from 'resources/cover.jpg';
+import SearchBar from 'components/10_app/30_SearchBar';
+import Topbar from 'components/12_topbar/10_Topbar';
 
 
 export default function Home(){
   const { dispatch, state: { species } } = useContext(DataContext);
   const [keywords, setKeywords] = useState({});
+  const [showBoard, setShowBoard] = useState(false);
 
   // useEffect(() => {
   //   dispatch.loadOn();
@@ -71,12 +75,17 @@ export default function Home(){
   )
 
   return(
-    <StyledSection color={ color }>
-      <div className="active_button">
+    <StyledSection color={ color } showBoard={ showBoard }>
+      <Topbar />
+      <div className="cover">
+        <img src={ coverImage } alt="cover image"/>
+      </div>
+      <SearchBar />
+      <div className="active_button" onClick={ () => setShowBoard(!showBoard) }>
         <span>인기 먹이 보기</span>
       </div>
       <article className="keyword_board">
-        <div className="close_button">
+        <div className="close_button" onClick={ () => setShowBoard(false) }>
           <img src={ timesIcon } alt="close button"/>
         </div>
         <nav className="tabs">

@@ -4,9 +4,8 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import { DataContext, actionNames, url, requestApi, api, color } from 'common'
 import homeIcon from 'resources/home.svg';
 import userDefault from 'resources/user_default.jpg';
-import coverImage from 'resources/cover.jpg';
 
-import SearchBar from './20_SearchBar';
+import SearchBar from '../10_app/30_SearchBar';
 import StyledCDiv from 'style/12_topbar/10_Topbar.js';
 import Menus from './30_Menus';
 
@@ -35,17 +34,13 @@ export default function Header(){
     })
   }
 
+  const isHome = pathname === '/';
   return(
     <StyledCDiv color={ color }>
-      <Link to={ url.HOME } className="icon icon--home">
+      <Link to={ url.HOME } className={ `icon icon--home ${ isHome && 'hidden' }` }>
         <img src={ homeIcon } alt="Home"/>
-      </Link>
-      <div className="middle_container">
-        <div className="cover_image">
-          <img src={ coverImage } alt="cover image"/>
-        </div>
-        <SearchBar />
-      </div>
+      </Link>        
+      <SearchBar className={ isHome && 'hidden' } />
       <div className="me_container">
         <div className="icon icon--me">
           <img src={ userDefault } alt="me"/>

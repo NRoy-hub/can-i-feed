@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 
 export default styled.div`
-  margin-top: 55px;
   display: flex; 
   align-items: center;
   color: #505050;

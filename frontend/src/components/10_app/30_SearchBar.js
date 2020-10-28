@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { DataContext, url } from 'common';
-import StyledDiv from 'style/12_topbar/20_SearchBar';
+import StyledDiv from 'style/10_app/30_SearchBar';
 
 
-export default function SearchBar(){
+export default function SearchBar(props){
   const history = useHistory();
   const { state: { searchInput } } = useContext(DataContext);
   const inputRef = useRef();
@@ -22,7 +22,7 @@ export default function SearchBar(){
   }, [searchInput, inputRef]);
 
   return(
-    <StyledDiv>
+    <StyledDiv className={ props.className }>
       <span>Can I feed my puppy</span>
       <input type="text" ref={ inputRef } onKeyDown={ onKeyDown } />
       <span>?</span>
