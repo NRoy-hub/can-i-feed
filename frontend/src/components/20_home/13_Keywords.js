@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import timesIcon from 'resources/times.svg';
 
 import StyledArticle from 'style/20_home/13_Keywords';
 import { color } from 'common';
 
 export default function Keywords({ showBoard, setShowBoard }){
+
+  const keywordsRef = useRef();
+
+  useEffect(() => {
+    const onClick = e => {
+      if(!showBoard)return;
+      const { left, right, top } = keywordsRef.current.getBoundingClientRect();
+      const { clientX: x, clientY: y } = e;   
+      if(x < left || right < x || y < top)
+      setShowBoard(false);
+    }
+    keywordsRef.current.offsetParent.addEventListener('click', onClick);
+    return () => {
+      keywordsRef.current.offsetParent.removeEventListener('click', onClick);
+    }
+  }, [showBoard])
   return(
-    <StyledArticle className={ `keyword_board ${ showBoard !== null && (showBoard ? 'lift_up' : 'lift_down') }` } color={ color }>
+    <StyledArticle ref={ keywordsRef } className={ `keyword_board ${ showBoard !== null && (showBoard ? 'lift_up' : 'lift_down') }` } color={ color }>
       <div className="close_button" onClick={ () => setShowBoard(false) }>
         <img src={ timesIcon } alt="close button"/>
       </div>

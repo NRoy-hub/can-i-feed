@@ -13,6 +13,8 @@ export default function Home(){
   const { dispatch, state: { species } } = useContext(DataContext);
   const [keywords, setKeywords] = useState({});
   const [showBoard, setShowBoard] = useState(null);
+  const homeRef = useRef();
+  
 
   // useEffect(() => {
   //   dispatch.loadOn();
@@ -30,16 +32,16 @@ export default function Home(){
   const { latest, most, recommend, nonrecommend } = keywords;
 
   return(
-    <StyledSection color={ color }>
+    <StyledSection ref={ homeRef } color={ color }>
       <Topbar />
       <div className="cover">
         <img src={ coverImage } alt="cover image"/>
       </div>
       <SearchBar />
-      <div className={ `active_button ${ showBoard && 'active' }` } onClick={ () => setShowBoard(showBoard === null || !showBoard) }>
+      <div className="active_button" onClick={ () => { console.log('no!'); setShowBoard(showBoard === null || !showBoard) }}>
         <span>인기 먹이 보기</span>
       </div>
-      <Keywords showBoard={ showBoard } setShowBoard={ setShowBoard } />
+      <Keywords showBoard={ showBoard } setShowBoard={ setShowBoard } homeRef={ homeRef } />
     </StyledSection>
   );
 }

@@ -30,7 +30,6 @@ export default styled.section`
           cursor: pointer;
           text-decoration: underline;
         }
-        &.active{ text-decoration: underline; }
       }
     `}
   }
