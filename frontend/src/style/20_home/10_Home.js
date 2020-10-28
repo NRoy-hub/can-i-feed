@@ -1,8 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import keywordBoardBasic from './60_keyword_board_basic';
-
-
 export default styled.section`
   ${ ({ color }) => {
     return css`
@@ -33,9 +30,7 @@ export default styled.section`
           cursor: pointer;
           text-decoration: underline;
         }
-      }
-      .keyword_board{
-        ${ keywordBoardBasic({ color }) }
+        &.active{ text-decoration: underline; }
       }
     `}
   }
