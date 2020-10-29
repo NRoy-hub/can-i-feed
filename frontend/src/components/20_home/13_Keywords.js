@@ -47,7 +47,12 @@ export default function Keywords({ showBoard, setShowBoard }){
 
   const currentKeywords = keywords[tab] && [...keywords[tab]].splice(ranking * 10, 10);
   return(
-    <StyledArticle ref={ keywordsRef } className={ `keyword_board ${ showBoard !== null && (showBoard ? 'lift_up' : 'lift_down') }` } color={ color }>
+    <StyledArticle 
+      ref={ keywordsRef } 
+      className={ `keyword_board ${ showBoard !== null && (showBoard ? 'lift_up' : 'lift_down') }` } 
+      color={ color }
+      onClick={ () => !showBoard && setShowBoard(true) }
+    >
       <div className="close_button" onClick={ () => setShowBoard(false) }>
         <img src={ timesIcon } alt="close button"/>
       </div>
