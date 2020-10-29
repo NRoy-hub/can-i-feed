@@ -4,10 +4,12 @@ import timesIcon from 'resources/times.svg';
 import StyledArticle from 'style/20_home/13_Keywords';
 import { color, api, DataContext, requestApi, url } from 'common';
 import { Link } from 'react-router-dom';
+import LoadDots from 'components/10_app/22_LoadDots';
 
 export default function Keywords({ showBoard, setShowBoard }){
   const { dispatch, state: { species } } = useContext(DataContext);
   const [keywords, setKeywords] = useState({});
+  const [loading, setLoading] = useState(false);
   const keywordsRef = useRef();
   const TABS = ['most', 'recommend', 'nonrecommend'];
   const [tab, setTab] = useState(TABS[0]);
@@ -31,17 +33,17 @@ export default function Keywords({ showBoard, setShowBoard }){
   }, [showBoard])
 
   useEffect(() => {
-    const getKeywords = () => {
-      // dispatch.loadOn();
+    const getKeywords = (showLoading = false) => {
+      showLoading && setLoading(true);
       requestApi({
         path: api.KEYWORDS,
         data: { species },
         success: data => setKeywords(data),
-        // common: dispatch.loadOff
+        common: () => showLoading && setLoading(false)
       });
     };
-    getKeywords();
-    const interval = window.setInterval(getKeywords, 30000);
+    getKeywords(true);
+    const interval = window.setInterval(getKeywords, 3000);
     return () => window.clearInterval(interval);
   }, []);
 
@@ -76,6 +78,7 @@ export default function Keywords({ showBoard, setShowBoard }){
         </div>
       </nav>
       <ul className="keywords">
+        { loading && <LoadDots /> }
         {
           currentKeywords && currentKeywords.map((keyword, index) => (
             <li key={ keyword }>

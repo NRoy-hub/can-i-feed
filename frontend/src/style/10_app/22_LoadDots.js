@@ -1,20 +1,21 @@
 import styled, { css, keyframes } from 'styled-components';
 
+const scaleSize = 1.2;
+const timing = 0.8;
+
 const getDotKeyframes = scales => {
   const str = [0, 25, 50, 75, 100].reduce((pre, current, index) => {
     return pre + `${ current }%{
       transform: scale(${ scales[index % scales.length] });
     }`;
   }, '');
-
-  console.log(str);
   return keyframes`${ str }`;
 }
 
 
 export default styled.div`
   ${ ({ color }) => css`
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -34,9 +35,9 @@ export default styled.div`
         background: ${ color.blue };
         opacity: 0.6;
 
-        &.first_dot{ animation: ${ getDotKeyframes([1, 1.2, 1, 1]) } 1s linear infinite; }
-        &.second_dot{ animation: ${ getDotKeyframes([1, 1, 1.2, 1]) } 1s linear infinite; }
-        &.third_dot{ animation: ${ getDotKeyframes([1, 1, 1, 1.2]) } 1s linear infinite; }
+        &.first_dot{ animation: ${ getDotKeyframes([1, scaleSize, 1, 1]) } ${ timing }s linear infinite; }
+        &.second_dot{ animation: ${ getDotKeyframes([1, 1, scaleSize, 1]) } ${ timing }s linear infinite; }
+        &.third_dot{ animation: ${ getDotKeyframes([1, 1, 1, scaleSize]) } ${ timing }s linear infinite; }
       }
       li:not(:first-child){
         margin-left: 10px;
