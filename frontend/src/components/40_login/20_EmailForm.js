@@ -1,11 +1,34 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 
-import { color } from 'common';
+import { color, api, DataContext, requestApi } from 'common';
 import StyledForm from 'style/40_login/20_EmailForm';
 
 export default function EmailForm({ setCheckedEmail }){
+  const { dispatch } = useContext(DataContext);
   const inputRef = useRef();
   const labelRef = useRef();
+
+  const onSubmit = e => {
+    e.preventDefault();
+
+    const email = inputRef.current.value.trim();
+    if(email.length === 0)return;
+    
+    dispatch.loadOn();
+    requestApi({
+      path: api.USER_CHECK_EMAIL,
+      data: { email },
+      success: () => {
+        setCheckedEmail(email);
+      },
+      fail: msg => {
+        if(msg === 'void')alert('유효하지 않은 이메일 입니다');
+        inputRef.current.value = '';
+        inputRef.current.focus();
+      },
+      common: dispatch.loadOff
+    });
+  }
 
   useEffect(() => {
     const onFocusIn = () => {
@@ -24,10 +47,10 @@ export default function EmailForm({ setCheckedEmail }){
       inputRef.current.removeEventListener('focusin', onFocusIn);
       inputRef.current.removeEventListener('focusout', onFocusOut);
     }
-  });
+  }, []);
 
   return(
-    <StyledForm color={ color }>
+    <StyledForm onSubmit={ onSubmit } color={ color }>
       <div className="input_box">
         <label ref={ labelRef } htmlFor="login_input" className="login_label">Email</label>
         <input type="email" ref={ inputRef } id="login_input" required={ true } />

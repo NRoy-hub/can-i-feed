@@ -17,7 +17,7 @@ export default styled.section`
       position: relative;
       box-sizing: border-box;
       width: 440px;
-      border: 1px solid #ACACAC;
+      border: 1px solid ${ color.grey2 };
       padding: 30px 70px;
 
       .logo{

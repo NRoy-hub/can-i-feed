@@ -5,6 +5,7 @@ import Topbar from 'components/12_topbar/10_Topbar';
 import StyledSection from 'style/40_login/10_Login';
 import puppyImage from 'resources/puppy.png';
 import EmailForm from 'components/40_login/20_EmailForm';
+import ConfirmForm from './30_ConfirmForm';
 
 export default function Login(){
   const { state: { user }, dispatch } = useContext(DataContext);
@@ -68,7 +69,12 @@ export default function Login(){
           <header className="login_header">
             로그인
           </header>
-          <EmailForm setCheckedEmail={ setCheckedEmail } />
+          {
+            checkedEmail ? 
+              <ConfirmForm checkedEmail={ checkedEmail } setCheckedEmail={ setCheckedEmail } />
+              :
+              <EmailForm setCheckedEmail={ setCheckedEmail } />
+          }
         </div>
       </div>
     </StyledSection>
