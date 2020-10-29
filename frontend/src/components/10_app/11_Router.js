@@ -6,7 +6,7 @@ import { DataContext, url, requestApi, api, actionNames } from 'common';
 import Topbar from 'components/12_topbar/10_Topbar';
 import Home from 'components/20_home/10_Home';
 import Search from 'components/30_search/Search';
-import Login from 'components/40_login/Login';
+import Login from 'components/40_login/10_Login';
 import LoadSpinner from './20_LoadSpinner';
 
 

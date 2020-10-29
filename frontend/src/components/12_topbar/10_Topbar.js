@@ -33,21 +33,22 @@ export default function Header(){
       common: dispatch.loadOff
     })
   }
-
   const isHome = pathname === '/';
+  console.log(isHome)
+  const isLogin = pathname === '/login';
   return(
-    <StyledCDiv color={ color }>
-      <Link to={ url.HOME } className={ `icon icon--home ${ isHome && 'hidden' }` }>
+    <StyledCDiv className="top_bar" color={ color }>
+      <Link to={ url.HOME } className={ `icon ${ isHome && 'hidden' }` }>
         <img src={ homeIcon } alt="Home"/>
       </Link>        
-      <SearchBar className={ isHome && 'hidden' } />
+      <SearchBar className={ (isHome || isLogin) && 'hidden' } />
       <div className="me_container">
         <div className="icon icon--me">
           <img src={ userDefault } alt="me"/>
         </div>
         <Menus />
       </div>
-      <Link to={ url.LOGIN } className="login_button">
+      <Link to={ url.LOGIN } className={ `login_button ${ isLogin && 'hidden' }` }>
         <span>로그인</span>
       </Link>
     </StyledCDiv>

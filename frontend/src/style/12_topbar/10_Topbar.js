@@ -18,10 +18,6 @@ export default styled.div`
       border-radius: 18px;
 
       &:hover{ cursor: pointer; }
-      &--home{
-        width: 40px;
-        visibility: hidden;
-      }
       &--me img{
         width: 100%; 
         height: 100%;

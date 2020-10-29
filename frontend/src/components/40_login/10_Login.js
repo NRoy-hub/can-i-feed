@@ -1,7 +1,9 @@
 import React, { useContext, useRef, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { requestApi, api, url, DataContext, actionNames } from 'common';
-import StyledMain from 'style/40_login/Login'
+import { requestApi, api, url, DataContext, actionNames, color } from 'common';
+import Topbar from 'components/12_topbar/10_Topbar';
+import StyledSection from 'style/40_login/10_Login';
+import puppyImage from 'resources/puppy.png';
 
 export default function Login(){
   const { state: { user }, dispatch } = useContext(DataContext);
@@ -50,32 +52,20 @@ export default function Login(){
   }
 
   useEffect(() => {
-    loginInput.current.focus();
-  }, [])
-
-  useEffect(() => {
     user && history.push(url.HOME);
   }, [user, history])
 
   return(
-    <StyledMain>
-      <div className="line"></div>
-      <form className="login_form" onSubmit={ onSubmit }>
-        <header className="login_form_header">
-          <div className="title">CAN I FEED</div>
-          <div className="subtitle">로그인</div>
-        </header>
-        <div className="input_box">
-          <label htmlFor="login_input">{ checkedEmail || 'Email' }</label>
-          <input ref={ loginInput } id="login_input" type={ checkedEmail ? 'text' : 'email' } required={ true } />
+    <StyledSection color={ color }>
+      <Topbar />
+      <div className="login_container">
+        <div className="login_frame">
+          <div className="logo">
+            <span>Can I feed my puppy?</span>
+            <img src={ puppyImage } alt="puppy"/>
+          </div>
         </div>
-        { 
-          checkedEmail ? 
-            <p className="desc">이메일에 전송된 인증코드를 입력해주세요</p>
-            : <p className="desc">이메일 인증코드만 확인하기 때문에 <br />별도의 가입절차가 필요없습니다</p>
-        } 
-        <input type="submit" value="Login"/>
-      </form>
-    </StyledMain>
+      </div>
+    </StyledSection>
   );
 }
