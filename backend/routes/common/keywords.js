@@ -2,7 +2,7 @@ let cache = {}
 
 module.exports = (req, res) => {
   const db = new res.db();
-  const length = 5;
+  const length = 20;
 
   const { species } = req.body;
   if(!species){ return res.finish('invalid'); }

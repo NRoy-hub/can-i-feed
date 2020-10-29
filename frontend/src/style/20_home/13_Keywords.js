@@ -17,6 +17,7 @@ const liftUpBoard = css`
   }
   animation: lift_up_board ${ animationTime }s ease-in-out;
   transform: translateY(0);
+  &:hover{ cursor: default; }
   .close_button{ 
     animation: show_close_button ${ animationTime }s ease-in-out;
     visibility: visible; 
@@ -37,6 +38,7 @@ const liftDownBoard = css`
   }
   animation: lift_down_board ${ animationTime }s ease-in-out;
   transform: translateY(0);
+  
   .close_button{ 
     animation: hide_close_button ${ animationTime }s ease-in-out;
     visibility: hidden; 
@@ -61,6 +63,7 @@ export default styled.article`
     background: white;
     padding: 60px 20px;
     transform: translateY(${ hidePosition }px);
+    &:hover{ cursor: pointer; }
 
     .close_button{
       position: absolute;
@@ -83,7 +86,14 @@ export default styled.article`
       padding: 7px 0;
       border-radius: 20px;
       &:hover{ cursor: pointer; }
-      &.selected{ background: ${ color.light_grey }; }
+      &.selected{ 
+        background: ${ color.light_grey }; 
+        @keyframes select_tab{
+          from{ background: white }
+          to{ background: ${ color.light_grey } }
+        }
+        animation: select_tab 0.2s ease-in-out;
+      }
     }
     .rankings{
       margin-top: 15px;
@@ -131,6 +141,12 @@ export default styled.article`
         overflow: hidden;
         text-overflow: ellipsis;
         white-space:nowrap;
+
+        @keyframes appear_keyword{
+          from{ transform: translateY(5px); opacity: 0; }
+          to{ transform: translateY(0); opacity: 1; }
+        }
+        animation: appear_keyword 0.5s ease-in-out;
       }
       a{
         margin-left: 15px;
