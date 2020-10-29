@@ -34,7 +34,6 @@ export default function Header(){
     })
   }
   const isHome = pathname === '/';
-  console.log(isHome)
   const isLogin = pathname === '/login';
   return(
     <StyledCDiv className="top_bar" color={ color }>

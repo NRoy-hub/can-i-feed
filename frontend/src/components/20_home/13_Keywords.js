@@ -16,9 +16,9 @@ export default function Keywords({ showBoard, setShowBoard }){
       if(x < left || right < x || y < top)
       setShowBoard(false);
     }
-    keywordsRef.current.offsetParent.addEventListener('click', onClick);
+    document.addEventListener('click', onClick);
     return () => {
-      keywordsRef.current.offsetParent.removeEventListener('click', onClick);
+      document.removeEventListener('click', onClick);
     }
   }, [showBoard])
   return(
