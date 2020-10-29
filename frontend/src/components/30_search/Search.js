@@ -17,7 +17,6 @@ export default function Search(){
 
   const requestPosts = (type) => {
     const trimedKeyword = keyword.trim();
-    dispatch({ type: actionNames.setSearchInput, value: trimedKeyword });
     dispatch.loadOn();
     requestApi({
       path: `${ api.SEARCH }`,

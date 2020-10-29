@@ -1,6 +1,5 @@
 export const INITIAL_STATE = {
   user: null,
-  searchInput: '',
   posts: [],
   loading: false,
   species: 1
@@ -13,8 +12,7 @@ export const actionNames = {
   addPost: 'POST/ADD',
   modifyPost: 'POST/MODIFY',
   loadOn: 'LOADING/ON',
-  loadOff: 'LOADING/OFF',
-  setSearchInput: 'SET_SEARCH_INPUT',
+  loadOff: 'LOADING/OFF'
 }
 
 export function reducer(state, action){
@@ -26,10 +24,6 @@ export function reducer(state, action){
     case actionNames.logout:
       return{
         ...state, user: null
-      };
-    case actionNames.setSearchInput:
-      return{
-        ...state, searchInput: action.value
       };
     case actionNames.initPost:
       return{
