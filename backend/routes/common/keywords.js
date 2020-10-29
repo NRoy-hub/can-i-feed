@@ -1,3 +1,5 @@
+let cache = {}
+
 module.exports = (req, res) => {
   const db = new res.db();
   const length = 5;
@@ -5,23 +7,18 @@ module.exports = (req, res) => {
   const { species } = req.body;
   if(!species){ return res.finish('invalid'); }
 
+  if(cache.updateTime && res.fromNow(cache.updateTime) < 1){
+    return res.finish('ok', cache.keywords);
+  }
+
   db.run([
     cb => {
-      const query = 'SELECT name FROM keyword WHERE species=$1 ORDER BY update_time DESC;';
-      const values = [species];
-      db.query(query, values, (err, result) => {
-        if(err)return cb(err);
-        const latest = result.rows.slice(0, length).map(({ name }) => name);
-        cb(null, { latest });
-      });
-    },
-    (keywords, cb) => {
       const query = 'SELECT name FROM keyword WHERE species=$1 ORDER BY count DESC;';
       const values = [species];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
         const most = result.rows.slice(0, length).map(({ name }) => name);
-        cb(null, { ...keywords, most });
+        cb(null, { most });
       });
     },
     (keywords, cb) => {
@@ -52,6 +49,7 @@ module.exports = (req, res) => {
     },
     (keywords, cb) => {
       res.finish('ok', keywords);
+      cache = { keywords, updateTime: res.now() };
       cb();
     }
   ]);

@@ -4,5 +4,5 @@
   req: { species }
     - species*: number
 
-  res: { *result, data: { latest, most, recommend, nonrecommend } }
-    - latest, most, recommend, nonrecommend: [string]
+  res: { *result, data: { most, recommend, nonrecommend } }
+    - most, recommend, nonrecommend: [string]
