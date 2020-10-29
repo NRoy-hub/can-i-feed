@@ -54,7 +54,7 @@ export default styled.form`
           animation: ${ focusOutLabel(color) } .2s ease-in-out;
         }
       }
-      input[type=email]{
+      input[type=text]{
         box-sizing: border-box;
         width: 300px;
         height: 50px;
@@ -78,8 +78,11 @@ export default styled.form`
       border-radius: 5px;
       font-size: 16px;
       color: white;
-
       &:hover{ cursor: pointer; }
+      &.disable{
+        background: ${ color.grey2 };
+        &:hover{ cursor: default; }
+      }
     }
   `} 
 `;

@@ -6,6 +6,7 @@ import StyledForm from 'style/40_login/30_ConfirmForm';
 export default function ConfirmForm({ checkedEmail, setCheckedEmail }){
   const { dispatch } = useContext(DataContext);
   const [keepLogin, setKeepLogin] = useState(false);
+  const [canSubmit, setCanSubmit] = useState(false);
   const inputRef = useRef();
 
   const onSubmit = e => {
@@ -31,11 +32,20 @@ export default function ConfirmForm({ checkedEmail, setCheckedEmail }){
     });
   }
 
+  const onChange = e => {
+    const { value } = e.target;
+    const standard = 5;
+    if(canSubmit && value.length < standard)
+      setCanSubmit(false);
+    else if(!canSubmit && value.length >= standard)
+      setCanSubmit(true);
+  }
+
   return(
     <StyledForm color={ color } onSubmit={ onSubmit }>
       <div className="input_box">
         <label htmlFor="confirm_input">{ checkedEmail }</label>
-        <input type="text" id="confirm_input" ref={ inputRef } required={ true }/>
+        <input type="text" id="confirm_input" ref={ inputRef } required={ true } onChange={ onChange } />
       </div>
       <div className="desc">
         이메일에 전송된 인증코드를 입력해주세요
@@ -44,7 +54,7 @@ export default function ConfirmForm({ checkedEmail, setCheckedEmail }){
         <input type="checkbox" id="keep_checkbox" onClick={ () => setKeepLogin(!keepLogin) } />
         <label htmlFor="keep_checkbox">로그인 상태 유지</label>
       </div>
-      <button>확인</button>
+      <button className={ canSubmit? '' : 'disable' } disabled={ !canSubmit }>확인</button>
       <div className="cancel_button" onClick={ () => setCheckedEmail(null) }>
         <span>다른 이메일로 로그인</span>
       </div>

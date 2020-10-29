@@ -57,6 +57,10 @@ export default styled.form`
       font-size: 16px;
 
       &:hover{ cursor: pointer; }
+      &.disable{
+        background: #9EB1C9;
+        cursor: default;
+      }
     }
     .cancel_button{
       margin-top: 10px;

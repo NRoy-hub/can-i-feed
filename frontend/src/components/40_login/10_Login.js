@@ -75,6 +75,7 @@ export default function Login(){
               :
               <EmailForm setCheckedEmail={ setCheckedEmail } />
           }
+
         </div>
       </div>
     </StyledSection>
