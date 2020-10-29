@@ -4,6 +4,7 @@ import { requestApi, api, url, DataContext, actionNames, color } from 'common';
 import Topbar from 'components/12_topbar/10_Topbar';
 import StyledSection from 'style/40_login/10_Login';
 import puppyImage from 'resources/puppy.png';
+import EmailForm from 'components/40_login/20_EmailForm';
 
 export default function Login(){
   const { state: { user }, dispatch } = useContext(DataContext);
@@ -64,6 +65,10 @@ export default function Login(){
             <span>Can I feed my puppy?</span>
             <img src={ puppyImage } alt="puppy"/>
           </div>
+          <header className="login_header">
+            로그인
+          </header>
+          <EmailForm setCheckedEmail={ setCheckedEmail } />
         </div>
       </div>
     </StyledSection>
