@@ -8,24 +8,21 @@ import HappyFaceImage from 'resources/happy_face.svg';
 import AngryFaceImage from 'resources/angry_face.svg';
 import ChatsImage from 'resources/chats_blue.png';
 
-export default function Post({ post }){
-  const { id, photo, name, recommend_count, nonrecommend_count, my_comment, comments } = post;
+export default function Post({ post, open, onClickOpen }){
+  const { photo, name, recommend_count, nonrecommend_count, my_comment, comments } = post;
 
   const { recommendComments, nonrecommendComments } = useMemo(() => {
     const recommendComments = [];
     const nonrecommendComments = [];
-
-    const pushToCorrectComments = (comment) => {
+    comments.forEach(comment => {
       const correctComments = comment.type === 1 ? recommendComments : nonrecommendComments;
       correctComments.push(comment.text);
-    }
-    comments.forEach(comment => pushToCorrectComments(comment));
-
+    });
     return { recommendComments, nonrecommendComments };
   }, [my_comment, comments])
 
   return(
-    <StyledLi className="open" color={ color }>
+    <StyledLi className={ open ? 'open' : '' } color={ color }>
       <div className="post_main">
         <div className="info">
           <img src={ `${ photo }` } alt="photo"/>
@@ -45,13 +42,13 @@ export default function Post({ post }){
             </div>
           </div>
           <div className="speak_out">
-            <div className="recommend_button">
+            <div className={ `recommend_button ${ my_comment.type === 1 ? 'selected' : '' }` }>
               <img src={ HappyFaceImage } alt="happy_face"/>
             </div>
-            <div className="nonrecommend_button selected">
+            <div className={ `nonrecommend_button ${ my_comment.type === 2 ? 'selected' : '' }` }>
               <img src={ AngryFaceImage } alt="angry_face"/>
             </div>
-            <div className="comments_button">
+            <div className="comments_button" onClick={ onClickOpen }>
               <img src={ ChatsImage } alt="chats"/>
             </div>
           </div>

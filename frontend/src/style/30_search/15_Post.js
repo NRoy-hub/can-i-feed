@@ -1,4 +1,15 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
+
+const dropPost = keyframes`
+  from{
+    transform: translateY(-5px);
+    opacity: 0;
+  }
+  to{
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
 
 export default styled.li`
   ${ ({ color }) => css`
@@ -6,6 +17,8 @@ export default styled.li`
     flex-direction: column;
     padding: 20px 24px;
     border-bottom: 1px solid #e5e5e5;
+    animation: ${ dropPost } 0.5s ease-in-out;
+    
 
     .post_main{
       height: 128px;
