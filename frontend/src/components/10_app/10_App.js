@@ -10,7 +10,7 @@ export default function App() {
   !dispatch.loadOff && (dispatch.loadOff = () => dispatch({ type: actionNames.loadOff }));
 
   return (
-    <StyledDiv class="app">
+    <StyledDiv className="app">
       <BrowserRouter>
         <DataContext.Provider value={{ state, dispatch }}>
           <Router />

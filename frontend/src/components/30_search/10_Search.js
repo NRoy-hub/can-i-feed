@@ -42,7 +42,7 @@ export default function Search(){
   const { accuracyOrderPosts, latestUpdateOrderPosts } = useMemo(() => {
     const accuracyOrderPosts = posts.map(post => ({ ...post, key: 'accuracy_' + post.id }));
     let latestUpdateOrderPosts = [...posts].sort((a, b) => moment(b.update_time).valueOf() - moment(a.update_time).valueOf())
-    latestUpdateOrderPosts.map(post => ({ ...post, key: 'update_' + post.id }));
+    latestUpdateOrderPosts = latestUpdateOrderPosts.map(post => ({ ...post, key: 'update_' + post.id }));
 
     return { accuracyOrderPosts, latestUpdateOrderPosts };
   }, posts)

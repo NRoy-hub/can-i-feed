@@ -9,7 +9,7 @@ import AngryFaceImage from 'resources/angry_face.svg';
 import ChatsImage from 'resources/chats_blue.png';
 
 export default function Post({ post, open, onClickOpen }){
-  const { photo, name, recommend_count, nonrecommend_count, my_comment, comments } = post;
+  const { id, photo, name, recommend_count, nonrecommend_count, my_comment, comments } = post;
 
   const { recommendComments, nonrecommendComments } = useMemo(() => {
     const recommendComments = [];
@@ -63,7 +63,7 @@ export default function Post({ post, open, onClickOpen }){
             { recommendComments.length === 0 && <li className="comment">코멘트가 없습니다</li> }
             { my_comment.type === 1 && <li className="comment mine">{ my_comment.text }</li> }
             {
-              recommendComments.map((comment, i) => <li className="comment">{ comment }</li>)
+              recommendComments.map((comment, i) => <li key={ id + '_reco_' + i } className="comment">{ comment }</li>)
             }
           </ul>
         </div>
@@ -75,7 +75,7 @@ export default function Post({ post, open, onClickOpen }){
             { nonrecommendComments.length === 0 && <li className="comment">코멘트가 없습니다</li> }
             { my_comment.type === 2 && <li className="comment mine">{ my_comment.text }</li> }
             {
-              nonrecommendComments.map(comment => <li className="comment">{ comment }</li>)
+              nonrecommendComments.map((comment, i) => <li key={ id + '_nonreco_' + i } className="comment">{ comment }</li>)
             }
           </ul>
         </div>
