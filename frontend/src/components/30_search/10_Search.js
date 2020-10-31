@@ -27,7 +27,6 @@ export default function Search(){
       path: `${ api.SEARCH }`,
       data: { keyword: trimedKeyword, species, page: page.current },
       success: resData => {
-        console.log(resData.posts);
         dispatch({ type, posts: resData.posts });
         end.current = resData.posts.length < 10;
         page.current += 1;

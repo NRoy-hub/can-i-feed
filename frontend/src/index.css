@@ -70,3 +70,13 @@ a{
 input{
 	outline: none;
 }
+
+button{
+	border: none;
+	outline: none;
+	background: inherit;
+	padding: 0;
+	font: inherit;
+	font-size: inherit;
+	color: inheritl
+}

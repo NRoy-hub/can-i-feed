@@ -44,11 +44,11 @@ export default function Post({ post, open, onClickOpen, index }){
         common: dispatch.loadOff
       });
     }
-    else setSpeakType(type);
-    
+    else setSpeakType(type); 
   }
 
-  const onSpeakOut = () => {
+  const onSubmit = e => {
+    e.preventDefault();
     if(!speakType)return;
     const text = commentInputRef.current.value.slice(0, 10);
     dispatch.loadOn();
@@ -125,15 +125,15 @@ export default function Post({ post, open, onClickOpen, index }){
               <img src={ ChatsImage } alt="chats"/>
             </div>
             {speakType && (
-              <form className="comment_form" key={ speakType }>
+              <form className="comment_form" key={ speakType } onSubmit={ onSubmit }>
                 <header className={ speakType === RECOMMEND ? 'recommend_header' : 'nonrecommend_header' }>
                   { speakType === 1 ? '좋아요' : '싫어요' }
                 </header>
                 <input type="text" ref={ commentInputRef } placeholder="10자 이내 작성가능" maxLength={ 10 } />
                 <div className="comment_form_buttons">
-                  <div className="comment_button comment_submit" onClick={ onSpeakOut }>
+                  <button className="comment_button comment_submit">
                     <span>작성</span>
-                  </div>
+                  </button>
                   <div className="comment_button comment_cancel" onClick={ () => setSpeakType(null) }>
                     <span>취소</span>
                   </div>
