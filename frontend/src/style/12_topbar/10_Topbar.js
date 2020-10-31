@@ -8,6 +8,7 @@ export default styled.div`
     display: flex; 
     justify-content: space-between; 
     align-items: flex-start;
+    z-index: 9;
 
     .icon{
       width: 36px; 
