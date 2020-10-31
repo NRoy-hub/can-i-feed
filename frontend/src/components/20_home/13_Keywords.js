@@ -43,7 +43,7 @@ export default function Keywords({ showBoard, setShowBoard }){
       });
     };
     getKeywords(true);
-    const interval = window.setInterval(getKeywords, 3000);
+    const interval = window.setInterval(getKeywords, 60000);
     return () => window.clearInterval(interval);
   }, []);
 
