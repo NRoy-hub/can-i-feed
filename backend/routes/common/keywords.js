@@ -7,7 +7,7 @@ module.exports = (req, res) => {
   const { species } = req.body;
   if(!species){ return res.finish('invalid'); }
 
-  if(cache.updateTime && res.fromNow(cache.updateTime) < 1){
+  if(cache.updateTime && res.fromNow(cache.updateTime) < 60000){
     return res.finish('ok', cache.keywords);
   }
 

@@ -28,7 +28,7 @@ app.use((req, res, next) => {
   res.now = () => (moment().format());
   res.fromNow = (time) => {
     const sub = moment() - moment(time);
-    return moment(sub).minutes();
+    return sub;
   }
   res.finish = (result, data) => res.send({ result, data });
   res.db = require('./db');

@@ -27,7 +27,7 @@ const auth = (req, res, next) => {
     (user, cb) => {
       const session_id = user && user.session_id;
       const update_time = user && user.update_time;
-      if(!session_id || !update_time || canifeed_sid !== session_id || res.fromNow(update_time) > 60){
+      if(!session_id || !update_time || canifeed_sid !== session_id || res.fromNow(update_time) > 60 * 60000){
         res.clearCookie('canifeed_uid');
         res.clearCookie('canifeed_sid');
         return cb('unauthorized');
