@@ -58,6 +58,11 @@ export default styled.section`
         padding: 20px 0;
         display: flex;
         flex-direction: column;
+
+        .loading_container{
+          position: relative;
+          height: 60px;
+        }
       }
     }
 

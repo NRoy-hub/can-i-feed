@@ -1,36 +1,64 @@
-import React, { useState, useMemo, useRef, useEffect } from 'react';
+import React, { useState, useMemo, useRef, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import moment from 'moment';
 
-import { color } from 'common';
+import { color, DataContext, actionNames, api, requestApi } from 'common';
 import StyledSection from 'style/30_search/10_Search';
 import Topbar from 'components/12_topbar/10_Topbar';
 import Post from 'components/30_search/15_Post';
-
-const posts = [...Array(3).keys()].map((_, i) => ({
-  id: `temp_post_id_${ i }`,
-  photo: 'none',
-  name: `블루베리 ${ i }`,
-  recommend_count: 30,
-  nonrecommend_count: 1,
-  my_comment: {
-    id: `mycomment_${ i }`,
-    type: (i%2) + 1,
-    text: 'my_comment'
-  },
-  comments: [ ...Array(30).keys()].map((_, i) => ({
-      id: 'test_comment' + i,
-      type: 1, 
-      text: '맛있어요'
-  })),
-  update_time: `2020-10-29T14:1${ i }:40+09:00`
-}));
+import LoadDots from 'components/10_app/22_LoadDots';
 
 
 
 export default function Search(){
+  const { state: { posts, species }, dispatch } = useContext(DataContext);
+  const { keyword } = useParams()
   const [open, setOpen] = useState(null);
   const [order, setOrder] = useState(0);
+  const [showEnroll, setShowEnroll] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const page = useRef(1);
+  const end = useRef(false);
   const postsRef = useRef();
+
+  const requestPosts = (type) => {
+    const trimedKeyword = keyword.trim();
+    setLoading(true);
+    requestApi({
+      path: `${ api.SEARCH }`,
+      data: { keyword: trimedKeyword, species, page: page.current },
+      success: resData => {
+        console.log(resData);
+        dispatch({ type, posts: resData.posts });
+        end.current = resData.posts.length < 10;
+        page.current += 1;
+        setShowEnroll(!resData.exist);
+      }, 
+      common: () => setLoading(false)
+    });
+  }
+
+  useEffect(() => {
+    page.current = 1;
+    end.current = false;
+    requestPosts(actionNames.initPost);
+  }, [keyword]);
+
+  useEffect(() => {
+    const handleScroll = (e) => {
+      if(end.current || loading)return;
+      const { scrollY, innerHeight } = window;
+      const floor = document.documentElement.offsetHeight - scrollY - innerHeight;
+      if(floor === 0){
+        requestPosts(actionNames.addPost);
+      }
+    }
+    document.addEventListener('scroll', handleScroll);
+    return () => {
+      // dispatch({ type: actionNames.initPost, posts: [] })
+      document.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
 
   const onClickOpen = (index) => setOpen(open === index ? null : index);
   const onChangeOrder = (newOrder) => {
@@ -60,13 +88,21 @@ export default function Search(){
           <div className={ `order ${ order === 1 ? 'selected' : '' }` } onClick={ () => onChangeOrder(1) }>
             <span>업데이트 순</span>
           </div>
+          { showEnroll && <div>Enroll Button</div> }
         </header>
         <ul className="posts" ref={ postsRef }>
-        {
-          orderPosts.map((post, i) => (
-            <Post key={ post.key } post={ post } open={ i === open } onClickOpen={ () => onClickOpen(i) } />)
-          )
-        }
+          {
+            orderPosts.map((post, i) => (
+              <Post key={ post.key } post={ post } open={ i === open } onClickOpen={ () => onClickOpen(i) } />)
+            )
+          }
+          {
+            loading && (
+              <div className="loading_container">
+                <LoadDots />
+              </div>
+            )
+          }
         </ul>
       </div>
     </StyledSection>
