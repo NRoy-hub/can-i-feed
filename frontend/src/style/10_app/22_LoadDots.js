@@ -1,6 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
 
-const scaleSize = 1.2;
+const scaleSize = 1.3;
 const timing = 0.8;
 
 const getDotKeyframes = scales => {
@@ -29,10 +29,10 @@ export default styled.div`
       display: flex;
       
       li{
-        width: 15px;
-        height: 15px;
-        border-radius: 8px;
-        background: ${ color.blue };
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        background: ${ color.grey };
         opacity: 0.6;
 
         &.first_dot{ animation: ${ getDotKeyframes([1, scaleSize, 1, 1]) } ${ timing }s linear infinite; }
