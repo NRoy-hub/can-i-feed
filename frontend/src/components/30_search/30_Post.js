@@ -42,10 +42,10 @@ export default function Post({ post, open, onClickOpen }){
             </div>
           </div>
           <div className="speak_out">
-            <div className={ `recommend_button ${ my_comment.type === 1 ? 'selected' : '' }` }>
+            <div className={ `recommend_button ${ my_comment && my_comment.type === 1 ? 'selected' : '' }` }>
               <img src={ HappyFaceImage } alt="happy_face"/>
             </div>
-            <div className={ `nonrecommend_button ${ my_comment.type === 2 ? 'selected' : '' }` }>
+            <div className={ `nonrecommend_button ${ my_comment && my_comment.type === 2 ? 'selected' : '' }` }>
               <img src={ AngryFaceImage } alt="angry_face"/>
             </div>
             <div className="comments_button" onClick={ onClickOpen }>
@@ -61,7 +61,7 @@ export default function Post({ post, open, onClickOpen }){
           </div>
           <ul className="comments">
             { recommendComments.length === 0 && <li className="comment">코멘트가 없습니다</li> }
-            { my_comment.type === 1 && <li className="comment mine">{ my_comment.text }</li> }
+            { my_comment && my_comment.type === 1 && <li className="comment mine">{ my_comment.text }</li> }
             {
               recommendComments.map((comment, i) => <li key={ id + '_reco_' + i } className="comment">{ comment }</li>)
             }
@@ -73,7 +73,7 @@ export default function Post({ post, open, onClickOpen }){
           </div>
           <ul className="comments">
             { nonrecommendComments.length === 0 && <li className="comment">코멘트가 없습니다</li> }
-            { my_comment.type === 2 && <li className="comment mine">{ my_comment.text }</li> }
+            { my_comment && my_comment.type === 2 && <li className="comment mine">{ my_comment.text }</li> }
             {
               nonrecommendComments.map((comment, i) => <li key={ id + '_nonreco_' + i } className="comment">{ comment }</li>)
             }

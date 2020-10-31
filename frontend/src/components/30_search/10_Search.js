@@ -27,7 +27,7 @@ export default function Search(){
       path: `${ api.SEARCH }`,
       data: { keyword: trimedKeyword, species, page: page.current },
       success: resData => {
-        console.log(resData);
+        console.log(resData.posts);
         dispatch({ type, posts: resData.posts });
         end.current = resData.posts.length < 10;
         page.current += 1;
@@ -54,7 +54,7 @@ export default function Search(){
     }
     document.addEventListener('scroll', handleScroll);
     return () => {
-      // dispatch({ type: actionNames.initPost, posts: [] })
+      dispatch({ type: actionNames.initPost, posts: [] })
       document.removeEventListener('scroll', handleScroll);
     }
   }, []);
@@ -70,9 +70,8 @@ export default function Search(){
     const accuracyOrderPosts = posts.map(post => ({ ...post, key: 'accuracy_' + post.id }));
     let latestUpdateOrderPosts = [...posts].sort((a, b) => moment(b.update_time).valueOf() - moment(a.update_time).valueOf())
     latestUpdateOrderPosts = latestUpdateOrderPosts.map(post => ({ ...post, key: 'update_' + post.id }));
-
     return { accuracyOrderPosts, latestUpdateOrderPosts };
-  }, posts)
+  }, [posts])
 
   const orderPosts = useMemo(() => order === 0 ? accuracyOrderPosts : latestUpdateOrderPosts, [posts, order]);
 
@@ -89,7 +88,7 @@ export default function Search(){
           </div>
         </header>
         {
-          showEnroll && <EnrollPost keyword={ keyword }/>
+          !loading && showEnroll && <EnrollPost keyword={ keyword }/>
         }
         <ul className="posts" ref={ postsRef }>
           {

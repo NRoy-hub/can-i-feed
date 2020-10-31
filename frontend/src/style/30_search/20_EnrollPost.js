@@ -16,6 +16,7 @@ export default styled.div`
       margin-left: 12px;
       padding: 4px 7px;
       background: ${ color.blue };
+      border: 1px solid ${ color.deep_blue };
       border-radius: 5px;
       font-size: 14px;
       color: white;
@@ -69,6 +70,11 @@ export default styled.div`
           align-items: center;
           z-index: 1;
           &:hover{ cursor: pointer; }
+          .photo_preview{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
         }
       }
       form{
@@ -101,6 +107,7 @@ export default styled.div`
         border-radius: 5px;
         font-size: 14px;
         color: white;
+        border: none;
         &:hover{ cursor: pointer; }
         &.active{ background: #2A2A2A; }
       }
