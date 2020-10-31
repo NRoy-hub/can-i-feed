@@ -11,22 +11,22 @@ import LoadSpinner from './20_LoadSpinner';
 export default function Container(){
   const { state: { loading }, dispatch } = useContext(DataContext);
 
-  // useEffect(() => {
-  //   const cookies = !!document.cookie && 
-  //     document.cookie.split('; ').reduce((prev, current) => {
-  //       const [name, value] = current.split('=');
-  //       prev[name] = value;
-  //       return prev
-  //     }, {});
+  useEffect(() => {
+    const cookies = !!document.cookie && 
+      document.cookie.split('; ').reduce((prev, current) => {
+        const [name, value] = current.split('=');
+        prev[name] = value;
+        return prev
+      }, {});
       
-  //   if(!cookies.canifeed_uid)return;
-  //   dispatch.loadOn();
-  //   requestApi({
-  //     path: api.USER_INFO,
-  //     success: user => dispatch({ type: actionNames.login, user }),
-  //     common: dispatch.loadOff
-  //   })
-  // }, []);
+    if(!cookies.canifeed_uid)return;
+    dispatch.loadOn();
+    requestApi({
+      path: api.USER_INFO,
+      success: user => dispatch({ type: actionNames.login, user }),
+      common: dispatch.loadOff
+    })
+  }, []);
 
   return(
     <>

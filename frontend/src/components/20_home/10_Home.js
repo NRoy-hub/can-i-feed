@@ -14,20 +14,6 @@ export default function Home(){
   const [keywords, setKeywords] = useState({});
   const [showBoard, setShowBoard] = useState(null);
 
-
-  // useEffect(() => {
-  //   dispatch.loadOn();
-  //   requestApi({
-  //     path: api.KEYWORDS,
-  //     data: { species },
-  //     success: data => {
-  //       dispatch({ type: actionNames.setSearchInput, value: '' })
-  //       setKeywords(data);
-  //     },
-  //     common: dispatch.loadOff
-  //   });
-  // }, [dispatch]);
-
   const { latest, most, recommend, nonrecommend } = keywords;
 
   return(

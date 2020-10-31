@@ -25,7 +25,6 @@ export default styled.div`
     }
     .me_container{
       position: relative;
-      display: none;
 
       .icon--me{
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
