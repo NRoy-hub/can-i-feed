@@ -9,7 +9,7 @@ import SearchBar from '../10_app/30_SearchBar';
 import StyledCDiv from 'style/12_topbar/10_Topbar.js';
 import Menus from './30_Menus';
 
-export default function Header(){
+export default function Topbar(){
   const { pathname } = useLocation();
   const { state: { user }, dispatch } = useContext(DataContext);
   const [showMenus, setShowMenus] = useState(false);

@@ -8,8 +8,6 @@ import Topbar from 'components/12_topbar/10_Topbar';
 import Post from 'components/30_search/15_Post';
 import LoadDots from 'components/10_app/22_LoadDots';
 
-
-
 export default function Search(){
   const { state: { posts, species }, dispatch } = useContext(DataContext);
   const { keyword } = useParams()
