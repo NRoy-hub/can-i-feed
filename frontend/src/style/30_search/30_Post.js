@@ -1,6 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
 
-const dropPost = keyframes`
+const dropAnimation = keyframes`
   from{
     transform: translateY(-5px);
     opacity: 0;
@@ -11,13 +11,63 @@ const dropPost = keyframes`
   }
 `;
 
+const buttonHoverAnimation = (backgroundColor) => keyframes`
+  from{ background: white; }
+  to{ background: ${ backgroundColor }; }
+`;
+
+const commentFormStyle = (color) => css`
+  .comment_form{
+    position: absolute;
+    left: -45px;
+    top: 60%;
+    box-sizing: border-box;
+    width: 160px;
+    padding: 5px 10px 8px 10px;
+    background: white;
+    border: 1px solid ${ color.grey3 };
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+
+    animation: ${ dropAnimation } 0.2s ease-in-out;
+
+    .recommend_header{ color: ${ color.green }; }
+    .nonrecommend_header{ color: ${ color.red }; }
+    input[type=text]{
+      box-sizing: border-box;
+      width: 100%;
+      margin-top: 8px;
+      font-size: 14px;
+      padding: 3px 2px;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid ${ color.grey4 };
+    }
+    .comment_form_buttons{
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      .comment_button{
+        padding: 5px 19px;
+        &:hover{ 
+          cursor: pointer; 
+          animation: ${ buttonHoverAnimation(color.light_grey) } .1s ease-in-out;
+          background: ${ color.light_grey };
+        }
+      }
+      .comment_cancel{ color: ${ color.grey2 }; }
+    }
+  }
+`;
+
 export default styled.li`
   ${ ({ color }) => css`
     display: flex;
     flex-direction: column;
     padding: 20px 24px;
     border-bottom: 1px solid #e5e5e5;
-    animation: ${ dropPost } 0.5s ease-in-out;
+    animation: ${ dropAnimation } 0.5s ease-in-out;
     
 
     .post_main{
@@ -62,11 +112,12 @@ export default styled.li`
           }
         }
         .speak_out{
+          position: relative;
           margin-left: 30px;
           display: flex;
           align-items: center;
 
-          & > *{ 
+          .speak_out_button{ 
             width: 32px;
             height: 32px;
             display: flex;
@@ -74,7 +125,7 @@ export default styled.li`
             align-items: center;
             border-radius: 20px; 
           }
-          & > *:hover{ cursor: pointer; }
+          .speak_out_button:hover{ cursor: pointer; }
           .recommend_button.selected{ 
             background: ${ color.green }; 
             img{ filter: brightness(0) invert(1); }
@@ -88,6 +139,7 @@ export default styled.li`
             margin-left: 20px;
             filter: grayscale(100%);
           }
+          ${ commentFormStyle(color) }
         }
       }
     }

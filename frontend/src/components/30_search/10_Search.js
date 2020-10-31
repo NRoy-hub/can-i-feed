@@ -93,7 +93,7 @@ export default function Search(){
         <ul className="posts" ref={ postsRef }>
           {
             orderPosts.map((post, i) => (
-              <Post key={ post.key } post={ post } open={ i === open } onClickOpen={ () => onClickOpen(i) } />)
+              <Post key={ post.key } index={ i } post={ post } open={ i === open } onClickOpen={ () => onClickOpen(i) } />)
             )
           }
           {

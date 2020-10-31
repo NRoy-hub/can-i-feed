@@ -25,7 +25,7 @@ export default styled.section`
         display: flex;
         padding: 10px;
         padding-top: 30px;
-        border-bottom: 1px solid #707070;
+        border-bottom: 1px solid ${ color.grey4 };
         .order{
           padding: 7px 10px;
           color: ${ color.light_grey2 };
