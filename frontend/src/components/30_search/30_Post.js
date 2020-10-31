@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
 import { color } from 'common';
-import StyledLi from 'style/30_search/15_Post';
+import StyledLi from 'style/30_search/30_Post';
 import HappyPuppyImage from 'resources/happy_puppy.jpg';
 import AngryPuppyImage from 'resources/angry_puppy.jpg';
 import HappyFaceImage from 'resources/happy_face.svg';

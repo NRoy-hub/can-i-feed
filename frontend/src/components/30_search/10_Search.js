@@ -5,7 +5,7 @@ import moment from 'moment';
 import { color, DataContext, actionNames, api, requestApi } from 'common';
 import StyledSection from 'style/30_search/10_Search';
 import Topbar from 'components/12_topbar/10_Topbar';
-import Post from 'components/30_search/15_Post';
+import Post from 'components/30_search/30_Post';
 import LoadDots from 'components/10_app/22_LoadDots';
 
 export default function Search(){
