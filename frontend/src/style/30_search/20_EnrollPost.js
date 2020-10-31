@@ -86,6 +86,7 @@ export default styled.div`
         overflow-x: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        text-align: center;
         margin-top: 13px;
         font-weight: bold;
       }
