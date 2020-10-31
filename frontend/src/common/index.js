@@ -11,6 +11,7 @@ const color = {
   red: '#DF473A',
   grey: '#6B6B6B',
   grey2: '#ACACAC',
+  grey3: '#CECECE',
   light_grey: '#ECECEC',
   light_grey2: '#B7B7B7'
 };

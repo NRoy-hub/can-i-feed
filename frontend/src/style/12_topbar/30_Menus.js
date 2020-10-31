@@ -20,7 +20,7 @@ export default styled.ul`
     width: 192px;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #CECECE;
+    border: 1px solid ${ color.grey3 };
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     background: white;
     display: flex; 

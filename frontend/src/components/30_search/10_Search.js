@@ -7,6 +7,7 @@ import StyledSection from 'style/30_search/10_Search';
 import Topbar from 'components/12_topbar/10_Topbar';
 import Post from 'components/30_search/30_Post';
 import LoadDots from 'components/10_app/22_LoadDots';
+import EnrollPost from './20_EnrollPost';
 
 export default function Search(){
   const { state: { posts, species }, dispatch } = useContext(DataContext);
@@ -86,8 +87,10 @@ export default function Search(){
           <div className={ `order ${ order === 1 ? 'selected' : '' }` } onClick={ () => onChangeOrder(1) }>
             <span>업데이트 순</span>
           </div>
-          { showEnroll && <div>Enroll Button</div> }
         </header>
+        {
+          showEnroll && <EnrollPost keyword={ keyword }/>
+        }
         <ul className="posts" ref={ postsRef }>
           {
             orderPosts.map((post, i) => (
@@ -95,11 +98,10 @@ export default function Search(){
             )
           }
           {
-            loading && (
+            loading &&
               <div className="loading_container">
                 <LoadDots />
               </div>
-            )
           }
         </ul>
       </div>
