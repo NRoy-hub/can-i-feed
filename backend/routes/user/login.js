@@ -1,6 +1,7 @@
 module.exports = (req, res) => {
   const db = new res.db();
 
+  const { keep } = req.body;
   const email = req.body.email.trim();
   const key = req.body.key.trim();
   if(!email || !key){ return res.finish('invalid') }
@@ -46,7 +47,8 @@ module.exports = (req, res) => {
         DO UPDATE SET session_id = gen_random_uuid(), update_time = $2
         RETURNING session_id;
       `;
-      const values = [userId, res.now()];
+      let updateTime = keep ? res.afterYear() : res.now();
+      const values = [userId, updateTime];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
         const sessionId = result.rows[0].session_id;
@@ -55,8 +57,9 @@ module.exports = (req, res) => {
     },
     (user, cb) => {
       const { userId, sessionId } = user;
-      res.cookie('canifeed_uid', userId);
-      res.cookie('canifeed_sid', sessionId, { httpOnly: true, signed: true });
+      const expires = keep ? new Date(res.afterYear()) : null;
+      res.cookie('canifeed_uid', userId, { expires });
+      res.cookie('canifeed_sid', sessionId, { httpOnly: true, signed: true, expires });
       res.finish('ok', { user_id: userId, email });
       cb();
     }

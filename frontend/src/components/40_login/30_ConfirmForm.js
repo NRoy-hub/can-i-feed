@@ -19,7 +19,7 @@ export default function ConfirmForm({ checkedEmail, setCheckedEmail }){
     requestApi({
       path: api.USER_LOGIN,
       data: { email: checkedEmail, key, keep: keepLogin },
-      success: (user) => { dispatch({ type: actionNames.login, user }) },
+      success: (user) => dispatch({ type: actionNames.login, user }),
       fail: msg => {
         if(msg === 'void'){
           alert('먼저 이메일 인증이 필요합니다');

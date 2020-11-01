@@ -22,7 +22,6 @@ export default function Menus({ showMenus, setShowMenus }){
       path: api.USER_LOGOUT,
       success: () => {
         dispatch({ type: actionNames.logout });
-        alert('로그아웃 되었습니다');
         history.push(url.HOME);
       },
       common: dispatch.loadOff

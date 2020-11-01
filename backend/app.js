@@ -26,6 +26,10 @@ app.use((req, res, next) => {
   }
 
   res.now = () => (moment().format());
+  res.afterYear = () => {
+    const year = moment.duration(1, 'year');
+    return moment().add(year).format();
+  }
   res.fromNow = (time) => {
     const sub = moment() - moment(time);
     return sub;

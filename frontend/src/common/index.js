@@ -34,6 +34,19 @@ const didClickeOutside = (clickEvent, ref) => {
   return x < left || right < x || y < top || bottom < y;
 }
 
+const getCookiesObject = () => {
+  const { cookie } = document;
+  if(!(!!cookie))return {};
+
+  const result = cookie.split('; ').reduce((prev, current) => {
+    const [name, value] = current.split('=');
+    prev[name] = value;
+    return prev
+  }, {});
+
+  return result;
+}
+
 export{
   DataContext,
   color,
@@ -44,5 +57,6 @@ export{
   actionNames,
   reducer,
   didClickeOutside,
-  speakOutType
+  speakOutType,
+  getCookiesObject
 }
