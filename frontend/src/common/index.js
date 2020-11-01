@@ -23,6 +23,12 @@ const url = {
   LOGIN: '/login'
 };
 
+const didClickeOutside = (clickEvent, ref) => {
+  const { top, left, right, bottom } = ref.getBoundingClientRect();
+  const { clientX: x, clientY: y } = clickEvent;
+  return x < left || right < x || y < top || bottom < y;
+}
+
 export{
   DataContext,
   color,
@@ -31,5 +37,6 @@ export{
   requestApi,
   INITIAL_STATE,
   actionNames,
-  reducer
+  reducer,
+  didClickeOutside
 }

@@ -5,7 +5,7 @@ import profileEditIcon from 'resources/profile_edit.png';
 import commentsIcon from 'resources/comments.png';
 import logoutIcon from 'resources/logout.png';
 
-import { color, DataContext, requestApi, api, url, actionNames } from 'common';
+import { color, DataContext, requestApi, api, url, actionNames, didClickeOutside } from 'common';
 import StyledUl from 'style/12_topbar/30_Menus';
 
 export default function Menus({ showMenus, setShowMenus }){
@@ -32,10 +32,7 @@ export default function Menus({ showMenus, setShowMenus }){
   useEffect(() => {
     const onClick = e => {
       if(!showMenus)return;
-      const { left, right, top, bottom } = menusRef.current.getBoundingClientRect();
-      const { clientX: x, clientY: y } = e;   
-      if(x < left || right < x || y < top || bottom < y)
-        setShowMenus(false);
+      didClickeOutside(e, menusRef.current) && setShowMenus(false);
     }
     document.addEventListener('click', onClick);
     return () => document.removeEventListener('click', onClick)

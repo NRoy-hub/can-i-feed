@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useContext } from 'react';
 import timesIcon from 'resources/times.svg';
 
 import StyledArticle from 'style/20_home/13_Keywords';
-import { color, api, DataContext, requestApi, url } from 'common';
+import { color, api, DataContext, requestApi, url, didClickeOutside } from 'common';
 import { Link } from 'react-router-dom';
 import LoadDots from 'components/10_app/22_LoadDots';
 
@@ -23,10 +23,7 @@ export default function Keywords({ showBoard, setShowBoard }){
   useEffect(() => {
     const onClick = e => {
       if(!showBoard)return;
-      const { left, right, top } = keywordsRef.current.getBoundingClientRect();
-      const { clientX: x, clientY: y } = e;   
-      if(x < left || right < x || y < top)
-      setShowBoard(false);
+      didClickeOutside(e, keywordsRef.current) && setShowBoard(false);
     }
     document.addEventListener('click', onClick);
     return () => document.removeEventListener('click', onClick)
