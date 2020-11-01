@@ -23,6 +23,11 @@ const url = {
   LOGIN: '/login'
 };
 
+const speakOutType = {
+  RECOMMEND: 1,
+  NONRECOMMEND: 2
+};
+
 const didClickeOutside = (clickEvent, ref) => {
   const { top, left, right, bottom } = ref.getBoundingClientRect();
   const { clientX: x, clientY: y } = clickEvent;
@@ -38,5 +43,6 @@ export{
   INITIAL_STATE,
   actionNames,
   reducer,
-  didClickeOutside
+  didClickeOutside,
+  speakOutType
 }

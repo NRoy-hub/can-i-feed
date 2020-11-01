@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useState, useContext } from 'react';
 
-import { color, DataContext, requestApi, api, actionNames, url } from 'common';
+import { color, DataContext, requestApi, api, actionNames, url, speakOutType } from 'common';
 import StyledLi from 'style/30_search/30_Post';
 import HappyPuppyImage from 'resources/happy_puppy.jpg';
 import AngryPuppyImage from 'resources/angry_puppy.jpg';
@@ -8,25 +8,22 @@ import HappyFaceImage from 'resources/happy_face.svg';
 import AngryFaceImage from 'resources/angry_face.svg';
 import ChatsImage from 'resources/chats_blue.png';
 import { useHistory } from 'react-router-dom';
+import CommentForm from './32_CommentForm';
 
 export default function Post({ post, open, onClickOpen, index }){
   const { id, photo, name, recommend_count, nonrecommend_count, my_comment, comments } = post;
   const { state:{ user }, dispatch } = useContext(DataContext);
   const history = useHistory();
   const [speakType, setSpeakType] = useState(null);
-  const commentInputRef = useRef();
+  
 
-  const RECOMMEND = 1;
-  const NONRECOMMEND = 2;
-  const CANCEL = 0;
+  const { RECOMMEND, NONRECOMMEND } = speakOutType;
 
   const onClickActive = (type) => {
     if(!user)return history.push(url.LOGIN);
     if(my_comment && my_comment.type !== type){ return; }
 
-    let newType = my_comment ? CANCEL : type;
-
-    if(newType === CANCEL){
+    if(my_comment){
       dispatch.loadOn();
       requestApi({
         path: api.POST_RECANT,
@@ -47,31 +44,6 @@ export default function Post({ post, open, onClickOpen, index }){
     else setSpeakType(type); 
   }
 
-  const onSubmit = e => {
-    e.preventDefault();
-    if(!speakType)return;
-    const text = commentInputRef.current.value.slice(0, 10);
-    dispatch.loadOn();
-    requestApi({
-      path: api.POST_SPEAK_OUT,
-      data: { post_id: id, type: speakType, text },
-      success: resData => {
-        const newPost = { ...post, ...resData }
-        dispatch({ type: actionNames.modifyPost, index, post: newPost })
-      },
-      fail: msg => {
-        if(msg === 'void')
-          alert('포스트가 존재하지 않습니다');
-        else if(msg === 'conflict')
-          alert('이미 의견을 내었습니다');
-      },
-      common: () => {
-        commentInputRef.current.value = '';
-        setSpeakType(null);
-        dispatch.loadOff();
-      }
-    });
-  }
 
   const { recommendComments, nonrecommendComments } = useMemo(() => {
     const recommendComments = [];
@@ -124,22 +96,7 @@ export default function Post({ post, open, onClickOpen, index }){
             <div className="speak_out_button comments_button" onClick={ onClickOpen }>
               <img src={ ChatsImage } alt="chats"/>
             </div>
-            {speakType && (
-              <form className="comment_form" key={ speakType } onSubmit={ onSubmit }>
-                <header className={ speakType === RECOMMEND ? 'recommend_header' : 'nonrecommend_header' }>
-                  { speakType === 1 ? '좋아요' : '싫어요' }
-                </header>
-                <input type="text" ref={ commentInputRef } placeholder="10자 이내 작성가능" maxLength={ 10 } />
-                <div className="comment_form_buttons">
-                  <button className="comment_button comment_submit">
-                    <span>작성</span>
-                  </button>
-                  <div className="comment_button comment_cancel" onClick={ () => setSpeakType(null) }>
-                    <span>취소</span>
-                  </div>
-                </div>
-              </form>
-            )}
+            { speakType && <CommentForm { ...{ post, index, speakType, setSpeakType } } /> }
           </div>
         </div>
       </div>
