@@ -4,12 +4,12 @@ import { color } from 'common';
 import StyledSection from 'style/50_mypage/10_MyPage';
 import MyComments from './20_MyComments';
 import LoadDots from 'components/10_app/22_LoadDots';
-import defaultUserImage from 'resources/user_default.jpg';
-import cameraIcon from 'resources/camera.svg';
 import Topbar from 'components/12_topbar/10_Topbar';
+import PhotoUpload from './14_PhotoUpload';
 
 export default function MyPage(){
   const [loading, setLoading] = useState(false);
+  const [photo, setPhoto] = useState(null);
   const [end, setEnd] = useState(false);
   return(
     <StyledSection {...{ color }}>
@@ -17,13 +17,7 @@ export default function MyPage(){
       <div className="mypage_container">
         <header>마이페이지</header>
         <div className="info">
-          <input type="file" id="profile_photo"/>
-          <label htmlFor="profile_photo" className="profile_photo">
-            <img src={ defaultUserImage } alt="profile_photo"/>
-            <div className="hover_camera">
-              <img src={ cameraIcon } alt="camera_icon"/>
-            </div>
-          </label>
+          <PhotoUpload { ...{ photo, setPhoto } } />
           <div className="account_setting">
             <div className="email">
               <label>이메일</label>

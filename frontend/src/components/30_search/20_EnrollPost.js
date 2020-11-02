@@ -97,9 +97,6 @@ export default function EnrollPost({ keyword }){
             <button className={ `enroll_button ${ preview ? 'active' : '' }` }>
               확인
             </button>
-            {/* <div>
-              <span>확인</span>
-            </div> */}
           </form>
         </div>
       )}
