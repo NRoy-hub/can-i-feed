@@ -1,7 +1,9 @@
 const express = require('express');
 const multer = require('multer');
 const middleware = require('./middleware');
-const upload = multer({ dest: 'uploads/origin/', fileFilter: middleware.fileFilter});
+const upload = multer({ dest: 'uploads/origin/', fileFilter: middleware.imageFilter});
+const fs = require('fs');
+const path = require('path');
 
 const router = express.Router();
 const commonRouter = express.Router();
@@ -23,7 +25,6 @@ router.use((err, req, res, next) => {
   res.status(505).send('Server Error!');
 });
 
-
 commonRouter.post('/keywords', require('./common/keywords'));
 commonRouter.post('/search', require('./common/search'));
 
@@ -31,8 +32,9 @@ userRouter.post('/check_email', require('./user/check_email'));
 userRouter.post('/login', require('./user/login'));
 userRouter.post('/logout', middleware.auth, require('./user/logout'));
 userRouter.post('/info', middleware.auth, require('./user/info'));
+userRouter.post('/set_photo', middleware.auth, upload.single('photo'), middleware.resizing(100, 100, 'profile'), require('./user/set_photo'));
 
-postRouter.post('/enroll', middleware.auth, upload.single('photo'), middleware.resizing, require('./post/enroll'));
+postRouter.post('/enroll', middleware.auth, upload.single('photo'), middleware.resizing(420, 420, 'post'), require('./post/enroll'));
 postRouter.post('/speak_out', middleware.auth, require('./post/speak_out'));
 postRouter.post('/recant', middleware.auth, require('./post/recant'));
 

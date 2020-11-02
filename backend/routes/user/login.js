@@ -31,15 +31,15 @@ module.exports = (req, res) => {
       const query = `
         INSERT INTO "user"(email) VALUES($1)
         ON CONFLICT(email) DO UPDATE SET email=EXCLUDED.email 
-        RETURNING id;
+        RETURNING id, photo_url;
       `;
       const values = [email];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
-        cb(null, result.rows[0].id);
+        cb(null, result.rows[0]);
       });
     },
-    (userId, cb) => {
+    (user, cb) => {
       const query = `
         INSERT INTO user_session(user_id, update_time) 
         VALUES($1, $2)
@@ -48,19 +48,19 @@ module.exports = (req, res) => {
         RETURNING session_id;
       `;
       let updateTime = keep ? res.afterYear() : res.now();
-      const values = [userId, updateTime];
+      const values = [user.id, updateTime];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
-        const sessionId = result.rows[0].session_id;
-        cb(null, { userId, sessionId });
+        const { session_id } = result.rows[0];
+        cb(null, { ...user, session_id });
       });
     },
     (user, cb) => {
-      const { userId, sessionId } = user;
+      const { id: user_id, photo_url } = user;
       const expires = keep ? new Date(res.afterYear()) : null;
-      res.cookie('canifeed_uid', userId, { expires });
-      res.cookie('canifeed_sid', sessionId, { httpOnly: true, signed: true, expires });
-      res.finish('ok', { user_id: userId, email });
+      res.cookie('canifeed_uid', user.id, { expires });
+      res.cookie('canifeed_sid', user.session_id, { httpOnly: true, signed: true, expires });
+      res.finish('ok', { user_id, photo_url, email });
       cb();
     }
   ])

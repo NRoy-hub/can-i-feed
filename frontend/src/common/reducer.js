@@ -8,6 +8,7 @@ export const INITIAL_STATE = {
 export const actionNames = {
   login: 'USER/LOGIN',
   logout: 'USER/LOGOUT',
+  setProfilePhoto: 'USER/SET_PROFILE_PHOTO',
   initPost: 'POST/INIT',
   addPost: 'POST/ADD',
   modifyPost: 'POST/MODIFY',
@@ -25,6 +26,10 @@ export function reducer(state, action){
       return{
         ...state, user: null
       };
+    case actionNames.setProfilePhoto:
+      return{
+        ...state, user: { ...state.user, photo_url: action.photo_url }
+      }
     case actionNames.initPost:
       return{
         ...state, posts: action.posts

@@ -15,12 +15,11 @@ module.exports = (req, res) => {
       });
     },
     cb => {
-      const photoUrl = `/uploads/${ file.filename }`;
       const query = `
         INSERT INTO post(user_id, species_id, photo, name, update_time)
         VALUES($1, $2, $3, $4, $5); 
       `;
-      const values = [req.user.id, species, photoUrl, name, res.now()];
+      const values = [req.user.id, species, res.photoUrl, name, res.now()];
       db.query(query, values, (err) => {
         if(err)return cb(err);
         res.finish('ok');

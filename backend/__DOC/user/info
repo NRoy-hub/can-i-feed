@@ -4,6 +4,6 @@
   req: { cookie: { canifeed_uid, canifeed_sid } }
     - canifeed_sid: client에서 처리 X
 
-  res: { *result, data: { user_id, email } }
+  res: { *result, data: { user_id, email, photo_url } }
     - email: string
     - user_id: string

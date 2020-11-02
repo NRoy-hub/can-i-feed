@@ -38,7 +38,7 @@ const auth = (req, res, next) => {
     }
   ]);
 }
-const fileFilter = (req, file, cb) => {
+const imageFilter = (req, file, cb) => {
   const rightMime = ['image/png', 'image/jpeg'].includes(file.mimetype);
   cb(null, rightMime);
 }
@@ -46,21 +46,32 @@ const fileFilter = (req, file, cb) => {
 const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs');
-const resizing = (req, res, next) => {
-  const { filename, path: originPath } = req.file;
-  const resizedPath = path.resolve('uploads', filename);
-  sharp(originPath)
-    .flatten({ background: { r: 255, g: 255, b: 255 } })
-    .resize(420, 420)
-    .jpeg({ quality: 50, force: true })
-    .toFile(resizedPath)
-    .then(() => {
-      fs.unlinkSync(originPath);
-      next();
-    })
-    .catch(err => {
-      if(err)res.finish('invalid');
-    });
+
+const resizing = (width, height, foldername) => {
+  return (req, res, next) => {
+    const { filename, path: originPath } = req.file;
+    if(!filename || !originPath)return res.finish('invalid');
+
+    const resizedPath = path.resolve('uploads', foldername, filename);
+    const folderPath = path.resolve('uploads', foldername);
+    if(!fs.existsSync(folderPath)){
+      fs.mkdirSync(folderPath);
+    }
+    res.photoUrl = `uploads/${ foldername }/${ filename }`;
+
+    sharp(originPath)
+      .flatten({ background: { r: 255, g: 255, b: 255 } })
+      .resize(width, height)
+      .jpeg({ quality: 50, force: true })
+      .toFile(resizedPath)
+      .then(() => {
+        fs.unlinkSync(originPath);
+        next();
+      })
+      .catch(err => {
+        if(err)res.finish('invalid');
+      });
+    }
 }
 
-module.exports = { auth, fileFilter, resizing };
+module.exports = { auth, imageFilter, resizing };

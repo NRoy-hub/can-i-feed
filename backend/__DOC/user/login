@@ -5,7 +5,7 @@
     - email: string
     - key: string
   
-  res: { *result, data: { user_id, email } }
+  res: { *result, data: { user_id, email, photo_url } }
     - user_id: string
     - email: string
     - *result

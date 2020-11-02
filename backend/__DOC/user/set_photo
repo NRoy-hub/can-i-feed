@@ -1,0 +1,8 @@
+/user/set_photo
+: 프로필 사진 설정
+
+  req: { photo }
+    - photo: file
+
+  res: { *result, data: { photo_url } }
+    - photo_url: string

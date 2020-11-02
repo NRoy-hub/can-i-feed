@@ -8,6 +8,7 @@ export default function App() {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   !dispatch.loadOn && (dispatch.loadOn = () => dispatch({ type: actionNames.loadOn }));
   !dispatch.loadOff && (dispatch.loadOff = () => dispatch({ type: actionNames.loadOff }));
+  
 
   return (
     <StyledDiv className="app">

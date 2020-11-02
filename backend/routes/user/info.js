@@ -1,15 +1,14 @@
 module.exports = (req, res) => {
-  const userId = req.user.id;
 
   const db = new res.db();
   db.run([
     cb => {
-      const query = 'SELECT email FROM "user" WHERE id = $1;';
-      const values = [userId];
+      const query = 'SELECT email, photo_url FROM "user" WHERE id = $1;';
+      const values = [req.user.id];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
-        const { email } = result.rows[0];
-        res.finish('ok', { user_id: userId, email });
+        const { email, photo_url } = result.rows[0];
+        res.finish('ok', { user_id: req.user.id, email, photo_url });
         cb();
       });
     }
