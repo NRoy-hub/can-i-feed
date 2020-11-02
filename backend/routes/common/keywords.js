@@ -1,15 +1,9 @@
-let cache = {}
-
 module.exports = (req, res) => {
   const db = new res.db();
   const length = 20;
 
   const { species } = req.body;
   if(!species){ return res.finish('invalid'); }
-
-  if(cache.updateTime && res.fromNow(cache.updateTime) < 60000){
-    return res.finish('ok', cache.keywords);
-  }
 
   db.run([
     cb => {
@@ -49,7 +43,6 @@ module.exports = (req, res) => {
     },
     (keywords, cb) => {
       res.finish('ok', keywords);
-      cache = { keywords, updateTime: res.now() };
       cb();
     }
   ]);
