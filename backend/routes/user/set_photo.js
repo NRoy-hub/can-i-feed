@@ -12,6 +12,7 @@ module.exports = (req, res) => {
       const values = [req.user.id];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
+        if(!result.rows[0])return cb('void');
         cb(null, result.rows[0].photo_url);
       })
     },

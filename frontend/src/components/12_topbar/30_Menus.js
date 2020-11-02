@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import profileEditIcon from 'resources/profile_edit.png';
 import commentsIcon from 'resources/comments.png';
@@ -41,16 +41,14 @@ export default function Menus({ showMenus, setShowMenus }){
   return(
     <StyledUl ref={ menusRef } color={ color }>
       <li>
-        <img src={ profileEditIcon } alt="edit icon"/>
-        <span>Edit</span>
+        <Link className="menu" to={ url.MYPAGE }>
+          <img src={ profileEditIcon } alt="profile edit icon"/>
+          <span>마이페이지</span>
+        </Link>
       </li>
-      <li>
-        <img src={ commentsIcon } alt="comments icon"/>
-        <span>Comments</span>
-      </li>
-      <li onClick={ onClickLogout }>
+      <li className="menu" onClick={ onClickLogout }>
         <img src={ logoutIcon } alt="logout icon"/>
-        <span>Logout</span>
+        <span>로그아웃</span>
       </li>
     </StyledUl>
   );

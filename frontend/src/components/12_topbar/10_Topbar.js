@@ -27,7 +27,7 @@ export default function Topbar({ home = true, searchBar = true, menus = true }){
       { user ? 
         <div className={ `me_container ${ menus ? '' : 'hidden' }` }>
           <div className="icon icon--me" onClick={ () => setShowMenus(!showMenus) }>
-            <img src={ userDefault } alt="me"/>
+            <img src={ user.photo_url || userDefault } alt="me"/>
           </div>
           { showMenus && <Menus showMenus={ showMenus } setShowMenus={ setShowMenus } /> }
         </div>

@@ -1,27 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import { color } from 'common';
+import { color, DataContext, url } from 'common';
 import StyledSection from 'style/50_mypage/10_MyPage';
 import MyComments from './20_MyComments';
+import PhotoUpload from './14_PhotoUpload';
 import LoadDots from 'components/10_app/22_LoadDots';
 import Topbar from 'components/12_topbar/10_Topbar';
-import PhotoUpload from './14_PhotoUpload';
 
 export default function MyPage(){
+  const { state: { user }} = useContext(DataContext);
+  const history = useHistory();
   const [loading, setLoading] = useState(false);
-  const [photo, setPhoto] = useState(null);
   const [end, setEnd] = useState(false);
+
+  useEffect(() => {
+    // TODO: my comments
+    // !user && history.push(url.LOGIN);
+  }, [])
+
   return(
     <StyledSection {...{ color }}>
       <Topbar { ...{ searchBar: false, menus: false } } />
       <div className="mypage_container">
         <header>마이페이지</header>
         <div className="info">
-          <PhotoUpload { ...{ photo, setPhoto } } />
+          <PhotoUpload />
           <div className="account_setting">
             <div className="email">
               <label>이메일</label>
-              <span>canifeed@gmail.com</span>
+              <span>{ user && user.email }</span>
             </div>
             <div className="delete_user">
               <span>삭제</span>

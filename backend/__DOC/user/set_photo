@@ -6,3 +6,5 @@
 
   res: { *result, data: { photo_url } }
     - photo_url: string
+    - *result
+        "void": 없는 유저입니다

@@ -29,14 +29,17 @@ export default styled.ul`
     font-size: 14px;
     animation: ${ appearMenus } 0.2s ease-in-out;
 
-    li{
+    .menu{
       width: 80px; 
-      height: 74px;
+      padding: 10px 0;
       border-radius: 6px;
       display: flex; 
       flex-direction: column;
       justify-content: center; 
       align-items: center;
+      img{
+        margin-bottom: 8px;
+      }
       &:hover{ 
         background: ${ color.light_grey };
         cursor: pointer;
