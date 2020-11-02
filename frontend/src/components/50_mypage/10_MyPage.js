@@ -6,12 +6,14 @@ import MyComments from './20_MyComments';
 import LoadDots from 'components/10_app/22_LoadDots';
 import defaultUserImage from 'resources/user_default.jpg';
 import cameraIcon from 'resources/camera.svg';
+import Topbar from 'components/12_topbar/10_Topbar';
 
 export default function MyPage(){
   const [loading, setLoading] = useState(false);
   const [end, setEnd] = useState(false);
   return(
     <StyledSection {...{ color }}>
+      <Topbar { ...{ searchBar: false, menus: false } } />
       <div className="mypage_container">
         <header>마이페이지</header>
         <div className="info">

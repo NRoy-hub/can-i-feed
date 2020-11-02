@@ -18,7 +18,7 @@ export default function Home(){
 
   return(
     <StyledSection color={ color }>
-      <Topbar />
+      <Topbar { ...{ home: false, searchBar: false } } />
       <div className="cover">
         <img src={ coverImage } alt="cover image"/>
       </div>

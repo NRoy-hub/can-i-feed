@@ -9,7 +9,8 @@ export default styled.section`
   ${ ({ color }) => css`
     width: 100vw;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 
     .mypage_container{
       width: 400px;

@@ -59,7 +59,7 @@ export default function Login(){
 
   return(
     <StyledSection color={ color }>
-      <Topbar />
+      <Topbar { ...{ searchBar: false, menus: false } } />
       <div className="login_container">
         <div className="login_frame">
           <div className="logo">
