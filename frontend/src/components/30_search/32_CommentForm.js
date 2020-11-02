@@ -36,11 +36,14 @@ export default function CommentForm(props){
     });
   }
 
+  const onKeyPress = e => e.key === 'Enter' && onSubmit(e);
+
   useEffect(() => {
     const onClick = e => {
       didClickeOutside(e, formRef.current) && setSpeakType(null);
     };
     document.addEventListener('click', onClick);
+    commentInputRef.current.focus();
     return () => document.removeEventListener('click', onClick);
   }, [])
 
@@ -49,7 +52,7 @@ export default function CommentForm(props){
       <header className={ speakType === RECOMMEND ? 'recommend_header' : 'nonrecommend_header' }>
         { speakType === RECOMMEND ? '좋아요' : '싫어요' }
       </header>
-      <input type="text" ref={ commentInputRef } placeholder="10자 이내 작성가능" maxLength={ 10 } />
+      <input type="text" ref={ commentInputRef } placeholder="10자 이내 작성가능" maxLength={ 10 } onKeyPress={ onKeyPress } />
       <div className="comment_form_buttons">
         <button className="comment_button comment_submit">
           <span>작성</span>
