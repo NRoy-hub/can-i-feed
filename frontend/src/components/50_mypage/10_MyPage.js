@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { color } from 'common';
 import StyledSection from 'style/50_mypage/10_MyPage';
+import MyComments from './20_MyComments';
 import LoadDots from 'components/10_app/22_LoadDots';
 import defaultUserImage from 'resources/user_default.jpg';
 import cameraIcon from 'resources/camera.svg';
@@ -33,8 +34,7 @@ export default function MyPage(){
         </div>
         <div className="my_comments">
           <header>내가 작성한 코멘트</header>
-          <ul className="comments_list">
-          </ul>
+          <MyComments />
           {
             !loading && !end && 
             <nav className="more_button">
