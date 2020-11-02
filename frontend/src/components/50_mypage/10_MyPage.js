@@ -8,20 +8,24 @@ import cameraIcon from 'resources/camera.svg';
 
 export default function MyPage(){
   const [loading, setLoading] = useState(false);
+  const [end, setEnd] = useState(false);
   return(
     <StyledSection {...{ color }}>
       <div className="mypage_container">
         <header>마이페이지</header>
         <div className="info">
-          <div className="profile_photo">
+          <input type="file" id="profile_photo"/>
+          <label htmlFor="profile_photo" className="profile_photo">
             <img src={ defaultUserImage } alt="profile_photo"/>
             <div className="hover_camera">
               <img src={ cameraIcon } alt="camera_icon"/>
             </div>
-          </div>
+          </label>
           <div className="account_setting">
-            <label>이메일</label>
-            <span className="email">canifeed@gmail.com</span>
+            <div className="email">
+              <label>이메일</label>
+              <span>canifeed@gmail.com</span>
+            </div>
             <div className="delete_user">
               <span>삭제</span>
             </div>
@@ -31,9 +35,12 @@ export default function MyPage(){
           <header>내가 작성한 코멘트</header>
           <ul className="comments_list">
           </ul>
-          <nav className="more_button">
-            <span>더보기</span>
-          </nav>
+          {
+            !loading && !end && 
+            <nav className="more_button">
+              <span>더보기</span>
+            </nav>
+          }
           <div className="loading">
             { loading && <LoadDots/> }
           </div>
