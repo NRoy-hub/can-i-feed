@@ -113,7 +113,8 @@ export default styled.section`
         }
         .loading{
           width: 100%;
-          height: 100px;
+          height: 30px;
+          padding-top: 20px;
           position: relative;
         }
       }
