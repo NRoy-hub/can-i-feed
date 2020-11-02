@@ -57,7 +57,7 @@ const resizing = (width, height, foldername) => {
     if(!fs.existsSync(folderPath)){
       fs.mkdirSync(folderPath);
     }
-    res.photoUrl = `uploads/${ foldername }/${ filename }`;
+    res.photoUrl = `/uploads/${ foldername }/${ filename }`;
 
     sharp(originPath)
       .flatten({ background: { r: 255, g: 255, b: 255 } })
