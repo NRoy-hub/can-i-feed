@@ -20,7 +20,8 @@ const color = {
 const url = {
   HOME: '/',
   SEARCH: (keyword) => `/search/${ keyword || ':keyword' }`,
-  LOGIN: '/login'
+  LOGIN: '/login',
+  MYPAGE: '/mypage'
 };
 
 const speakOutType = {

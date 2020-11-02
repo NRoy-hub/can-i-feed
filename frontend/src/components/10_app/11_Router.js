@@ -6,6 +6,7 @@ import Home from 'components/20_home/10_Home';
 import Search from 'components/30_search/10_Search';
 import Login from 'components/40_login/10_Login';
 import LoadSpinner from './20_LoadSpinner';
+import MyPage from 'components/50_mypage/10_MyPage';
 
 
 export default function Container(){
@@ -29,6 +30,7 @@ export default function Container(){
         <Route exact path={ url.HOME } component={ Home } />
         <Route path={ url.SEARCH() } component={ Search } />
         <Route path={ url.LOGIN } component={ Login } />
+        <Route path={ url.MYPAGE } component={ MyPage } />
         <Route path="*"><Redirect to="/" /></Route>
       </Switch>
     </>
