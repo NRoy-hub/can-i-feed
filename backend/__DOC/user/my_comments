@@ -1,0 +1,13 @@
+/user/my_comments
+: 나의 코멘트 목록 조회
+
+  req: { page }
+    - page: number
+
+  res: { *result, comments, end }
+    - comments: Array({ id, type, text, name, update_time })
+      id: string
+      type: number (추천: 1, 비추천: 2)
+      text: string
+      name: string
+      update_time: string

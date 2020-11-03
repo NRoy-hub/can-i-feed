@@ -33,6 +33,7 @@ userRouter.post('/login', require('./user/login'));
 userRouter.post('/logout', middleware.auth, require('./user/logout'));
 userRouter.post('/info', middleware.auth, require('./user/info'));
 userRouter.post('/set_photo', middleware.auth, upload.single('photo'), middleware.resizing(100, 100, 'profile'), require('./user/set_photo'));
+userRouter.post('/my_comments', middleware.auth, require('./user/my_comments'));
 
 postRouter.post('/enroll', middleware.auth, upload.single('photo'), middleware.resizing(420, 420, 'post'), require('./post/enroll'));
 postRouter.post('/speak_out', middleware.auth, require('./post/speak_out'));
