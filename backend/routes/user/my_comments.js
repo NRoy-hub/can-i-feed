@@ -18,7 +18,8 @@ module.exports = (req, res) => {
         const amount = 15;
         const end = !(!!result.rows[amount * page]);
         const comments = result.rows.splice(amount * (page - 1), amount)
-        res.finish('ok', { comments, end })
+        res.finish('ok', { comments, end });
+        cb();
       });
     }
   ])
