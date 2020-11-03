@@ -28,7 +28,7 @@ module.exports = (req, res) => {
         WHERE name LIKE $1 
         ORDER BY name = $2 DESC;
       `;
-      const values = [`${ keyword }%`, keyword];
+      const values = [`%${ keyword }%`, keyword];
 
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
