@@ -7,6 +7,7 @@ export const api = {
   USER_CHECK_EMAIL: '/user/check_email',
   USER_LOGIN: '/user/login',
   USER_LOGOUT: '/user/logout',
+  USER_MY_COMMENTS: '/user/my_comments',
   USER_SET_PHOTO: '/user/set_photo',
   POST_ENROLL: '/post/enroll',
   POST_SPEAK_OUT: '/post/speak_out',

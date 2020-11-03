@@ -65,6 +65,12 @@ export default styled.section`
         flex-direction: column;
         align-items: center;
         & > header{  color: ${ color.grey }; }
+        .comments_list{
+          width: 100%;
+          padding-top: 30px;
+          display: flex;
+          flex-direction: column;
+        }
         .more_button{
           margin-top: 11px;
           padding: 7px 14px;
