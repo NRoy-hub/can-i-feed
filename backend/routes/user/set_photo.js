@@ -22,7 +22,7 @@ module.exports = (req, res) => {
       db.query(query, values, (err) => {
         if(err)return cb(err);
         res.finish('ok', { photo_url: res.photoUrl });
-        const prePath = preUrl && path.resolve(__dirname, '..', '..', preUrl);
+        const prePath = preUrl && path.resolve(__dirname, '..', '..', preUrl.substr(1));
         prePath && fs.unlinkSync(prePath);
         cb();
       });
