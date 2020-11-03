@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import { api, color, DataContext, requestApi, url } from 'common';
 import StyledSection from 'style/50_mypage/10_MyPage';
@@ -10,24 +9,28 @@ import Topbar from 'components/12_topbar/10_Topbar';
 
 export default function MyPage(){
   const { state: { user }} = useContext(DataContext);
-  const history = useHistory();
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
   const [end, setEnd] = useState(false);
   const page = useRef(1);
 
-  useEffect(() => {
+  const requestMyComments = () => {
     setLoading(true);
     requestApi({
       path: api.USER_MY_COMMENTS,
       data: { page: page.current },
       success: res => {
-        setComments(res.comments);
-        setEnd(res.end);
+        page.current = page.current + 1;
+        setComments([...comments, ...res.comments]);
+        res.end && setEnd(res.end);
       },
       common: () => setLoading(false)
-    })
-  }, [])
+    });
+  }
+
+  const onClickMore = () => !end && requestMyComments();
+
+  useEffect(() => requestMyComments(), []);
 
   return(
     <StyledSection {...{ color }}>
@@ -49,11 +52,11 @@ export default function MyPage(){
         <div className="my_comments">
           <header>내가 작성한 코멘트</header>
           <ul className="comments_list">
-            { comments.map(comment => <MyComment { ...{ id: comment.id , comment: comment } }/>) }
+            { comments.map(comment => <MyComment { ...{ key: comment.id , comment: comment } }/>) }
           </ul>
           {
             !loading && !end && 
-            <nav className="more_button">
+            <nav className="more_button" onClick={ onClickMore }>
               <span>더보기</span>
             </nav>
           }
