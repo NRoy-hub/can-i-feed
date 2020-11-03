@@ -4,6 +4,7 @@ export default styled.div`
   ${ ({ color }) => css`
     box-sizing: border-box;
     width: 100%;
+    min-width: 980px;
     padding: 11px 40px;
     display: flex; 
     justify-content: space-between; 
