@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { DataContext, url, requestApi, api, actionNames, getCookiesObject } from 'common';
@@ -7,10 +7,12 @@ import Search from 'components/30_search/10_Search';
 import Login from 'components/40_login/10_Login';
 import LoadSpinner from './20_LoadSpinner';
 import MyPage from 'components/50_mypage/10_MyPage';
+import PhotoNotice from './43_PhotoNotice';
 
 
 export default function Container(){
-  const { state: { loading }, dispatch } = useContext(DataContext);
+  const { state: { loading, user }, dispatch } = useContext(DataContext);
+  const [showNotice, setShowNotice] = useState(false);
 
   useEffect(() => {
     const cookies = getCookiesObject();
@@ -23,9 +25,26 @@ export default function Container(){
     })
   }, []);
 
+  const noticeStorageKey = 'check_notice_default_photo';
+  const onCloseNotice = () => {
+    const storage = localStorage[noticeStorageKey] || '';
+    localStorage.setItem(noticeStorageKey, `${ storage }${ !!storage ? ',' : '' }${ user.user_id }`);
+    setShowNotice(false);
+  }
+
+  useEffect(() => {
+    if(!user)return;
+    if(!user.photo_url){
+      const storage = localStorage[noticeStorageKey] && localStorage[noticeStorageKey].split(',');
+      if(!storage || !storage.includes(user.user_id))
+        setShowNotice(true);
+    }
+  }, [user])
+
   return(
     <>
       { loading && <LoadSpinner /> }
+      { showNotice && <PhotoNotice { ...{ onClose: onCloseNotice }} /> }
       <Switch>
         <Route exact path={ url.HOME } component={ Home } />
         <Route path={ url.SEARCH() } component={ Search } />

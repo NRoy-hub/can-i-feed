@@ -16,6 +16,9 @@ export default styled.label`
   border-radius: 48px;
   cursor: pointer;
 
+  input[type=file]{
+    display: none;
+  }
   &:hover .hover_camera{
     animation: ${ appearAnimation } .1s ease-in-out;
   }
