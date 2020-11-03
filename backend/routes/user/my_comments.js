@@ -15,8 +15,8 @@ module.exports = (req, res) => {
       const values = [req.user.id];
       db.query(query, values, (err, result) => {
         if(err)return cb(err);
-        const amount = 20;
-        const end = result.rows.length < amount;
+        const amount = 15;
+        const end = !(!!result.rows[amount * page]);
         const comments = result.rows.splice(amount * (page - 1), amount)
         res.finish('ok', { comments, end })
       });
