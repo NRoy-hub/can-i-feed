@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import { api, color, DataContext, requestApi, url } from 'common';
 import StyledSection from 'style/50_mypage/10_MyPage';
 import MyComment from './20_MyComment';
-import PhotoUpload from './14_PhotoUpload';
+import PhotoUpload from '../10_app/40_PhotoUpload';
 import LoadDots from 'components/10_app/22_LoadDots';
 import Topbar from 'components/12_topbar/10_Topbar';
 
