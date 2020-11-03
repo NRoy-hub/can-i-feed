@@ -6,7 +6,7 @@
     - keyword: string
     - page: number
 
-  res: { *result, data: { posts, exist } }
+  res: { *result, data: { posts, exist, end } }
     - posts: array[{
         id: string
         photo: string
@@ -17,3 +17,4 @@
         comments: [*comment]
     }]
     - exist: bool
+    - end: bool

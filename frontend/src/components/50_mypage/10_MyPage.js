@@ -20,7 +20,7 @@ export default function MyPage(){
       path: api.USER_MY_COMMENTS,
       data: { page: page.current },
       success: res => {
-        page.current = page.current + 1;
+        page.current += 1;
         setComments([...comments, ...res.comments]);
         res.end && setEnd(res.end);
       },

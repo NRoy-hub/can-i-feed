@@ -29,8 +29,9 @@ module.exports = (req, res) => {
         if(err)return cb(err);
         const exist = result.rows[0] && result.rows[0].name === keyword;
         const amount = 10;  // 한번에 보낼 포스트 개수
+        const end = !(!!result.rows[amount * page]);
         const posts = result.rows.splice(amount * (page - 1), amount)
-        cb(null, { posts, exist });
+        cb(null, { posts, exist, end });
       });
     },
     (pre, cb) => {

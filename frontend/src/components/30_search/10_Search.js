@@ -26,11 +26,11 @@ export default function Search(){
     requestApi({
       path: `${ api.SEARCH }`,
       data: { keyword: trimedKeyword, species, page: page.current },
-      success: resData => {
-        dispatch({ type, posts: resData.posts });
-        end.current = resData.posts.length < 10;
+      success: res => {
+        dispatch({ type, posts: res.posts });
+        end.current = res.end;
         page.current += 1;
-        setShowEnroll(!resData.exist);
+        setShowEnroll(!res.exist);
       }, 
       common: () => setLoading(false)
     });
