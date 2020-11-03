@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import { api, color, DataContext, requestApi, url } from 'common';
+import { actionNames, api, color, DataContext, requestApi, url } from 'common';
 import StyledSection from 'style/50_mypage/10_MyPage';
 import MyComment from './20_MyComment';
 import PhotoUpload from '../10_app/40_PhotoUpload';
@@ -8,7 +9,8 @@ import LoadDots from 'components/10_app/22_LoadDots';
 import Topbar from 'components/12_topbar/10_Topbar';
 
 export default function MyPage(){
-  const { state: { user }} = useContext(DataContext);
+  const { state: { user }, dispatch} = useContext(DataContext);
+  const history = useHistory();
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
   const [end, setEnd] = useState(false);
@@ -28,6 +30,22 @@ export default function MyPage(){
     });
   }
 
+  const onClickQuit = () => {
+    const confirm = window.confirm('정말로 계정을 삭제 하시겠습니까??');
+    if(!confirm)return;
+
+    dispatch.loadOn();
+    requestApi({
+      path: api.USER_QUIT,
+      success: () => {
+        alert('다음에 또 이용해주세요~~');
+        dispatch({ type: actionNames.logout });
+        history.push(url.HOME);
+      },
+      common: dispatch.loadOff
+    })
+  }
+
   const onClickMore = () => !end && requestMyComments();
 
   useEffect(() => requestMyComments(), []);
@@ -44,7 +62,7 @@ export default function MyPage(){
               <label>이메일</label>
               <span>{ user && user.email }</span>
             </div>
-            <div className="delete_user">
+            <div className="delete_user" onClick={ onClickQuit }>
               <span>삭제</span>
             </div>
           </div>

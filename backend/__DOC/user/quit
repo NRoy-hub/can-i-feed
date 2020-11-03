@@ -1,0 +1,6 @@
+/user/quit
+: 계정삭제
+
+  res: { *result }
+    - *result:
+        "void": 이미 제거된 유저
