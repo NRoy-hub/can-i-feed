@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { url, api, requestApi, DataContext, actionNames, color } from 'common';
+import { DataContext, color } from 'common';
 import StyledSection from 'style/20_home/10_Home';
 import coverImage from 'resources/cover.jpg';
 import SearchBar from 'components/10_app/30_SearchBar';

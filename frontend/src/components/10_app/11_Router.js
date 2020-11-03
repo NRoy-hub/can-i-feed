@@ -5,12 +5,12 @@ import { DataContext, url, requestApi, api, actionNames, getCookiesObject } from
 import Home from 'components/20_home/10_Home';
 import Search from 'components/30_search/10_Search';
 import Login from 'components/40_login/10_Login';
-import LoadSpinner from './20_LoadSpinner';
+import DogLoader from './20_DogLoader';
 import MyPage from 'components/50_mypage/10_MyPage';
 import PhotoNotice from './43_PhotoNotice';
 
 
-export default function Container(){
+export default function Router(){
   const { state: { loading, user }, dispatch } = useContext(DataContext);
   const [showNotice, setShowNotice] = useState(false);
 
@@ -43,7 +43,7 @@ export default function Container(){
 
   return(
     <>
-      { loading && <LoadSpinner /> }
+      { loading && <DogLoader /> }
       { showNotice && <PhotoNotice { ...{ onClose: onCloseNotice }} /> }
       <Switch>
         <Route exact path={ url.HOME } component={ Home } />
