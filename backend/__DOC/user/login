@@ -1,9 +1,10 @@
 /user/login
 : 로그인 API
 
-  req: { email, key }
+  req: { email, key, keep }
     - email: string
     - key: string
+    - keep: boolean
   
   res: { *result, data: { user_id, email, photo_url } }
     - user_id: string
