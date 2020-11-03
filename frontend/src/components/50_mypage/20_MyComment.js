@@ -12,7 +12,7 @@ export default function MyComment({ comment }){
   return(
     <StyledLi { ...{ key: id, color } }>
       <div className="detail">
-        <Link className={ recommend ? 'like' : 'dislike' } to={ url.SEARCH() }>{ name }</Link>
+        <Link className={ recommend ? 'like' : 'dislike' } to={ url.SEARCH(name) }>{ name }</Link>
         <span>을(를) { recommend ? '좋아합니다' : '싫어합니다' }</span>
       </div>
       <div className="content">
