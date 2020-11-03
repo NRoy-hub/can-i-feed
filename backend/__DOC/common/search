@@ -6,7 +6,7 @@
     - keyword: string
     - page: number
 
-  res: { *result, data: { posts, exist, end } }
+  res: { *result, data: { posts, exist, end, update_time } }
     - posts: array[{
         id: string
         photo: string
@@ -15,6 +15,7 @@
         nonrecommend_count: number,
         my_comment: *comment
         comments: [*comment]
+        update_time: string
     }]
     - exist: bool
     - end: bool

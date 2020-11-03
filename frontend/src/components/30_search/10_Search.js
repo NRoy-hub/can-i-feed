@@ -83,7 +83,7 @@ export default function Search(){
             <span>정확도 순</span>
           </div>
           <div className={ `order ${ order === 1 ? 'selected' : '' }` } onClick={ () => onChangeOrder(1) }>
-            <span>업데이트 순</span>
+            <span>등록 순</span>
           </div>
         </header>
         {
