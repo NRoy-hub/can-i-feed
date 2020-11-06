@@ -33,4 +33,4 @@ const fns = files.map(file => function(cb){
 
 waterfall.run([
   ...fns
-]);
+], (err) => console.log(err || 'done!'));

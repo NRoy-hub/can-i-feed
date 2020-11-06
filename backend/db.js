@@ -42,7 +42,7 @@ function Postgres(){
       else this.query('COMMIT;');
 
       this.release();
-      callback && callback(err);
+      callback && callback(result);
     }
     );
   }
