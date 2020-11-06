@@ -1,7 +1,7 @@
 # Can I feed?
-반려견이 먹어도 되는 간식인지 검색하는 사이트
+반려견이 먹어도 되는 간식인지 검색하는 사이트입니다 🐶
 
-## 설치
+## 📥 라이브러리 설치
 
 
 먼저 `backend` 폴더와 `frontend` 각각의 폴더에 라이브러리를 설치해주세요.
@@ -18,7 +18,7 @@ npm install
 
 ---
 
-## 빌드
+## ♻️ 빌드
 
 `/frontend`
 ```
@@ -27,7 +27,7 @@ npm run build
 
 ---
 
-## 환경변수 설정
+## ⚙️ 환경변수 설정
 
 * `Postgresql` 을 설치합니다.
 * 설치된 DB에 **superuser** 를 만듭니다.
@@ -44,8 +44,8 @@ CREATE DATABASE canifeed;
 
 ```
 
-`.env`
-```json
+`/backend/.env`
+```
 DB_HOST= [데이터베이스 주소]
 DB_USER= [만든 superuser 이름]
 DB_PASSWORD= [만든 superuser 비밀번호]
@@ -58,7 +58,7 @@ COOKIE_SALT= [쿠키 인코딩 salt]
 
 ---
 
-## 데이터베이스 테이블 생성
+## 📋 데이터베이스 테이블 생성
 
 `/backend`
 ```
@@ -68,7 +68,7 @@ npm run create_db
 
 ---
 
-## 실행
+## ▶️ 실행
 
 `/backend`
 ```
