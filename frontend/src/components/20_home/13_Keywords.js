@@ -18,6 +18,7 @@ export default function Keywords({ showBoard, setShowBoard }){
   const selectTab = (select) => {
     if(select === tab)return;
     setTab(select);
+    ranking !== 0 && setRanking(0);
   }
 
   useEffect(() => {
