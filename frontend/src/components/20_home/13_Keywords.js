@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
 import timesIcon from 'resources/times.svg';
 
-import StyledArticle from 'style/20_home/13_Keywords';
+import StyledSection from 'style/20_home/13_Keywords';
 import { color, api, DataContext, requestApi, url, didClickeOutside } from 'common';
 import { Link } from 'react-router-dom';
 import LoadDots from 'components/10_app/22_LoadDots';
@@ -47,7 +47,7 @@ export default function Keywords({ showBoard, setShowBoard }){
 
   const currentKeywords = keywords[tab] && [...keywords[tab]].splice(ranking * 10, 10);
   return(
-    <StyledArticle 
+    <StyledSection 
       ref={ keywordsRef } 
       className={ `keyword_board ${ showBoard !== null && (showBoard ? 'lift_up' : 'lift_down') }` } 
       color={ color }
@@ -56,25 +56,25 @@ export default function Keywords({ showBoard, setShowBoard }){
       <div className="close_button" onClick={ () => setShowBoard(false) }>
         <img src={ timesIcon } alt="close button"/>
       </div>
-      <nav className="tabs">
-        <div className={ `tab ${ tab === TABS[0] ? 'selected' : '' } ` } onClick={ () => selectTab(TABS[0]) }>
+      <ul className="tabs">
+        <li className={ `tab ${ tab === TABS[0] ? 'selected' : '' } ` } onClick={ () => selectTab(TABS[0]) }>
           <span>오늘의 검색어</span>
-        </div>
-        <div className={ `tab ${ tab === TABS[1] ? 'selected' : '' } ` } onClick={ () => selectTab(TABS[1]) }>
+        </li>
+        <li className={ `tab ${ tab === TABS[1] ? 'selected' : '' } ` } onClick={ () => selectTab(TABS[1]) }>
           <span>추천 먹이</span>
-        </div>
-        <div className={ `tab ${ tab === TABS[2] ? 'selected' : '' } ` } onClick={ () => selectTab(TABS[2]) }>
+        </li>
+        <li className={ `tab ${ tab === TABS[2] ? 'selected' : '' } ` } onClick={ () => selectTab(TABS[2]) }>
           <span>비추천 먹이</span>
-        </div>
-      </nav>
-      <nav className="rankings">
-        <div className={ `ranking ${ ranking === 0 ? 'selected' : '' }` } onClick={ () => setRanking(0)}>
+        </li>
+      </ul>
+      <ul className="rankings">
+        <li className={ `ranking ${ ranking === 0 ? 'selected' : '' }` } onClick={ () => setRanking(0)}>
           <span>1 ~ 10위</span>
-        </div>
-        <div className={ `ranking ${ ranking === 1 ? 'selected' : '' }` } onClick={ () => setRanking(1)}>
+        </li>
+        <li className={ `ranking ${ ranking === 1 ? 'selected' : '' }` } onClick={ () => setRanking(1)}>
           <span>11 ~ 20위</span>
-        </div>
-      </nav>
+        </li>
+      </ul>
       <ul className="keywords">
         { loading && <LoadDots /> }
         {
@@ -85,6 +85,6 @@ export default function Keywords({ showBoard, setShowBoard }){
           ))
         }
       </ul>
-    </StyledArticle>
+    </StyledSection>
   );
 }

@@ -6,7 +6,7 @@ import homeIcon from 'resources/home.svg';
 import userDefault from 'resources/user_default.jpg';
 
 import SearchBar from '../10_app/30_SearchBar';
-import StyledCDiv from 'style/12_topbar/10_Topbar.js';
+import StyledHeader from 'style/12_topbar/10_Topbar.js';
 import Menus from './30_Menus';
 
 export default function Topbar({ home = true, searchBar = true, menus = true }){
@@ -18,7 +18,7 @@ export default function Topbar({ home = true, searchBar = true, menus = true }){
   const isLogin = pathname === '/login';
 
   return(
-    <StyledCDiv className="top_bar" color={ color }>
+    <StyledHeader className="top_bar" color={ color }>
       <Link to={ url.HOME } className={ `icon ${ home ? '' : 'hidden' }` }>
         <img src={ homeIcon } alt="Home"/>
       </Link>        
@@ -36,6 +36,6 @@ export default function Topbar({ home = true, searchBar = true, menus = true }){
           <span>로그인</span>
         </Link>
       }
-    </StyledCDiv>
+    </StyledHeader>
   );
 }

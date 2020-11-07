@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { DataContext, color } from 'common';
-import StyledSection from 'style/20_home/10_Home';
+import StyledArticle from 'style/20_home/10_Home';
 import coverImage from 'resources/cover.jpg';
 import SearchBar from 'components/10_app/30_SearchBar';
 import Topbar from 'components/12_topbar/10_Topbar';
@@ -17,16 +17,16 @@ export default function Home(){
   const { latest, most, recommend, nonrecommend } = keywords;
 
   return(
-    <StyledSection color={ color }>
+    <StyledArticle color={ color }>
       <Topbar { ...{ home: false, searchBar: false } } />
-      <div className="cover">
+      <figure className="cover">
         <img src={ coverImage } alt="cover image"/>
-      </div>
+      </figure>
       <SearchBar />
-      <div className="active_button" onClick={ () => setShowBoard(showBoard === null || !showBoard) }>
+      <button className="active_button" onClick={ () => setShowBoard(showBoard === null || !showBoard) }>
         <span>인기 먹이 보기</span>
-      </div>
+      </button>
       <Keywords showBoard={ showBoard } setShowBoard={ setShowBoard } />
-    </StyledSection>
+    </StyledArticle>
   );
 }

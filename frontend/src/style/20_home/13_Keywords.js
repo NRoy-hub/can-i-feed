@@ -47,7 +47,7 @@ const liftDownBoard = css`
 `;
 
 
-export default styled.article`
+export default styled.section`
   ${ ({ color }) => css`
     position: absolute;
     left: calc(50vw - 350px);

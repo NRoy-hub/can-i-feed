@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export default styled.div`
+export default styled.header`
   ${ ({ color }) => css`
     box-sizing: border-box;
     width: 100%;
