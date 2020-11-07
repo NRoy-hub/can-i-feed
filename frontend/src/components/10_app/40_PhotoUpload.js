@@ -15,10 +15,6 @@ export default function PhotoUpload(){
 
   const onChangePhoto = () => {
     const file = fileRef.current.files[0];
-    if(!file){
-      // TODO: 프로필 사진 제거 처리
-    }
-
     const form = new FormData();
     form.append('photo', file);
 

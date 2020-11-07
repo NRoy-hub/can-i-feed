@@ -1,7 +1,6 @@
-import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 
-import { DataContext, color } from 'common';
+import { color } from 'common';
 import StyledArticle from 'style/20_home/10_Home';
 import coverImage from 'resources/cover.jpg';
 import SearchBar from 'components/10_app/30_SearchBar';
@@ -10,11 +9,7 @@ import Keywords from './13_Keywords';
 
 
 export default function Home(){
-  const { dispatch, state: { species } } = useContext(DataContext);
-  const [keywords, setKeywords] = useState({});
   const [showBoard, setShowBoard] = useState(null);
-
-  const { latest, most, recommend, nonrecommend } = keywords;
 
   return(
     <StyledArticle color={ color }>
