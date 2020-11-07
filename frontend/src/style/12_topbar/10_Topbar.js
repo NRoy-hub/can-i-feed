@@ -40,7 +40,7 @@ export default styled.header`
       background: ${ color.blue };
       border-radius: 3px;
       color: white;
-      font-size: 14px;
+      font-size: 0.875em;
 
       &:hover{ cursor: pointer; }
     }

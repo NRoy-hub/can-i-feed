@@ -28,7 +28,7 @@ export default styled.form`
     border: 1px solid ${ color.grey3 };
     border-radius: 5px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
-    font-size: 14px;
+    font-size: 0.875em;
 
     animation: ${ dropAnimation } 0.2s ease-in-out;
 
@@ -38,7 +38,7 @@ export default styled.form`
       box-sizing: border-box;
       width: 100%;
       margin-top: 8px;
-      font-size: 14px;
+      font-size: 0.875em;
       padding: 3px 2px;
       border: none;
       outline: none;

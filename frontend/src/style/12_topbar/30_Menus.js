@@ -26,7 +26,7 @@ export default styled.ul`
     display: flex; 
     flex-wrap: wrap;
     gap: 6px;
-    font-size: 14px;
+    font-size: 0.875em;
     animation: ${ appearMenus } 0.2s ease-in-out;
 
     .menu{

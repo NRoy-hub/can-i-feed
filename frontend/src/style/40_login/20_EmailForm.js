@@ -3,14 +3,14 @@ import styled, { css, keyframes } from 'styled-components';
 const focusOutCSS = color => css`
   left: 134px;
   top: 36px;
-  font-size: 16px;
+  font-size: 1em;
   color: ${ color.grey };
 `;
 
 const focusInCSS = css`
   top: 0px;
   left: 10px;
-  font-size: 14px;
+  font-size: 0.875em;
   color: inherit;
 `;
 
@@ -39,7 +39,7 @@ export default styled.form`
         position: absolute;
         left: 134px;
         top: 36px;
-        font-size: 16px;
+        font-size: 1em;
         color: ${ color.grey };
 
         &:hover{ cursor: text; }
@@ -62,13 +62,13 @@ export default styled.form`
         border: 1px solid #2A2A2A;
         border-radius: 5px;
         text-align: center;
-        font-size: 16px;
+        font-size: 1em;
       }
     }
     .desc{
       margin-top: 15px;
       line-height: 25px;
-      font-size: 14px;
+      font-size: 0.875em;
     }
     button{
       margin-top: 25px;
@@ -76,7 +76,7 @@ export default styled.form`
       background: #2A2A2A;
       border: none;
       border-radius: 5px;
-      font-size: 16px;
+      font-size: 1em;
       color: white;
       &:hover{ cursor: pointer; }
       &.disable{

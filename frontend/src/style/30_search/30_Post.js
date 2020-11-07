@@ -51,7 +51,7 @@ export default styled.article`
           display: flex;
           flex-direction: column;
           justify-content: center;
-          font-size: 14px;
+          font-size: 0.875em;
 
           .state{
             display: flex;
@@ -120,7 +120,7 @@ export default styled.article`
           margin-left: 10px;
           display: flex;
           flex-wrap: wrap;
-          font-size: 14px;
+          font-size: 0.875em;
         }
         .nonrecommend_comments{
           margin-top: 15px;

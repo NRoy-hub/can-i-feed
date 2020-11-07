@@ -39,7 +39,7 @@ export default styled.article`
       .login_header{
         margin-bottom: 10px;
         text-align: center;
-        font-size: 25px;
+        font-size: 1.563em;
         font-weight: bold;
       }
     }

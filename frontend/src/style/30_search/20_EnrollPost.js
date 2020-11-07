@@ -10,7 +10,7 @@ export default styled.section`
     justify-content: center;
     align-items: center;
     
-    & > span{ font-size: 15px; }
+    & > span{ font-size: 0.938em; }
     .keyword{ text-decoration: underline; }
     .active_enroll_button{
       margin-left: 12px;
@@ -18,7 +18,7 @@ export default styled.section`
       background: ${ color.blue };
       border: 1px solid ${ color.deep_blue };
       border-radius: 5px;
-      font-size: 14px;
+      font-size: 0.875em;
       color: white;
       &:hover{ cursor: pointer; }
     }
@@ -105,7 +105,7 @@ export default styled.section`
         padding: 5px 10px;
         background: ${ color.grey3 };
         border-radius: 5px;
-        font-size: 14px;
+        font-size: 0.875em;
         color: white;
         border: none;
         &:hover{ cursor: pointer; }

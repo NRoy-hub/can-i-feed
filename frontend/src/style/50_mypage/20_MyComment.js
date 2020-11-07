@@ -8,7 +8,7 @@ export default styled.li`
 
     .detail{
       display: flex;
-      font-size: 14px;
+      font-size: 0.875em;
       .like{ color: ${ color.blue }; }
       .dislike{ color: ${ color.red }; }
     }
@@ -19,7 +19,7 @@ export default styled.li`
     }
     .time{
       margin-top: 7px;
-      font-size: 14px;
+      font-size: 0.875em;
       color: #A2A2A2;
     }
   `}

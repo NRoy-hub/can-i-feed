@@ -77,7 +77,7 @@ export default styled.section`
       width: 100%;
       display: flex;
       gap: 30px;
-      font-size: 18px;
+      font-size: 1.125em;
     }
     .tab{
       flex: 1;
@@ -131,7 +131,7 @@ export default styled.section`
     .keywords{
       margin-top: 25px;
       padding: 0 30px;
-      font-size: 18px;
+      font-size: 1.125em;
       font-weight: bold;
 
       li{

@@ -23,11 +23,11 @@ export default styled.article`
       flex-direction: column;
       align-items: center;
       padding: 19px 0;
-      font-size: 14px;
+      font-size: 0.875em;
 
       header{ 
         margin-bottom: 10px;
-        font-size: 20px; 
+        font-size: 1.250em; 
       }
       .desc-1{ 
         margin-top: 16px; 
@@ -43,7 +43,7 @@ export default styled.article`
         padding: 7px 26px;
         border-radius: 5px;
         background: ${ color.grey4 };
-        font-size: 16px;
+        font-size: 1em;
         color: white;
         cursor: pointer;
       }

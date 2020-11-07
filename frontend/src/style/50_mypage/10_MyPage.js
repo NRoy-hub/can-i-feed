@@ -19,7 +19,7 @@ export default styled.article`
       flex-direction: column;
       align-items: center;
 
-      & > header{ font-size: 20px; }
+      & > header{ font-size: 1.250em; }
       .info{ 
         width: 100%;
         padding-top: 25px; 
@@ -42,17 +42,17 @@ export default styled.article`
 
         .email{
           padding-left: 20px;
-          font-size: 16px;
+          font-size: 1em;
           label{
             margin-right: 25px;
-            font-size: 14px;
+            font-size: 0.875em;
             color: ${ color.grey2 };
           }
         }
         .delete_user{
           margin-right: 11px;
           padding: 7px 9px;
-          font-size: 14px;
+          font-size: 0.875em;
           color: ${ color.red };
           cursor: pointer;
         }
@@ -74,7 +74,7 @@ export default styled.article`
         .more_button{
           margin-top: 11px;
           padding: 7px 14px;
-          font-size: 14px;
+          font-size: 0.875em;
           color: ${ color.light_grey2 };
           cursor: pointer;
         }

@@ -12,7 +12,7 @@ export default styled.form`
       width: 300px;
       overflow: hidden;
       text-overflow: ellipsis;
-      font-size: 14px;
+      font-size: 0.875em;
       color: ${ color.blue };
 
       label{
@@ -28,20 +28,20 @@ export default styled.form`
         border: 1px solid ${ color.blue };
         border-radius: 5px;
         text-align: center;
-        font-size: 16px;
+        font-size: 1em;
         letter-spacing: 2px;
       }
     }
     .desc{
       margin-top: 15px;
-      font-size: 14px;
+      font-size: 0.875em;
     }
     .login_keep{
       margin-top: 12px;
       color: ${ color.grey2 };
       label{
         padding-left: 7px;
-        font-size: 14px;
+        font-size: 0.875em;
         &:hover{ cursor: pointer; }
       }
       &.checked{ color: inherit; }
@@ -54,7 +54,7 @@ export default styled.form`
       outline-color: ${ color.blue };
       background: ${ color.deep_blue };
       color: white;
-      font-size: 16px;
+      font-size: 1em;
 
       &:hover{ cursor: pointer; }
       &.disable{
@@ -65,7 +65,7 @@ export default styled.form`
     .cancel_button{
       margin-top: 10px;
       padding: 6px 10px;
-      font-size: 14px;
+      font-size: 0.875em;
       color: ${ color.grey };
 
       &:hover{ cursor: pointer; }
