@@ -5,7 +5,7 @@ const appearAnimation = keyframes`
   to{ opacity: 1; }
 `;
 
-export default styled.section`
+export default styled.article`
   ${ ({ color }) => css`
     width: 100vw;
     display: flex;

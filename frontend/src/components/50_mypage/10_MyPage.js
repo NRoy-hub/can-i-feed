@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { actionNames, api, color, DataContext, requestApi, url } from 'common';
-import StyledSection from 'style/50_mypage/10_MyPage';
+import StyledArticle from 'style/50_mypage/10_MyPage';
 import MyComment from './20_MyComment';
 import PhotoUpload from '../10_app/40_PhotoUpload';
 import LoadDots from 'components/10_app/22_LoadDots';
@@ -51,11 +51,11 @@ export default function MyPage(){
   useEffect(() => requestMyComments(), []);
 
   return(
-    <StyledSection {...{ color }}>
+    <StyledArticle {...{ color }}>
       <Topbar { ...{ searchBar: false, menus: false } } />
       <div className="mypage_container">
-        <header>마이페이지</header>
-        <div className="info">
+        <h1>마이페이지</h1>
+        <section className="info">
           <PhotoUpload />
           <div className="account_setting">
             <div className="email">
@@ -66,23 +66,23 @@ export default function MyPage(){
               <span>삭제</span>
             </div>
           </div>
-        </div>
-        <div className="my_comments">
-          <header>내가 작성한 코멘트</header>
+        </section>
+        <section className="my_comments">
+          <h2>내가 작성한 코멘트</h2>
           <ul className="comments_list">
             { comments.map(comment => <MyComment { ...{ key: comment.id , comment: comment } }/>) }
           </ul>
           {
             !loading && !end && 
-            <nav className="more_button" onClick={ onClickMore }>
+            <button className="more_button" onClick={ onClickMore }>
               <span>더보기</span>
-            </nav>
+            </button>
           }
           <div className="loading">
             { loading && <LoadDots/> }
           </div>
-        </div>
+        </section>
       </div>
-    </StyledSection>
+    </StyledArticle>
   );
 }
