@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export default styled.section`
+export default styled.article`
   ${ ({ color }) => css`
     width: 100vw;
     height: 100vh;

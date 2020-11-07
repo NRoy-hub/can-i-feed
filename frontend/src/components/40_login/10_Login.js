@@ -2,7 +2,7 @@ import React, { useContext, useRef, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { requestApi, api, url, DataContext, actionNames, color } from 'common';
 import Topbar from 'components/12_topbar/10_Topbar';
-import StyledSection from 'style/40_login/10_Login';
+import StyledArticle from 'style/40_login/10_Login';
 import puppyImage from 'resources/puppy.png';
 import EmailForm from 'components/40_login/20_EmailForm';
 import ConfirmForm from './30_ConfirmForm';
@@ -58,17 +58,17 @@ export default function Login(){
   }, [user, history])
 
   return(
-    <StyledSection color={ color }>
+    <StyledArticle color={ color }>
       <Topbar { ...{ searchBar: false, menus: false } } />
       <div className="login_container">
         <div className="login_frame">
-          <div className="logo">
-            <span>Can I feed my puppy?</span>
+          <figure className="logo">
+            <figcaption>Can I feed my puppy?</figcaption>
             <img src={ puppyImage } alt="puppy"/>
-          </div>
-          <header className="login_header">
+          </figure>
+          <h1 className="login_header">
             로그인
-          </header>
+          </h1>
           {
             checkedEmail ? 
               <ConfirmForm checkedEmail={ checkedEmail } setCheckedEmail={ setCheckedEmail } />
@@ -78,6 +78,6 @@ export default function Login(){
 
         </div>
       </div>
-    </StyledSection>
+    </StyledArticle>
   );
 }
