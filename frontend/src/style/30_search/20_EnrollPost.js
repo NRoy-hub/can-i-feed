@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export default styled.div`
+export default styled.section`
   ${ ({ color }) => css`
     position: relative;
     margin-top: 10px;

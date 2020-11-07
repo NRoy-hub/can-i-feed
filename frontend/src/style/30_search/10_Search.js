@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
 
 
-export default styled.section`
+export default styled.article`
   ${ ({ color }) => css`
     
     margin-top: 58px;

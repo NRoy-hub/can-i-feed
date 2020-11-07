@@ -2,7 +2,7 @@ import React, { useState, useContext, useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { color, DataContext, url, api, requestApi } from 'common';
-import StyledDiv from 'style/30_search/20_EnrollPost';
+import StyledSection from 'style/30_search/20_EnrollPost';
 import TimesIcon from 'resources/times.svg';
 import UploadIcon from 'resources/file_upload.svg';
 import Backdrop from 'resources/file_extentions.jpg';
@@ -70,7 +70,7 @@ export default function EnrollPost({ keyword }){
   }, [])
 
   return(
-    <StyledDiv color={ color }>
+    <StyledSection color={ color }>
       <span><span className="keyword">{ keyword }</span> 가 없습니다</span>
       <div className="active_enroll_button" onClick={ onOpenForm }>
         <span>등록하기</span>
@@ -100,6 +100,6 @@ export default function EnrollPost({ keyword }){
           </form>
         </div>
       )}
-    </StyledDiv>
+    </StyledSection>
   )
 }

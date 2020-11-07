@@ -17,7 +17,7 @@ const buttonHoverAnimation = (backgroundColor) => keyframes`
 `;
 
 
-export default styled.li`
+export default styled.article`
   ${ ({ color }) => css`
     display: flex;
     flex-direction: column;

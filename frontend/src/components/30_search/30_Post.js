@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useState, useContext } from 'react';
 
 import { color, DataContext, requestApi, api, actionNames, url, speakOutType } from 'common';
-import StyledLi from 'style/30_search/30_Post';
+import StyledArticle from 'style/30_search/30_Post';
 import HappyPuppyImage from 'resources/happy_puppy.jpg';
 import AngryPuppyImage from 'resources/angry_puppy.jpg';
 import HappyFaceImage from 'resources/happy_face.svg';
@@ -61,7 +61,7 @@ export default function Post({ post, open, onClickOpen, index }){
   }), [my_comment]);
   
   return(
-    <StyledLi className={ open ? 'open' : '' } color={ color }>
+    <StyledArticle className={ open ? 'open' : '' } color={ color }>
       <div className="post_main">
         <div className="info">
           <img src={ `${ photo }` } alt="photo"/>
@@ -140,6 +140,6 @@ export default function Post({ post, open, onClickOpen, index }){
           </ul>
         </div>
       </div>
-    </StyledLi>
+    </StyledArticle>
   );
 } 

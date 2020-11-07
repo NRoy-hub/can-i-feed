@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import moment from 'moment';
 
 import { color, DataContext, actionNames, api, requestApi } from 'common';
-import StyledSection from 'style/30_search/10_Search';
+import StyledArticle from 'style/30_search/10_Search';
 import Topbar from 'components/12_topbar/10_Topbar';
 import Post from 'components/30_search/30_Post';
 import LoadDots from 'components/10_app/22_LoadDots';
@@ -36,6 +36,14 @@ export default function Search(){
     });
   }
 
+  const onClickOpen = (index) => setOpen(open === index ? null : index);
+
+  const onChangeOrder = (newOrder) => {
+    if(order === newOrder)return;
+    setOrder(newOrder);
+    setOpen(null);
+  }
+
   useEffect(() => {
     page.current = 1;
     end.current = false;
@@ -58,12 +66,6 @@ export default function Search(){
     }
   }, []);
 
-  const onClickOpen = (index) => setOpen(open === index ? null : index);
-  const onChangeOrder = (newOrder) => {
-    if(order === newOrder)return;
-    setOrder(newOrder);
-    setOpen(null);
-  }
 
   const { accuracyOrderPosts, latestUpdateOrderPosts } = useMemo(() => {
     const accuracyOrderPosts = posts.map(post => ({ ...post, key: 'accuracy_' + post.id }));
@@ -75,21 +77,21 @@ export default function Search(){
   const orderPosts = useMemo(() => order === 0 ? accuracyOrderPosts : latestUpdateOrderPosts, [posts, order]);
 
   return(
-    <StyledSection color={ color }>
+    <StyledArticle color={ color }>
       <Topbar />
       <div className="search_container">
-        <header className="orders">
+        <section className="orders">
           <div className={ `order ${ order === 0 ? 'selected' : '' }` } onClick={ () => onChangeOrder(0) }>
             <span>정확도 순</span>
           </div>
           <div className={ `order ${ order === 1 ? 'selected' : '' }` } onClick={ () => onChangeOrder(1) }>
             <span>등록 순</span>
           </div>
-        </header>
+        </section>
         {
           !loading && showEnroll && <EnrollPost keyword={ keyword }/>
         }
-        <ul className="posts" ref={ postsRef }>
+        <section className="posts" ref={ postsRef }>
           {
             orderPosts.map((post, i) => (
               <Post key={ post.key } index={ i } post={ post } open={ i === open } onClickOpen={ () => onClickOpen(i) } />)
@@ -101,8 +103,8 @@ export default function Search(){
                 <LoadDots />
               </div>
           }
-        </ul>
+        </section>
       </div>
-    </StyledSection>
+    </StyledArticle>
   );
 }
