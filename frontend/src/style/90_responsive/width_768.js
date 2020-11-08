@@ -117,7 +117,7 @@ export default (color) => css`
           }
           .post_main{
             position: initial;
-            animation: ${ moveAnimation } 0.2s linear;
+            animation: ${ moveAnimation } 0.2s linear, ${ appearAnimation } 0.3s linear;
           }
           .comments_detail{
             margin: 15px 0;
@@ -169,6 +169,6 @@ const moveAnimation = keyframes`
   to{ transform: translateY(0); }
 `;
 const appearAnimation = keyframes`
-  from{ opacity: 0; }
+  from{ opacity: 0.4; }
   to{ opacity: 1; }
 `;

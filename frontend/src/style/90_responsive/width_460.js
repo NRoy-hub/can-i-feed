@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css, keyframes } from 'styled-components';
 
 export default css`
   @media screen and (max-width: 460px){
@@ -36,6 +36,10 @@ export default css`
         width: 95vw;
         height: 90vw;
 
+        &.open{
+          padding-top: 90vw;
+        }
+
         .photo{
           width: 95vw;
           height: 90vw;
@@ -44,3 +48,4 @@ export default css`
     }
   }
 `;
+
