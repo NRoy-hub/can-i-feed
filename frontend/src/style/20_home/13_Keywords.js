@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 
 const animationTime = 0.3;
-const hidePosition = 601;
+const hidePosition = '75vh';
 
 const liftUpBoard = css`
   @keyframes lift_up_board{
-    from{ transform: translateY(${ hidePosition }px); }
+    from{ transform: translateY(${ hidePosition }); }
     to{ transform: translateY(0); }
   }
   @keyframes show_close_button{
@@ -27,7 +27,7 @@ const liftUpBoard = css`
 const liftDownBoard = css`
   @keyframes lift_down_board{
     from{ transform: translateY(0); }
-    to{ transform: translateY(${ hidePosition }px); }
+    to{ transform: translateY(${ hidePosition }); }
   }
   @keyframes hide_close_button{
     from{ 
@@ -43,7 +43,7 @@ const liftDownBoard = css`
     animation: hide_close_button ${ animationTime }s ease-in-out;
     visibility: hidden; 
   }
-  transform: translateY(${ hidePosition }px);
+  transform: translateY(${ hidePosition });
 `;
 
 
@@ -53,7 +53,7 @@ export default styled.section`
     left: calc(50vw - 350px);
     bottom: 0;
     width: 700px;
-    height: 661px;
+    height: 80vh;
     box-sizing: border-box;
     border: 1px solid #B2B2B2;
     border-bottom: 0;
@@ -62,7 +62,7 @@ export default styled.section`
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
     background: white;
     padding: 60px 20px;
-    transform: translateY(${ hidePosition }px);
+    transform: translateY(${ hidePosition });
     &:hover{ cursor: pointer; }
 
     .close_button{

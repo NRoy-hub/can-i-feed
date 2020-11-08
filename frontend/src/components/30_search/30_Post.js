@@ -61,13 +61,13 @@ export default function Post({ post, open, onClickOpen, index }){
   }), [my_comment]);
   
   return(
-    <StyledArticle className={ open ? 'open' : '' } color={ color }>
+    <StyledArticle className={ `post ${ open ? 'open' : '' }` } color={ color }>
+      <figure className="photo">
+        <img src={ `${ photo }` } alt="photo"/>
+      </figure>
       <div className="post_main">
-        <div className="info">
-          <img src={ `${ photo }` } alt="photo"/>
-          <div className="name">
-            <span>{ name }</span>
-          </div>
+        <div className="name">
+          <span>{ name }</span>
         </div>
         <div className="feedback">
           <div className="current_state">
@@ -81,34 +81,34 @@ export default function Post({ post, open, onClickOpen, index }){
             </div>
           </div>
           <div className="speak_out">
-            <div 
-              className={ `speak_out_button recommend_button ${ myCommentType === RECOMMEND ? 'selected' : '' }` } 
-              onClick={ () => onClickActive(RECOMMEND) }
-            >
-              <img src={ HappyFaceImage } alt="happy_face"/>
-            </div>
-            <div 
-              className={ `speak_out_button nonrecommend_button ${ myCommentType === NONRECOMMEND ? 'selected' : '' }` } 
-              onClick={ () => onClickActive(NONRECOMMEND) }
-            >
-              <img src={ AngryFaceImage } alt="angry_face"/>
-            </div>
-            <div className="speak_out_button comments_button" onClick={ onClickOpen }>
+            <figure className={ myCommentType === RECOMMEND ? 'selected' : '' }>
+              <button className="speak_out_button recommend_button" onClick={ () => onClickActive(RECOMMEND) }>
+                <img src={ HappyFaceImage } alt="happy_face"/>
+              </button>
+              <figcaption>{ recommend_count }</figcaption>
+            </figure>
+            <figure className={ myCommentType === NONRECOMMEND ? 'selected' : '' }>
+              <button className="speak_out_button nonrecommend_button" onClick={ () => onClickActive(NONRECOMMEND) }>
+                <img src={ AngryFaceImage } alt="happy_face"/>
+              </button>
+              <figcaption>{ nonrecommend_count }</figcaption>
+            </figure>
+            <button className="speak_out_button comments_button" onClick={ onClickOpen }>
               <img src={ ChatsImage } alt="chats"/>
-            </div>
+            </button>
             { speakType && <CommentForm { ...{ post, index, speakType, setSpeakType } } /> }
           </div>
         </div>
       </div>
       <div className="comments_detail">
         <div className="recommend_comments">
-          <div>
+          <div className="comments_icon">
             <img src={ HappyFaceImage } alt="smile_face"/>
           </div>
           <ul className="comments">
             { (myCommentType !== RECOMMEND || !(!!myCommentText)) && 
                 recommendComments.length === 0 && 
-                  <li className="comment">코멘트가 없습니다</li> 
+                  <li className="no_comment">좋아요 코멘트가 없습니다</li> 
             }
             { myCommentType === RECOMMEND && !!my_comment.text && 
                 <li className="comment mine">{ my_comment.text }</li> 
@@ -121,13 +121,15 @@ export default function Post({ post, open, onClickOpen, index }){
           </ul>
         </div>
         <div className="nonrecommend_comments">
-          <div>
+          <div className="comments_icon">
             <img src={ AngryFaceImage } alt="angry_face"/>
           </div>
           <ul className="comments">
             { (myCommentType !== NONRECOMMEND || !(!!myCommentText)) && 
                 nonrecommendComments.length === 0 && 
-                  <li className="comment">코멘트가 없습니다</li> 
+                <>
+                  <li className="no_comment">싫어요 코멘트가 없습니다</li> 
+                </>
             }
             { myCommentType === NONRECOMMEND && !!my_comment.text && 
                 <li className="comment mine">{ my_comment.text }</li> 

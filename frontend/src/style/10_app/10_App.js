@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { color } from 'common';
 import { width_980, width_768 } from 'style/90_responsive';
 
 export default styled.main`
@@ -10,5 +11,5 @@ export default styled.main`
   .disappear{ display: none; }
   .hidden{ visibility: hidden; }
   ${ width_980 }
-  ${ width_768 }
+  ${ width_768(color) }
 `;

@@ -48,7 +48,7 @@ export default function CommentForm(props){
   }, [])
 
   return(
-    <StyledForm { ...{ key: speakType, ref: formRef, color, onSubmit } }>
+    <StyledForm { ...{ className: 'comment_form', key: speakType, ref: formRef, color, onSubmit } }>
       <header className={ speakType === RECOMMEND ? 'recommend_header' : 'nonrecommend_header' }>
         { speakType === RECOMMEND ? '좋아요' : '싫어요' }
       </header>

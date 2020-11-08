@@ -20,30 +20,36 @@ const buttonHoverAnimation = (backgroundColor) => keyframes`
 export default styled.article`
   ${ ({ color }) => css`
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
     padding: 20px 24px;
     border-bottom: 1px solid #e5e5e5;
     animation: ${ dropAnimation } 0.5s ease-in-out;
     
+    .photo{
+      width: 100px;
+      height: 88px;
+      background: ${ color.light_grey };
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
 
     .post_main{
+      box-sizing: border-box;
       height: 128px;
+      flex: 1;
       display: flex;
       justify-content: space-between;
+      align-items: center;
 
-      .info{
-        display: flex;
-        align-items: center;
-
-        img{
-          width: 100px;
-          height: 88px;
-          background: ${ color.light_grey };
-        }
-        .name{
-          font-weight: bold;
-          margin-left: 25px;
-        }
+      .name{
+        flex: 1;
+        margin-left: 25px;
+        font-weight: bold;
+        font-size: 16px;
       }
       .feedback{
         display: flex;
@@ -73,6 +79,19 @@ export default styled.article`
           display: flex;
           align-items: center;
 
+          figure{
+            display: flex;
+            align-items: center;
+            &:last-of-type{ margin-left: 5px; }
+          }
+          figure.selected .recommend_button{
+            background: ${ color.green }; 
+            img{ filter: brightness(0) invert(1); }
+          }
+          figure.selected .nonrecommend_button{
+            background: ${ color.red }; 
+            img{ filter: brightness(0) invert(1); }
+          }
           .speak_out_button{ 
             width: 32px;
             height: 32px;
@@ -81,7 +100,7 @@ export default styled.article`
             align-items: center;
             border-radius: 20px; 
           }
-          .speak_out_button:hover{ cursor: pointer; }
+          button:hover{ cursor: pointer; }
           .recommend_button.selected{ 
             background: ${ color.green }; 
             img{ filter: brightness(0) invert(1); }
@@ -89,6 +108,13 @@ export default styled.article`
           .nonrecommend_button.selected{ 
             background: ${ color.red }; 
             img{ filter: brightness(0) invert(1); }
+          }
+          figcaption{
+            margin-left: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            color: ${ color.grey };
+            display: none;
           }
 
           .comments_button{
@@ -112,7 +138,7 @@ export default styled.article`
       .comments_detail{
         display: flex;
         flex-direction: column;
-
+        width: 100%;
         & > *{
           display: flex;
         }
@@ -124,6 +150,9 @@ export default styled.article`
         }
         .nonrecommend_comments{
           margin-top: 15px;
+        }
+        .no_comment{
+          padding: 6px 3px;
         }
         .comment{
           padding: 4px 6px;

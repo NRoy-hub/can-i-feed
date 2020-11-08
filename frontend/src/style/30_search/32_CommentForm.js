@@ -29,7 +29,7 @@ export default styled.form`
     border-radius: 5px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
     font-size: 0.875em;
-
+    z-index: 3;
     animation: ${ dropAnimation } 0.2s ease-in-out;
 
     .recommend_header{ color: ${ color.green }; }
@@ -49,7 +49,7 @@ export default styled.form`
       display: flex;
       justify-content: space-between;
       .comment_button{
-        padding: 5px 19px;
+        padding: 5px 15px;
         &:hover{ 
           cursor: pointer; 
           animation: ${ buttonHoverAnimation(color.light_grey) } .1s ease-in-out;
