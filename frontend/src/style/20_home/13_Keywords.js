@@ -1,14 +1,14 @@
 import styled, { css } from 'styled-components';
 
 const animationTime = 0.3;
-const hidePosition = '75vh';
+const hidePosition = '600px';
 
 const liftUpBoard = css`
   @keyframes lift_up_board{
     from{ transform: translateY(${ hidePosition }); }
     to{ transform: translateY(0); }
   }
-  @keyframes show_close_button{
+  @keyframes show_content{
     from{ 
       visibility: visible;
       opacity: 0;
@@ -18,8 +18,8 @@ const liftUpBoard = css`
   animation: lift_up_board ${ animationTime }s ease-in-out;
   transform: translateY(0);
   &:hover{ cursor: default; }
-  .close_button{ 
-    animation: show_close_button ${ animationTime }s ease-in-out;
+  *{ 
+    animation: show_content ${ animationTime }s ease-in-out;
     visibility: visible; 
   }
 `;
@@ -29,7 +29,7 @@ const liftDownBoard = css`
     from{ transform: translateY(0); }
     to{ transform: translateY(${ hidePosition }); }
   }
-  @keyframes hide_close_button{
+  @keyframes hide_content{
     from{ 
       visibility: visible;
       opacity: 1;
@@ -39,8 +39,8 @@ const liftDownBoard = css`
   animation: lift_down_board ${ animationTime }s ease-in-out;
   transform: translateY(0);
   
-  .close_button{ 
-    animation: hide_close_button ${ animationTime }s ease-in-out;
+  *{ 
+    animation: hide_content ${ animationTime }s ease-in-out;
     visibility: hidden; 
   }
   transform: translateY(${ hidePosition });
@@ -53,7 +53,8 @@ export default styled.section`
     left: calc(50vw - 350px);
     bottom: 0;
     width: 700px;
-    height: 80vh;
+    height: 661px;
+    max-height: 95vh;
     box-sizing: border-box;
     border: 1px solid #B2B2B2;
     border-bottom: 0;
@@ -63,15 +64,18 @@ export default styled.section`
     background: white;
     padding: 60px 20px;
     transform: translateY(${ hidePosition });
+    z-index: 9;
     &:hover{ cursor: pointer; }
 
+    *{
+      visibility: hidden;
+    }
     .close_button{
       position: absolute;
       top: 12px;
       right: 20px;
       padding: 9px;
       &:hover{ cursor: pointer; }
-      visibility: hidden;
     }
     .tabs{
       width: 100%;

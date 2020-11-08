@@ -9,7 +9,7 @@ export default styled.header`
     display: flex; 
     justify-content: space-between; 
     align-items: flex-start;
-    z-index: 9;
+    z-index: 8;
 
     .icon{
       width: 36px; 

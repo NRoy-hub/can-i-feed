@@ -8,12 +8,11 @@ export default styled.div`
   justify-content: center;
   align-items: center;
   background: rgba(255, 255, 255, 0.2);
-  z-index: 10;
+  z-index: 11;
 
   .dog {
     width: 100px;
     height: 100px;
-    z-index: 9999;
   }
   .dog:before {
     content: '';
