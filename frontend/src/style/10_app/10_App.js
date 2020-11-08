@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { color } from 'common';
-import { width_980, width_768 } from 'style/90_responsive';
+import { width_980, width_768, width_460 } from 'style/90_responsive';
 
 export default styled.main`
   font-size: 1em;
@@ -12,4 +12,5 @@ export default styled.main`
   .hidden{ visibility: hidden; }
   ${ width_980 }
   ${ width_768(color) }
+  ${ width_460 }
 `;

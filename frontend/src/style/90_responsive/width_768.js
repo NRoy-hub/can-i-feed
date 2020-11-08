@@ -19,10 +19,24 @@ export default (color) => css`
         }
       }
     }
-    .home{
+    .home .keyword_board{
+      padding-top: 40px;
+      .close_button{
+        padding: 5px;
+        img{ 
+          width: 14px; 
+          height: 14px;
+        }
+      }
       .tabs{ gap: 10px; }
-      .ranking{ margin-left: 0; }
-      .keywords{ padding: 0 10px; }
+      .ranking{ 
+        margin-left: 0;
+        margin-top: 5px;
+      }
+      .keywords{ 
+        margin-top: 15px;
+        padding: 0 10px; 
+      }
     }
     .search{
       margin-top: 80px;
