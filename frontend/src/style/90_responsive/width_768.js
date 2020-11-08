@@ -143,8 +143,19 @@ export default (color) => css`
     }
     .login_frame{
       width: inherit;
-      padding: 30px 40px;
+      padding: 20px 30px;
       margin: 0;
+
+      .logo{
+        top: -90px;
+        img{
+          width: 80px;
+          height: 80px;
+        }
+      }
+      button{
+        margin-top: 15px;
+      }
 
       input[type=text], .input_box{
         width: 250px;
