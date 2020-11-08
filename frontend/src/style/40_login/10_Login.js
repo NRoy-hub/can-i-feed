@@ -23,7 +23,7 @@ export default styled.article`
       .logo{
         position: absolute;
         top: -127px;
-        left: 136px;
+        left: calc(50% - 75px);
         display: flex;
         flex-direction: column;
         align-items: center;

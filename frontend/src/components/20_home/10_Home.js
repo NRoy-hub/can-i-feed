@@ -12,7 +12,7 @@ export default function Home(){
   const [showBoard, setShowBoard] = useState(null);
 
   return(
-    <StyledArticle color={ color }>
+    <StyledArticle className="home" color={ color }>
       <Topbar { ...{ home: false, searchBar: false } } />
       <figure className="cover">
         <img src={ coverImage } alt="cover image"/>

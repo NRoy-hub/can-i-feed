@@ -6,11 +6,15 @@ export default css`
       min-width: inherit;
     }
     .keyword_board{
-      width: 90%;
-      left: 5%;
+      width: 95%;
+      left: 2.5%;
     }
-    .search_container{
-      width: 100%;
+    .search{
+      box-sizing: border-box;
+      padding: 0 8px;
+      .search_container{
+        width: 100%;
+      }
     }
   }
 `;

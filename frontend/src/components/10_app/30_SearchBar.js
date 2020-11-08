@@ -5,7 +5,7 @@ import StyledDiv from 'style/10_app/30_SearchBar';
 
 
 export default function SearchBar({ className }){
-  const { keyword } = useParams()
+  const { keyword } = useParams();
   const history = useHistory();
   const inputRef = useRef();
 
@@ -19,7 +19,7 @@ export default function SearchBar({ className }){
   }, [keyword])
 
   return(
-    <StyledDiv className={ className }>
+    <StyledDiv className={ `search_bar ${ className }` }>
       <span>Can I feed my puppy</span>
       <input type="text" ref={ inputRef } onKeyDown={ onKeyDown } />
       <span>?</span>

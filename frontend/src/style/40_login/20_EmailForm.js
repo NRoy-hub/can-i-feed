@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
 
 const focusOutCSS = color => css`
-  left: 134px;
+  left: calc(50% - 1.1em);
   top: 36px;
   font-size: 1em;
   color: ${ color.grey };
@@ -37,7 +37,7 @@ export default styled.form`
 
       .login_label{
         position: absolute;
-        left: 134px;
+        left: calc(50% - 1.1em);
         top: 36px;
         font-size: 1em;
         color: ${ color.grey };

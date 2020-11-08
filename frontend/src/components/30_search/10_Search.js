@@ -77,7 +77,7 @@ export default function Search(){
   const orderPosts = useMemo(() => order === 0 ? accuracyOrderPosts : latestUpdateOrderPosts, [posts, order]);
 
   return(
-    <StyledArticle color={ color }>
+    <StyledArticle className="search" color={ color }>
       <Topbar />
       <div className="search_container">
         <section className="orders">
